@@ -22,17 +22,24 @@ namespace osu.Game.Rulesets.Hishigata.Replays
 
         public override Replay Generate()
         {
+            int currentLane = 0;
             Frames.Add(new HishigataReplayFrame());
 
             foreach (HishigataHitObject hitObject in Beatmap.HitObjects)
             {
-                Frames.Add(new HishigataReplayFrame
+                if (currentLane != hitObject.Lane)
                 {
-                    Time = hitObject.StartTime
-                    // todo: add required inputs and extra frames.
-                });
+                    Frames.Add(new HishigataReplayFrame((HishigataAction)hitObject.Lane)
+                    {
+                        Time = hitObject.StartTime,
+                    });
+                    Frames.Add(new HishigataReplayFrame()
+                    {
+                        Time = hitObject.StartTime + 20,
+                    });
+                    currentLane = hitObject.Lane;
+                }
             }
-
             return Replay;
         }
     }
