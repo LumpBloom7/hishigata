@@ -4,6 +4,7 @@ using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Beatmaps;
+using System;
 
 namespace osu.Game.Rulesets.Hishigata.Objects
 {
@@ -27,6 +28,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects
 
             TimePreempt = (float)BeatmapDifficulty.DifficultyRange(difficulty.ApproachRate, 1800, 1200, 450);
             TimePreempt /= controlPointInfo.DifficultyPointAt(StartTime).SpeedMultiplier;
+            TimePreempt = Math.Max(TimePreempt, IsFeign ? 750 : 450);
         }
     }
 }

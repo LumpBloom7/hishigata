@@ -34,8 +34,6 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
                 {
                     RelativeSizeAxes = Axes.Both,
                     Icon = FontAwesome.Solid.ChevronDown,
-                    Anchor = Anchor.BottomCentre,
-                    Origin = Anchor.BottomCentre
                 }
             });
         }
@@ -59,7 +57,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
         {
             base.UpdateInitialTransforms();
             if (HitObject.IsFeign)
-                this.Delay(HitObject.TimePreempt * .3).Then().RotateTo(360, HitObject.TimePreempt * .3).FadeColour(Color4.White, HitObject.TimePreempt * .2);
+                this.Delay(HitObject.TimePreempt * .4).Then().RotateTo(360, HitObject.TimePreempt * .2).FadeColour(Color4.White, HitObject.TimePreempt * .2);
 
             note.MoveTo(new Vector2(0, -80), HitObject.TimePreempt);
         }
