@@ -2,20 +2,20 @@
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Game.Rulesets.Objects.Drawables;
-using osu.Game.Rulesets.Rhombus.Objects.Drawables;
-using osu.Game.Rulesets.Rhombus.UI.Components;
+using osu.Game.Rulesets.Hishigata.Objects.Drawables;
+using osu.Game.Rulesets.Hishigata.UI.Components;
 using osu.Game.Rulesets.UI;
 using osuTK;
 using System.Collections.Generic;
 
-namespace osu.Game.Rulesets.Rhombus.UI
+namespace osu.Game.Rulesets.Hishigata.UI
 {
     [Cached]
-    public class RhombusPlayfield : Playfield
+    public class HishigataPlayfield : Playfield
     {
         private readonly List<Lane> lanes = new List<Lane>();
         private readonly PlayerVisual playerObject;
-        public RhombusPlayfield()
+        public HishigataPlayfield()
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
@@ -40,10 +40,10 @@ namespace osu.Game.Rulesets.Rhombus.UI
 
         public override void Add(DrawableHitObject hitObject)
         {
-            var rhombusObject = hitObject as DrawableRhombusHitObject;
+            var hishigataObject = hitObject as DrawableHishigataHitObject;
 
-            rhombusObject.CanBeHit = playerObject.CanBeHit;
-            lanes[rhombusObject.HitObject.Lane].Add(hitObject);
+            hishigataObject.CanBeHit = playerObject.CanBeHit;
+            lanes[hishigataObject.HitObject.Lane].Add(hitObject);
         }
     }
 }

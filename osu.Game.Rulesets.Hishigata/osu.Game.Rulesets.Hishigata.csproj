@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup Label="Project">
     <TargetFramework>netstandard2.1</TargetFramework>
-    <AssemblyTitle>osu.Game.Rulesets.Rhombus</AssemblyTitle>
+    <AssemblyTitle>osu.Game.Rulesets.Hishigata</AssemblyTitle>
     <OutputType>Library</OutputType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <RootNamespace>osu.Game.Rulesets.Rhombus</RootNamespace>
+    <RootNamespace>osu.Game.Rulesets.Hishigata</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyName>osu.Game.Rulesets.Rhombus</AssemblyName>
+    <AssemblyName>osu.Game.Rulesets.Hishigata</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ppy.osu.Game" Version="2020.1009.0"/>

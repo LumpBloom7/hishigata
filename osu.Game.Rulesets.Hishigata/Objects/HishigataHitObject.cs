@@ -5,9 +5,9 @@ using osu.Game.Rulesets.Objects;
 using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Beatmaps;
 
-namespace osu.Game.Rulesets.Rhombus.Objects
+namespace osu.Game.Rulesets.Hishigata.Objects
 {
-    public class RhombusHitObject : HitObject
+    public class HishigataHitObject : HitObject
     {
         public double TimePreempt;
 

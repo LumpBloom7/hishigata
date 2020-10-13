@@ -10,14 +10,14 @@
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0" PrivateAssets="All" />
   </ItemGroup>
   <PropertyGroup Label="Code Analysis">
-    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)CodeAnalysis\rhombus.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)CodeAnalysis\hishigata.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Label="Nuget">
     <IsPackable>false</IsPackable>
     <Authors>Derrick Timmermans</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/LumpBloom7/Rhombus</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/LumpBloom7/Rhombus</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/LumpBloom7/Hishigata</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/LumpBloom7/Hishigata</RepositoryUrl>
     <PackageReleaseNotes></PackageReleaseNotes>
     <Copyright>Copyright (c) 2020 Derrick Timmermans</Copyright>
     <PackageTags>osu game</PackageTags>

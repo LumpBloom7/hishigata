@@ -9,7 +9,7 @@ using osu.Framework.Input.Bindings;
 using osu.Framework.Allocation;
 using osu.Game.Rulesets.UI.Scrolling;
 
-namespace osu.Game.Rulesets.Rhombus.UI
+namespace osu.Game.Rulesets.Hishigata.UI
 {
     public class Lane : Playfield
     {

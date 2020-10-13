@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using osu.Game.Beatmaps;
 using osu.Game.Replays;
-using osu.Game.Rulesets.Rhombus.Objects;
+using osu.Game.Rulesets.Hishigata.Objects;
 using osu.Game.Rulesets.Replays;
 
-namespace osu.Game.Rulesets.Rhombus.Replays
+namespace osu.Game.Rulesets.Hishigata.Replays
 {
-    public class RhombusAutoGenerator : AutoGenerator
+    public class HishigataAutoGenerator : AutoGenerator
     {
         protected Replay Replay;
         protected List<ReplayFrame> Frames => Replay.Frames;
 
-        public new Beatmap<RhombusHitObject> Beatmap => (Beatmap<RhombusHitObject>)base.Beatmap;
+        public new Beatmap<HishigataHitObject> Beatmap => (Beatmap<HishigataHitObject>)base.Beatmap;
 
-        public RhombusAutoGenerator(IBeatmap beatmap)
+        public HishigataAutoGenerator(IBeatmap beatmap)
             : base(beatmap)
         {
             Replay = new Replay();
@@ -22,11 +22,11 @@ namespace osu.Game.Rulesets.Rhombus.Replays
 
         public override Replay Generate()
         {
-            Frames.Add(new RhombusReplayFrame());
+            Frames.Add(new HishigataReplayFrame());
 
-            foreach (RhombusHitObject hitObject in Beatmap.HitObjects)
+            foreach (HishigataHitObject hitObject in Beatmap.HitObjects)
             {
-                Frames.Add(new RhombusReplayFrame
+                Frames.Add(new HishigataReplayFrame
                 {
                     Time = hitObject.StartTime
                     // todo: add required inputs and extra frames.

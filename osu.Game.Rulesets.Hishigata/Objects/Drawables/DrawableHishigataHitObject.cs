@@ -10,12 +10,12 @@ using osu.Framework.Graphics.Sprites;
 using osu.Game.Graphics.Containers;
 using System;
 
-namespace osu.Game.Rulesets.Rhombus.Objects.Drawables
+namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
 {
-    public class DrawableRhombusHitObject : DrawableHitObject<RhombusHitObject>
+    public class DrawableHishigataHitObject : DrawableHitObject<HishigataHitObject>
     {
         protected override double InitialLifetimeOffset => HitObject.TimePreempt;
-        public DrawableRhombusHitObject(RhombusHitObject hitObject)
+        public DrawableHishigataHitObject(HishigataHitObject hitObject)
             : base(hitObject)
         {
             Position = new Vector2(0, -300);
@@ -31,7 +31,7 @@ namespace osu.Game.Rulesets.Rhombus.Objects.Drawables
             });
         }
 
-        public Func<DrawableRhombusHitObject, bool> CanBeHit;
+        public Func<DrawableHishigataHitObject, bool> CanBeHit;
 
         protected override void CheckForResult(bool userTriggered, double timeOffset)
         {

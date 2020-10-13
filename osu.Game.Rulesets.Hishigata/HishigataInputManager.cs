@@ -3,17 +3,17 @@ using System.ComponentModel;
 using osu.Framework.Input.Bindings;
 using osu.Game.Rulesets.UI;
 
-namespace osu.Game.Rulesets.Rhombus
+namespace osu.Game.Rulesets.Hishigata
 {
-    public class RhombusInputManager : RulesetInputManager<RhombusAction>
+    public class HishigataInputManager : RulesetInputManager<HishigataAction>
     {
-        public RhombusInputManager(RulesetInfo ruleset)
+        public HishigataInputManager(RulesetInfo ruleset)
             : base(ruleset, 0, SimultaneousBindingMode.Unique)
         {
         }
     }
 
-    public enum RhombusAction
+    public enum HishigataAction
     {
         [Description("Up")]
         Up,

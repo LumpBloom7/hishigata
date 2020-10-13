@@ -4,7 +4,7 @@ using osu.Framework;
 using osu.Framework.Platform;
 using osu.Game.Tests;
 
-namespace osu.Game.Rulesets.Rhombus.Tests
+namespace osu.Game.Rulesets.Hishigata.Tests
 {
     public static class VisualTestRunner
     {

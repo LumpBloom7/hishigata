@@ -18,7 +18,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build osu.Game.Rulesets.Rhombus --configuration Release -p:version=${{env.CURRENT_TAG}} --no-restore
+      run: dotnet build osu.Game.Rulesets.Hishigata --configuration Release -p:version=${{env.CURRENT_TAG}} --no-restore
     - name: Create Release
       id: create_release
       uses: actions/create-release@latest
@@ -34,7 +34,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./osu.Game.Rulesets.Sentakki/bin/Release/netstandard2.1/osu.Game.Rulesets.Rhombus.dll
+        asset_path: ./osu.Game.Rulesets.Sentakki/bin/Release/netstandard2.1/osu.Game.Rulesets.Hishigata.dll
         asset_name: osu.Game.Rulesets.Sentakki.dll
         asset_content_type: application/vnd.microsoft.portable-executable
     - name: Generate changelog

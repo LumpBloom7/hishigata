@@ -7,11 +7,11 @@ using osu.Game.Rulesets.Difficulty.Preprocessing;
 using osu.Game.Rulesets.Difficulty.Skills;
 using osu.Game.Rulesets.Mods;
 
-namespace osu.Game.Rulesets.Rhombus
+namespace osu.Game.Rulesets.Hishigata
 {
-    public class RhombusDifficultyCalculator : DifficultyCalculator
+    public class HishigataDifficultyCalculator : DifficultyCalculator
     {
-        public RhombusDifficultyCalculator(Ruleset ruleset, WorkingBeatmap beatmap)
+        public HishigataDifficultyCalculator(Ruleset ruleset, WorkingBeatmap beatmap)
             : base(ruleset, beatmap)
         {
         }

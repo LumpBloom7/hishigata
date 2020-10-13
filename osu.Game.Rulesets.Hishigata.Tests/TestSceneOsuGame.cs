@@ -6,7 +6,7 @@ using osu.Framework.Platform;
 using osu.Game.Tests.Visual;
 using osuTK.Graphics;
 
-namespace osu.Game.Rulesets.Rhombus.Tests
+namespace osu.Game.Rulesets.Hishigata.Tests
 {
     public class TestSceneOsuGame : OsuTestScene
     {

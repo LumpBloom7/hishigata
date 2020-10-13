@@ -1,6 +1,6 @@
 ﻿using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Objects;
-using osu.Game.Rulesets.Rhombus.Objects;
+using osu.Game.Rulesets.Hishigata.Objects;
 using System.Threading;
 using System.Collections.Generic;
 using osuTK;
@@ -8,11 +8,11 @@ using System;
 using System.Linq;
 using osu.Game.Rulesets.Objects.Types;
 
-namespace osu.Game.Rulesets.Rhombus.Beatmaps
+namespace osu.Game.Rulesets.Hishigata.Beatmaps
 {
-    public class RhombusBeatmapConverter : BeatmapConverter<RhombusHitObject>
+    public class HishigataBeatmapConverter : BeatmapConverter<HishigataHitObject>
     {
-        public RhombusBeatmapConverter(IBeatmap beatmap, Ruleset ruleset)
+        public HishigataBeatmapConverter(IBeatmap beatmap, Ruleset ruleset)
             : base(beatmap, ruleset)
         {
         }
@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Rhombus.Beatmaps
         // https://github.com/ppy/osu/tree/master/osu.Game/Rulesets/Objects/Types
         public override bool CanConvert() => Beatmap.HitObjects.All(x => x is IHasPosition);
 
-        protected override IEnumerable<RhombusHitObject> ConvertHitObject(HitObject original, IBeatmap beatmap, CancellationToken cancellationToken)
+        protected override IEnumerable<HishigataHitObject> ConvertHitObject(HitObject original, IBeatmap beatmap, CancellationToken cancellationToken)
         {
             Vector2 position = (original as IHasPosition).Position;
             float angle = getHitObjectAngle(position) / 90;
@@ -29,7 +29,7 @@ namespace osu.Game.Rulesets.Rhombus.Beatmaps
 
             if (lane >= 4) lane -= 4;
 
-            yield return new RhombusHitObject
+            yield return new HishigataHitObject
             {
                 Lane = lane,
                 Samples = original.Samples,

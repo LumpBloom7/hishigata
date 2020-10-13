@@ -5,11 +5,11 @@ using osu.Framework.Graphics.Shapes;
 using osuTK;
 using osuTK.Graphics;
 using osu.Framework.Input.Bindings;
-using osu.Game.Rulesets.Rhombus.Objects.Drawables;
+using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 
-namespace osu.Game.Rulesets.Rhombus.UI.Components
+namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
-    public class PlayerVisual : CompositeDrawable, IKeyBindingHandler<RhombusAction>
+    public class PlayerVisual : CompositeDrawable, IKeyBindingHandler<HishigataAction>
     {
         public PlayerVisual()
         {
@@ -43,13 +43,13 @@ namespace osu.Game.Rulesets.Rhombus.UI.Components
             };
         }
 
-        public bool CanBeHit(DrawableRhombusHitObject hitObject) => hitObject.HitObject.Lane == ((int)Rotation / 90);
+        public bool CanBeHit(DrawableHishigataHitObject hitObject) => hitObject.HitObject.Lane == ((int)Rotation / 90);
 
-        public bool OnPressed(RhombusAction action)
+        public bool OnPressed(HishigataAction action)
         {
             Rotation = 90 * (int)action;
             return true;
         }
-        public void OnReleased(RhombusAction action) { }
+        public void OnReleased(HishigataAction action) { }
     }
 }

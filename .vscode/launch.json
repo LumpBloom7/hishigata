@@ -2,24 +2,24 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "rhombus for osu! (Tests, Debug)",
+            "name": "hishigata for osu! (Tests, Debug)",
             "type": "coreclr",
             "request": "launch",
             "program": "dotnet",
             "args": [
-                "${workspaceRoot}/osu.Game.Rulesets.Rhombus.Tests/bin/Debug/netcoreapp3.1/osu.Game.Rulesets.Rhombus.Tests.dll"
+                "${workspaceRoot}/osu.Game.Rulesets.Hishigata.Tests/bin/Debug/netcoreapp3.1/osu.Game.Rulesets.Hishigata.Tests.dll"
             ],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": "Build tests (Debug)",
             "console": "internalConsole"
         },
         {
-            "name": "rhombus for osu! (Tests, Release)",
+            "name": "hishigata for osu! (Tests, Release)",
             "type": "coreclr",
             "request": "launch",
             "program": "dotnet",
             "args": [
-                "${workspaceRoot}/osu.Game.Rulesets.Rhombus.Tests/bin/Release/netcoreapp3.1/osu.Game.Rulesets.Rhombus.Tests.dll"
+                "${workspaceRoot}/osu.Game.Rulesets.Hishigata.Tests/bin/Release/netcoreapp3.1/osu.Game.Rulesets.Hishigata.Tests.dll"
             ],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": "Build tests (Release)",
