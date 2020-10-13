@@ -67,18 +67,17 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
 
         protected override void UpdateStateTransforms(ArmedState state)
         {
-            const double duration = 300;
 
             switch (state)
             {
                 case ArmedState.Hit:
-                    note.FadeOut().Expire();
+                    note.ScaleTo(0, HitObject.TimePreempt / 6).Expire();
+                    this.Delay(HitObject.TimePreempt / 6).Expire();
                     break;
 
                 case ArmedState.Miss:
-
-                    note.FadeColour(Color4.Red, duration);
-                    note.FadeOut(duration, Easing.InQuint).Expire();
+                    note.MoveToOffset(new Vector2(0, 50), 150).FadeColour(Color4.Red, 150).FadeOut(150).Expire();
+                    this.Delay(150).Expire();
                     break;
             }
         }
