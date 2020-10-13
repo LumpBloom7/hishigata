@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
             : base(hitObject)
         {
             Position = new Vector2(0, -300);
-            Size = new Vector2(40);
+            Size = new Vector2(50);
             Origin = Anchor.Centre;
             Anchor = Anchor.Centre;
             AddInternal(new SpriteIcon
