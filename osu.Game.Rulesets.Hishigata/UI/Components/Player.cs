@@ -31,12 +31,18 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
                             Alpha= 0,
                             AlwaysPresent = true
                         },
-                        new SpriteIcon{
-                            Icon = FontAwesome.Solid.ChevronUp,
+                        new Container{
                             Anchor = Anchor.Centre,
-                            Origin = Anchor.Centre,
-                            Size = new Vector2(50),
+                            Origin =Anchor.Centre,
                             Rotation = -45,
+                            Child= new SpriteIcon
+                            {
+                                Icon = FontAwesome.Solid.ChevronUp,
+                                Anchor = Anchor.Centre,
+                                Origin = Anchor.Centre,
+                                Size = new Vector2(65),
+                                Position = new Vector2(0,-15)
+                            }
                         }
                     }
                 }
@@ -47,6 +53,8 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 
         public bool OnPressed(HishigataAction action)
         {
+            FinishTransforms();
+            this.ScaleTo(1.1f, 50).Then().ScaleTo(1, 50);
             Rotation = 90 * (int)action;
             return true;
         }
