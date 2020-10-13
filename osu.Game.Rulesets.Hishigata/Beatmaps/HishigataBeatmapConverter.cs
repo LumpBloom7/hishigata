@@ -7,6 +7,7 @@ using osuTK;
 using System;
 using System.Linq;
 using osu.Game.Rulesets.Objects.Types;
+using osu.Game.Audio;
 
 namespace osu.Game.Rulesets.Hishigata.Beatmaps
 {
@@ -27,6 +28,8 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
             float angle = getHitObjectAngle(position) / 90;
             int lane = (int)Math.Round(angle);
 
+            bool isFeign = original.Samples.Any(x => x.Name == HitSampleInfo.HIT_WHISTLE);
+
             if (lane >= 4) lane -= 4;
 
             yield return new HishigataHitObject
@@ -34,6 +37,7 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                 Lane = lane,
                 Samples = original.Samples,
                 StartTime = original.StartTime,
+                IsFeign = isFeign
             };
         }
         private float getHitObjectAngle(Vector2 target)

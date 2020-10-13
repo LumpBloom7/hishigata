@@ -8,6 +8,7 @@ using osuTK.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Game.Graphics.Containers;
+using osu.Framework.Extensions.Color4Extensions;
 using System;
 
 namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
@@ -15,19 +16,28 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
     public class DrawableHishigataHitObject : DrawableHitObject<HishigataHitObject>
     {
         protected override double InitialLifetimeOffset => HitObject.TimePreempt;
+
+        private readonly Container note;
         public DrawableHishigataHitObject(HishigataHitObject hitObject)
             : base(hitObject)
         {
-            Position = new Vector2(0, -300);
-            Size = new Vector2(50);
             Origin = Anchor.Centre;
             Anchor = Anchor.Centre;
-            AddInternal(new SpriteIcon
+            Rotation = HitObject.IsFeign ? 180 : 0;
+            Colour = HitObject.IsFeign ? Color4Extensions.FromHex("ff0064") : Color4.White;
+            AddInternal(note = new Container
             {
-                RelativeSizeAxes = Axes.Both,
-                Icon = FontAwesome.Solid.ChevronDown,
-                Anchor = Anchor.BottomCentre,
-                Origin = Anchor.BottomCentre
+                Position = new Vector2(0, -300),
+                Size = new Vector2(50),
+                Origin = Anchor.Centre,
+                Anchor = Anchor.Centre,
+                Child = new SpriteIcon
+                {
+                    RelativeSizeAxes = Axes.Both,
+                    Icon = FontAwesome.Solid.ChevronDown,
+                    Anchor = Anchor.BottomCentre,
+                    Origin = Anchor.BottomCentre
+                }
             });
         }
 
@@ -49,7 +59,10 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
         protected override void UpdateInitialTransforms()
         {
             base.UpdateInitialTransforms();
-            this.MoveTo(new Vector2(0, -80), HitObject.TimePreempt);
+            if (HitObject.IsFeign)
+                this.Delay(HitObject.TimePreempt * .3).Then().RotateTo(360, HitObject.TimePreempt * .3).FadeColour(Color4.White, HitObject.TimePreempt * .2);
+
+            note.MoveTo(new Vector2(0, -80), HitObject.TimePreempt);
         }
 
 
@@ -60,13 +73,13 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
             switch (state)
             {
                 case ArmedState.Hit:
-                    this.FadeOut().Expire();
+                    note.FadeOut().Expire();
                     break;
 
                 case ArmedState.Miss:
 
-                    this.FadeColour(Color4.Red, duration);
-                    this.FadeOut(duration, Easing.InQuint).Expire();
+                    note.FadeColour(Color4.Red, duration);
+                    note.FadeOut(duration, Easing.InQuint).Expire();
                     break;
             }
         }
