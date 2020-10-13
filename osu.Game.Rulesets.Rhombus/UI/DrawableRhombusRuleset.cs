@@ -11,18 +11,16 @@ using osu.Game.Rulesets.Rhombus.Objects;
 using osu.Game.Rulesets.Rhombus.Objects.Drawables;
 using osu.Game.Rulesets.Rhombus.Replays;
 using osu.Game.Rulesets.UI;
-using osu.Game.Rulesets.UI.Scrolling;
+using osu.Game.Configuration;
 
 namespace osu.Game.Rulesets.Rhombus.UI
 {
     [Cached]
-    public class DrawableRhombusRuleset : DrawableScrollingRuleset<RhombusHitObject>
+    public class DrawableRhombusRuleset : DrawableRuleset<RhombusHitObject>
     {
         public DrawableRhombusRuleset(RhombusRuleset ruleset, IBeatmap beatmap, IReadOnlyList<Mod> mods = null)
             : base(ruleset, beatmap, mods)
         {
-            Direction.Value = ScrollingDirection.Left;
-            TimeRange.Value = 6000;
         }
 
         protected override Playfield CreatePlayfield() => new RhombusPlayfield();

@@ -15,10 +15,16 @@ namespace osu.Game.Rulesets.Rhombus
 
     public enum RhombusAction
     {
-        [Description("Button 1")]
-        Button1,
+        [Description("Up")]
+        Up,
 
-        [Description("Button 2")]
-        Button2,
+        [Description("Right")]
+        Right,
+
+        [Description("Down")]
+        Down,
+
+        [Description("Left")]
+        Left,
     }
 }

@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Rhombus
 {
     public class RhombusRuleset : Ruleset
     {
-        public override string Description => "a very rhombus ruleset";
+        public override string Description => "rhombus";
 
         public override DrawableRuleset CreateDrawableRulesetWith(IBeatmap beatmap, IReadOnlyList<Mod> mods = null) => new DrawableRhombusRuleset(this, beatmap, mods);
 
@@ -40,8 +40,10 @@ namespace osu.Game.Rulesets.Rhombus
 
         public override IEnumerable<KeyBinding> GetDefaultKeyBindings(int variant = 0) => new[]
         {
-            new KeyBinding(InputKey.Z, RhombusAction.Button1),
-            new KeyBinding(InputKey.X, RhombusAction.Button2),
+            new KeyBinding(InputKey.Up, RhombusAction.Up),
+            new KeyBinding(InputKey.Right, RhombusAction.Right),
+            new KeyBinding(InputKey.Down, RhombusAction.Down),
+            new KeyBinding(InputKey.Left, RhombusAction.Left),
         };
 
         public override Drawable CreateIcon() => new SpriteText
