@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0" PrivateAssets="All" />
   </ItemGroup>
   <PropertyGroup Label="Code Analysis">
-    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)CodeAnalysis\Rhombus.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)CodeAnalysis\rhombus.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Label="Nuget">
     <IsPackable>false</IsPackable>
