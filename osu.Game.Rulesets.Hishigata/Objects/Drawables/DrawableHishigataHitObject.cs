@@ -35,13 +35,15 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
 
         protected override void CheckForResult(bool userTriggered, double timeOffset)
         {
-            if (timeOffset >= 0)
+            if (timeOffset >= -10 && timeOffset <= 100)
             {
                 if (CanBeHit?.Invoke(this) ?? false)
                     ApplyResult(r => r.Type = HitResult.Perfect);
-                else
-                    ApplyResult(r => r.Type = HitResult.Miss);
+
+                return;
             }
+            if (timeOffset > 100)
+                ApplyResult(r => r.Type = HitResult.Miss);
         }
 
         protected override void UpdateInitialTransforms()
