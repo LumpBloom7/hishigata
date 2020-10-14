@@ -28,7 +28,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects
 
             TimePreempt = (float)BeatmapDifficulty.DifficultyRange(difficulty.ApproachRate, 1800, 1200, 450);
             TimePreempt /= controlPointInfo.DifficultyPointAt(StartTime).SpeedMultiplier;
-            TimePreempt = Math.Max(TimePreempt, IsFeign ? 750 : 450);
+            TimePreempt = Math.Max(TimePreempt, 450);
         }
     }
 }

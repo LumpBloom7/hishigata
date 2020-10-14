@@ -14,7 +14,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
 {
     public class DrawableHishigataHitObject : DrawableHitObject<HishigataHitObject>
     {
-        protected override double InitialLifetimeOffset => HitObject.TimePreempt;
+        protected override double InitialLifetimeOffset => HitObject.TimePreempt + (HitObject.IsFeign ? 200 : 0);
 
         private readonly Container note;
         public DrawableHishigataHitObject(HishigataHitObject hitObject)
@@ -57,24 +57,28 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
         {
             base.UpdateInitialTransforms();
             if (HitObject.IsFeign)
-                this.Delay(HitObject.TimePreempt * .4).Then().RotateTo(360, HitObject.TimePreempt * .2).FadeColour(Color4.White, HitObject.TimePreempt * .2);
-
-            note.MoveTo(new Vector2(0, -80), HitObject.TimePreempt);
+            {
+                note.MoveTo(new Vector2(0, -190), HitObject.TimePreempt * .5).Then().Delay(200).MoveTo(new Vector2(0, -80), HitObject.TimePreempt * .5);
+                this.Delay(HitObject.TimePreempt * .5).Then().RotateTo(360, 200).FadeColour(Color4.White, 200);
+            }
+            else
+                note.MoveTo(new Vector2(0, -80), HitObject.TimePreempt);
         }
 
 
         protected override void UpdateStateTransforms(ArmedState state)
         {
+            double animationDuration = HitObject.TimePreempt / 6;
 
             switch (state)
             {
                 case ArmedState.Hit:
-                    note.ScaleTo(0, HitObject.TimePreempt / 6).Expire();
-                    this.Delay(HitObject.TimePreempt / 6).Expire();
+                    note.ScaleTo(0, animationDuration).Expire();
+                    this.Delay(animationDuration).Expire();
                     break;
 
                 case ArmedState.Miss:
-                    note.MoveToOffset(new Vector2(0, 50), 150).FadeColour(Color4.Red, 150).FadeOut(150).Expire();
+                    note.MoveToOffset(new Vector2(0, 80), animationDuration).FadeColour(Color4.Red, animationDuration).FadeOut(animationDuration).Expire();
                     this.Delay(150).Expire();
                     break;
             }
