@@ -40,7 +40,6 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
             if (lane >= 4) lane -= 4;
             switch (original)
             {
-
                 case IHasPathWithRepeats _:
                     goto default;
 

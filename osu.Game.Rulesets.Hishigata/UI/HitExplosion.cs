@@ -25,6 +25,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
             Position = new Vector2(0, -80);
+            Colour = h.Colour;
             InternalChildren = new Drawable[]
             {
                 left = new Box
