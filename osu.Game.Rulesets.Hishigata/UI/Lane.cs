@@ -21,7 +21,10 @@ namespace osu.Game.Rulesets.Hishigata.UI
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
-            AddInternal(hitExplosionContainer = new Container());
+            AddRangeInternal(new Drawable[]{
+                hitExplosionContainer = new Container(),
+                HitObjectContainer
+            });
         }
 
         public override void Add(DrawableHitObject h)
