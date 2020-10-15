@@ -55,7 +55,6 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
 
         protected override void UpdateInitialTransforms()
         {
-            base.UpdateInitialTransforms();
             if (HitObject.IsFeign)
             {
                 note.MoveTo(new Vector2(0, -190), HitObject.TimePreempt * .5).Then().Delay(200).MoveTo(new Vector2(0, -80), HitObject.TimePreempt * .5);
