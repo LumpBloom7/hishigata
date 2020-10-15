@@ -13,6 +13,8 @@ namespace osu.Game.Rulesets.Hishigata.UI
 {
     internal class HitExplosion : CompositeDrawable
     {
+        public override bool RemoveWhenNotAlive => true;
+
         private readonly Box left;
         private readonly Box right;
         private readonly double animationTime;
