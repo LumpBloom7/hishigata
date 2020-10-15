@@ -30,5 +30,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
         public override DrawableHitObject<HishigataHitObject> CreateDrawableRepresentation(HishigataHitObject h) => new DrawableHishigataHitObject(h);
 
         protected override PassThroughInputManager CreateInputManager() => new HishigataInputManager(Ruleset?.RulesetInfo);
+
+        protected override ReplayRecorder CreateReplayRecorder(Replay replay) => new HishigataReplayRecorder(replay);
     }
 }

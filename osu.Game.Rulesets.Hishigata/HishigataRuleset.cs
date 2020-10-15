@@ -1,4 +1,4 @@
-
+﻿
 using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
@@ -11,6 +11,8 @@ using osu.Game.Rulesets.Hishigata.Beatmaps;
 using osu.Game.Rulesets.Hishigata.Mods;
 using osu.Game.Rulesets.Hishigata.UI;
 using osu.Game.Rulesets.UI;
+using osu.Game.Rulesets.Hishigata.Replays;
+using osu.Game.Rulesets.Replays.Types;
 
 namespace osu.Game.Rulesets.Hishigata
 {
@@ -23,6 +25,8 @@ namespace osu.Game.Rulesets.Hishigata
         public override IBeatmapConverter CreateBeatmapConverter(IBeatmap beatmap) => new HishigataBeatmapConverter(beatmap, this);
 
         public override DifficultyCalculator CreateDifficultyCalculator(WorkingBeatmap beatmap) => new HishigataDifficultyCalculator(this, beatmap);
+
+        public override IConvertibleReplayFrame CreateConvertibleReplayFrame() => new HishigataReplayFrame();
 
         public override IEnumerable<Mod> GetModsFor(ModType type)
         {

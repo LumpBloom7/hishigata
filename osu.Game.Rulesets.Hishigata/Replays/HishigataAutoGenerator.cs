@@ -29,14 +29,8 @@ namespace osu.Game.Rulesets.Hishigata.Replays
             {
                 if (currentLane != hitObject.Lane)
                 {
-                    Frames.Add(new HishigataReplayFrame((HishigataAction)hitObject.Lane)
-                    {
-                        Time = hitObject.StartTime,
-                    });
-                    Frames.Add(new HishigataReplayFrame()
-                    {
-                        Time = hitObject.StartTime + 20,
-                    });
+                    Frames.Add(new HishigataReplayFrame(hitObject.StartTime, (HishigataAction)hitObject.Lane));
+                    Frames.Add(new HishigataReplayFrame(hitObject.StartTime + 20));
                     currentLane = hitObject.Lane;
                 }
             }
