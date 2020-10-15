@@ -1,4 +1,4 @@
-﻿
+
 using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
@@ -41,9 +41,13 @@ namespace osu.Game.Rulesets.Hishigata
         public override IEnumerable<KeyBinding> GetDefaultKeyBindings(int variant = 0) => new[]
         {
             new KeyBinding(InputKey.Up, HishigataAction.Up),
+            new KeyBinding(InputKey.W, HishigataAction.Up),
             new KeyBinding(InputKey.Right, HishigataAction.Right),
+            new KeyBinding(InputKey.D, HishigataAction.Right),
             new KeyBinding(InputKey.Down, HishigataAction.Down),
+            new KeyBinding(InputKey.S, HishigataAction.Down),
             new KeyBinding(InputKey.Left, HishigataAction.Left),
+            new KeyBinding(InputKey.A, HishigataAction.Left),
         };
 
         public override Drawable CreateIcon() => new SpriteText
