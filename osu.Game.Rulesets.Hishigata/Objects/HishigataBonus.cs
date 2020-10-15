@@ -1,0 +1,28 @@
+using osu.Game.Rulesets.Judgements;
+using osu.Game.Rulesets.Hishigata.Judgements;
+using System.Collections.Generic;
+using osu.Game.Audio;
+
+namespace osu.Game.Rulesets.Hishigata.Objects
+{
+    public class HishigataBonus : HishigataHitObject
+    {
+        public override bool IsFeign => false;
+
+        private static readonly List<HitSampleInfo> samples = new List<HitSampleInfo> { new BonusHitSampleInfo() };
+
+        public HishigataBonus()
+        {
+            Samples = samples;
+        }
+
+        public override Judgement CreateJudgement() => new HishigataBonusJudgement();
+
+        private class BonusHitSampleInfo : HitSampleInfo
+        {
+            private static string[] lookupNames { get; } = { "metronomelow", "catch-banana" };
+
+            public override IEnumerable<string> LookupNames => lookupNames;
+        }
+    }
+}

@@ -10,7 +10,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects
 {
     public class HishigataHitObject : HitObject
     {
-        public bool IsFeign { get; set; }
+        public virtual bool IsFeign { get; set; }
         public double TimePreempt;
 
         public BindableInt LaneBindable = new BindableInt();
