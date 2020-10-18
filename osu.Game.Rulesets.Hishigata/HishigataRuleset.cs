@@ -1,4 +1,4 @@
-
+﻿
 using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
@@ -17,6 +17,7 @@ using System;
 using osu.Framework.Graphics.Containers;
 using osuTK;
 using osu.Framework.Graphics.Textures;
+using osu.Game.Rulesets.Hishigata.Difficulty;
 
 namespace osu.Game.Rulesets.Hishigata
 {
