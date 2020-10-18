@@ -107,5 +107,27 @@ namespace osu.Game.Rulesets.Hishigata
                 },
             }
         };
+
+        protected override IEnumerable<HitResult> GetValidHitResults()
+        {
+            return new[]
+            {
+                HitResult.Perfect,
+                HitResult.Miss,
+
+                HitResult.LargeBonus,
+            };
+        }
+
+        public override string GetDisplayNameForHitResult(HitResult result)
+        {
+            switch (result)
+            {
+                case HitResult.LargeBonus:
+                    return "Bonus";
+            }
+
+            return base.GetDisplayNameForHitResult(result);
+        }
     }
 }
