@@ -50,7 +50,7 @@ namespace osu.Game.Rulesets.Hishigata
                     return new Mod[]
                     {
                         new HishigataModHardRock(),
-                        new MultiMod(new HishigataModSuddenDeath(), new HishigataModPerfect()),
+                        new HishigataModSuddenDeath(),
                         new MultiMod(new HishigataModDoubleTime(), new HishigataModNightcore()),
                     };
 

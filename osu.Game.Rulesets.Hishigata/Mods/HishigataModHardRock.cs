@@ -11,8 +11,6 @@ namespace osu.Game.Rulesets.Hishigata.Mods
         public override double ScoreMultiplier => 1.06;
         public override bool Ranked => true;
 
-        public override bool HasImplementation => false;
-
         public void ApplyToHitObject(HitObject hitObject)
         {
             var hishiObj = hitObject as HishigataHitObject;
