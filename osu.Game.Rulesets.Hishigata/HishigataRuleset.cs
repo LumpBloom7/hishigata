@@ -11,9 +11,11 @@ using osu.Game.Rulesets.Hishigata.Beatmaps;
 using osu.Game.Rulesets.Hishigata.Difficulty;
 using osu.Game.Rulesets.Hishigata.Mods;
 using osu.Game.Rulesets.Hishigata.Replays;
+using osu.Game.Rulesets.Hishigata.Scoring;
 using osu.Game.Rulesets.Hishigata.UI;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.Replays.Types;
+using osu.Game.Rulesets.Scoring;
 using osu.Game.Rulesets.UI;
 using osuTK;
 
@@ -22,6 +24,8 @@ namespace osu.Game.Rulesets.Hishigata
     public class HishigataRuleset : Ruleset
     {
         public override string Description => "hishigata";
+
+        public override ScoreProcessor CreateScoreProcessor() => new HishigataScoreProcessor();
 
         public override DrawableRuleset CreateDrawableRulesetWith(IBeatmap beatmap, IReadOnlyList<Mod> mods = null) => new DrawableHishigataRuleset(this, beatmap, mods);
 
