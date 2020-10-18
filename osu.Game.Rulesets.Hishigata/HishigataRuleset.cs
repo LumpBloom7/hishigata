@@ -35,8 +35,32 @@ namespace osu.Game.Rulesets.Hishigata
         {
             switch (type)
             {
+                case ModType.DifficultyReduction:
+                    return new Mod[]
+                    {
+                        new MultiMod(new HishigataModHalfTime(), new HishigataModDaycore()),
+                        new HishigataModNoFail(),
+                    };
+
+                case ModType.DifficultyIncrease:
+                    return new Mod[]
+                    {
+                        new HishigataModHardRock(),
+                        new MultiMod(new HishigataModSuddenDeath(), new HishigataModPerfect()),
+                        new MultiMod(new HishigataModDoubleTime(), new HishigataModNightcore()),
+                    };
+
                 case ModType.Automation:
-                    return new[] { new HishigataModAutoplay() };
+                    return new Mod[]
+                    {
+                        new HishigataModAutoplay(),
+                    };
+
+                case ModType.Fun:
+                    return new Mod[]
+                    {
+                        new MultiMod(new ModWindUp(), new ModWindDown()),
+                    };
 
                 default:
                     return Array.Empty<Mod>();
