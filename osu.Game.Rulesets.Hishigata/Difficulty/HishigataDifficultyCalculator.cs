@@ -4,9 +4,8 @@ using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Difficulty;
 using osu.Game.Rulesets.Difficulty.Preprocessing;
 using osu.Game.Rulesets.Difficulty.Skills;
-using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.Hishigata.Objects;
-
+using osu.Game.Rulesets.Mods;
 
 namespace osu.Game.Rulesets.Hishigata.Difficulty
 {

@@ -1,7 +1,7 @@
-using osu.Game.Rulesets.Judgements;
-using osu.Game.Rulesets.Hishigata.Judgements;
 using System.Collections.Generic;
 using osu.Game.Audio;
+using osu.Game.Rulesets.Hishigata.Judgements;
+using osu.Game.Rulesets.Judgements;
 
 namespace osu.Game.Rulesets.Hishigata.Objects
 {

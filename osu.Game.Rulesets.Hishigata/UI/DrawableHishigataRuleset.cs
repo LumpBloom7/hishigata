@@ -5,13 +5,12 @@ using osu.Framework.Input;
 using osu.Game.Beatmaps;
 using osu.Game.Input.Handlers;
 using osu.Game.Replays;
-using osu.Game.Rulesets.Mods;
-using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Hishigata.Objects;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osu.Game.Rulesets.Hishigata.Replays;
+using osu.Game.Rulesets.Mods;
+using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
-using osu.Game.Configuration;
 
 namespace osu.Game.Rulesets.Hishigata.UI
 {

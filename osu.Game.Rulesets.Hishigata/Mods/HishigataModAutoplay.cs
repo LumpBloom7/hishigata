@@ -1,8 +1,8 @@
 ﻿
 using osu.Game.Beatmaps;
-using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.Hishigata.Objects;
 using osu.Game.Rulesets.Hishigata.Replays;
+using osu.Game.Rulesets.Mods;
 using osu.Game.Scoring;
 using osu.Game.Users;
 

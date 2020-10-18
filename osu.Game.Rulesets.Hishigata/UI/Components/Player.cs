@@ -1,15 +1,15 @@
-using osu.Framework.Graphics.Containers;
+using osu.Framework.Audio.Track;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Sprites;
+using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
+using osu.Framework.Graphics.Sprites;
+using osu.Framework.Input.Bindings;
+using osu.Framework.Utils;
+using osu.Game.Beatmaps.ControlPoints;
+using osu.Game.Graphics.Containers;
+using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osuTK;
 using osuTK.Graphics;
-using osu.Framework.Input.Bindings;
-using osu.Game.Rulesets.Hishigata.Objects.Drawables;
-using osu.Game.Graphics.Containers;
-using osu.Game.Beatmaps.ControlPoints;
-using osu.Framework.Audio.Track;
-using osu.Framework.Utils;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {

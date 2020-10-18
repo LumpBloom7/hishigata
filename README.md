@@ -10,7 +10,6 @@
 
 A ruleset based on Project Rhombus.
 
-
 ## Trying the ruleset
 
 Prebuilt binaries are provided for users who doesn't want to create a development environment. Releases are guaranteed to work with the latest version of lazer at the time of release.

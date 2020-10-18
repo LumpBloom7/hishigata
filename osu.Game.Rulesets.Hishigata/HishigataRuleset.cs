@@ -1,23 +1,21 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input.Bindings;
 using osu.Game.Beatmaps;
-using osu.Game.Graphics;
 using osu.Game.Rulesets.Difficulty;
-using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.Hishigata.Beatmaps;
-using osu.Game.Rulesets.Hishigata.Mods;
-using osu.Game.Rulesets.Hishigata.UI;
-using osu.Game.Rulesets.UI;
-using osu.Game.Rulesets.Hishigata.Replays;
-using osu.Game.Rulesets.Replays.Types;
-using System;
-using osu.Framework.Graphics.Containers;
-using osuTK;
-using osu.Framework.Graphics.Textures;
 using osu.Game.Rulesets.Hishigata.Difficulty;
+using osu.Game.Rulesets.Hishigata.Mods;
+using osu.Game.Rulesets.Hishigata.Replays;
+using osu.Game.Rulesets.Hishigata.UI;
+using osu.Game.Rulesets.Mods;
+using osu.Game.Rulesets.Replays.Types;
+using osu.Game.Rulesets.UI;
+using osuTK;
 
 namespace osu.Game.Rulesets.Hishigata
 {

@@ -1,15 +1,15 @@
 ﻿
+using System.Collections.Generic;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
-using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osu.Game.Rulesets.Hishigata.UI.Components;
+using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 using osuTK;
 using osuTK.Graphics;
-using System.Collections.Generic;
 
 namespace osu.Game.Rulesets.Hishigata.UI
 {

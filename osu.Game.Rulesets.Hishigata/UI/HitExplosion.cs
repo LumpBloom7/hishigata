@@ -1,12 +1,7 @@
-using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
-using osu.Game.Graphics;
-using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
-using osu.Game.Rulesets.Scoring;
-using osuTK.Graphics;
 using osuTK;
 
 namespace osu.Game.Rulesets.Hishigata.UI

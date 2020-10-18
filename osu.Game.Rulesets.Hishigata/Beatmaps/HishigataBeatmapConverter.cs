@@ -1,14 +1,13 @@
-﻿using osu.Game.Beatmaps;
-using osu.Game.Rulesets.Objects;
-using osu.Game.Rulesets.Hishigata.Objects;
-using System.Threading;
+﻿using System;
 using System.Collections.Generic;
-using osuTK;
-using System;
 using System.Linq;
-using osu.Game.Rulesets.Objects.Types;
+using System.Threading;
 using osu.Game.Audio;
-using System.Diagnostics;
+using osu.Game.Beatmaps;
+using osu.Game.Rulesets.Hishigata.Objects;
+using osu.Game.Rulesets.Objects;
+using osu.Game.Rulesets.Objects.Types;
+using osuTK;
 
 namespace osu.Game.Rulesets.Hishigata.Beatmaps
 {

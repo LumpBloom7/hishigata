@@ -3,7 +3,6 @@ using osu.Game.Beatmaps;
 using osu.Game.Replays.Legacy;
 using osu.Game.Rulesets.Replays;
 using osu.Game.Rulesets.Replays.Types;
-using osuTK;
 
 namespace osu.Game.Rulesets.Hishigata.Replays
 {

@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Hishigata.Objects;
-using System.Collections.Generic;
 
 namespace osu.Game.Rulesets.Hishigata.Beatmaps
 {
