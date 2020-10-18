@@ -11,6 +11,9 @@ namespace osu.Game.Rulesets.Hishigata
             : base(ruleset, 0, SimultaneousBindingMode.Unique)
         {
         }
+
+        public void TriggerPressed(HishigataAction action) => KeyBindingContainer.TriggerPressed(action);
+        public void TriggerReleased(HishigataAction action) => KeyBindingContainer.TriggerReleased(action);
     }
 
     public enum HishigataAction
@@ -26,5 +29,8 @@ namespace osu.Game.Rulesets.Hishigata
 
         [Description("Left")]
         Left,
+
+        [Description("Click")]
+        Click,
     }
 }

@@ -16,6 +16,8 @@ namespace osu.Game.Rulesets.Hishigata.UI
     [Cached]
     public class HishigataPlayfield : Playfield
     {
+        public override bool ReceivePositionalInputAt(Vector2 screenSpacePos) => true;
+
         private readonly List<Lane> lanes = new List<Lane>();
         private readonly Container playfieldContainer;
         private readonly PlayerVisual playerObject;
@@ -46,7 +48,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
 
             for (int i = 0; i < 4; ++i)
             {
-                var lane = new Lane
+                var lane = new Lane(i)
                 {
                     Rotation = 90 * i
                 };
