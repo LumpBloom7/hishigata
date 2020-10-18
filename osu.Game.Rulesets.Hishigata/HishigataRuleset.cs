@@ -1,4 +1,4 @@
-﻿
+
 using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
@@ -14,6 +14,9 @@ using osu.Game.Rulesets.UI;
 using osu.Game.Rulesets.Hishigata.Replays;
 using osu.Game.Rulesets.Replays.Types;
 using System;
+using osu.Framework.Graphics.Containers;
+using osuTK;
+using osu.Framework.Graphics.Textures;
 
 namespace osu.Game.Rulesets.Hishigata
 {
@@ -55,12 +58,27 @@ namespace osu.Game.Rulesets.Hishigata
             new KeyBinding(InputKey.A, HishigataAction.Left),
         };
 
-        public override Drawable CreateIcon() => new SpriteText
+        public override Drawable CreateIcon() => new Container
         {
-            Anchor = Anchor.Centre,
-            Origin = Anchor.Centre,
-            Text = ShortName[0].ToString(),
-            Font = OsuFont.Default.With(size: 18),
+            Size = new Vector2(40),
+            Children = new Drawable[]
+            {
+                new SpriteIcon
+                {
+                    RelativeSizeAxes = Axes.Both,
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    Icon = FontAwesome.Regular.Circle,
+                },
+                new SpriteIcon
+                {
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    Icon = FontAwesome.Solid.ChevronUp,
+                    Size = new Vector2(25),
+                    Position = new Vector2(0,-2f)
+                },
+            }
         };
     }
 }
