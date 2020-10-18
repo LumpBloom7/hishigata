@@ -13,6 +13,7 @@ using osu.Game.Rulesets.Hishigata.UI;
 using osu.Game.Rulesets.UI;
 using osu.Game.Rulesets.Hishigata.Replays;
 using osu.Game.Rulesets.Replays.Types;
+using System;
 
 namespace osu.Game.Rulesets.Hishigata
 {
@@ -36,7 +37,7 @@ namespace osu.Game.Rulesets.Hishigata
                     return new[] { new HishigataModAutoplay() };
 
                 default:
-                    return new Mod[] { null };
+                    return Array.Empty<Mod>();
             }
         }
 
