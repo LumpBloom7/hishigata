@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -63,7 +62,6 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
             else
                 note.MoveTo(new Vector2(0, -80), HitObject.TimePreempt);
         }
-
 
         protected override void UpdateStateTransforms(ArmedState state)
         {

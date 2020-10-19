@@ -66,7 +66,6 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                     }
                     break;
 
-
                 default:
                     yield return new HishigataHitObject
                     {
@@ -76,9 +75,9 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                         IsFeign = isFeign
                     };
                     break;
-
             }
         }
+
         private float getHitObjectAngle(Vector2 target)
         {
             Vector2 direction = target - new Vector2(256, 192);
@@ -86,7 +85,5 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
             if (angle < 0f) angle += 360f;
             return angle + 90;
         }
-
-
     }
 }

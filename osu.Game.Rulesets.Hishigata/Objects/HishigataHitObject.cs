@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using osu.Framework.Bindables;
 using osu.Game.Beatmaps;
 using osu.Game.Beatmaps.ControlPoints;

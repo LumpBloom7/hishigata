@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using osu.Framework;
 using osu.Framework.Platform;
 using osu.Game.Tests;

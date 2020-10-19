@@ -38,7 +38,6 @@ namespace osu.Game.Rulesets.Hishigata.UI
                     Rotation = 45
                 },
             };
-
         }
 
         protected override void LoadComplete()
