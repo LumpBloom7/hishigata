@@ -42,7 +42,7 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                 },
                 new BeatmapStatistic
                 {
-                    Name = "TouchHold Count",
+                    Name = "Bonus Count",
                     Content = bonus.ToString(),
                     CreateIcon = () => new BeatmapStatisticIcon(BeatmapStatisticsIconType.Spinners),
                 },
