@@ -42,14 +42,14 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
 
         protected override void CheckForResult(bool userTriggered, double timeOffset)
         {
-            if (timeOffset >= -10 && timeOffset <= 100)
+            if (timeOffset >= 0 && timeOffset <= 32)
             {
                 if (CanBeHit?.Invoke(this) ?? false)
                     ApplyResult(r => r.Type = r.Judgement.MaxResult);
 
                 return;
             }
-            if (timeOffset > 100)
+            if (timeOffset > 32)
                 ApplyResult(r => r.Type = r.Judgement.MinResult);
         }
 

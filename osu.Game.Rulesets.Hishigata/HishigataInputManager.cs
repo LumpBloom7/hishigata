@@ -29,8 +29,5 @@ namespace osu.Game.Rulesets.Hishigata
 
         [Description("Left")]
         Left,
-
-        [Description("Click")]
-        Click,
     }
 }
