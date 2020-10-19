@@ -48,7 +48,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
             public LaneReceptor()
             {
                 Position = new Vector2(0, -70);
-                Size = new Vector2(70, 1000);
+                Size = new Vector2(140, 1000);
 
                 Anchor = Anchor.Centre;
                 Origin = Anchor.BottomCentre;
