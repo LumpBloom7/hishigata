@@ -13,9 +13,9 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
-    public class PlayerArrow : SmoothPath
+    public class PathPlayerArrow : SmoothPath
     {
-        public PlayerArrow ()
+        public PathPlayerArrow ()
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.TopLeft;

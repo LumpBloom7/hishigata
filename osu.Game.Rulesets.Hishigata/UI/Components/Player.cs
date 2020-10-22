@@ -1,3 +1,4 @@
+using System;
 using osu.Framework.Allocation;
 using osu.Framework.Audio.Track;
 using osu.Framework.Bindables;
@@ -11,6 +12,7 @@ using osu.Framework.Utils;
 using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Graphics.Containers;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
+using osu.Game.Rulesets.Hishigata.UI.Settings;
 using osuTK;
 using osuTK.Graphics;
 
@@ -24,6 +26,9 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 
         [Cached]
         private readonly Bindable<float> angleBindable = new Bindable<float>();
+
+        private Container maskedArrow;
+        private Container pathArrow;
 
         public PlayerVisual()
         {
@@ -78,27 +83,45 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
                 },
                 new Container{
                     RelativeSizeAxes = Axes.Both,
-                    Anchor= Anchor.Centre,
+                    Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     Masking = true,
                     BorderColour = Color4.White,
                     BorderThickness = 20,
-                    Rotation= 45,
+                    Rotation = 45,
                     Children = new Drawable[]{
                         new Box{
                             RelativeSizeAxes = Axes.Both,
-                            Alpha= 0,
+                            Alpha = 0,
                             AlwaysPresent = true
                         },
-                        new Container{
+                        pathArrow = new Container{
                             Anchor = Anchor.Centre,
-                            Origin =Anchor.Centre,
+                            Origin = Anchor.Centre,
                             Rotation = -45,
-                            Child = new PlayerArrow()
+                            Child = new PathPlayerArrow()
                         }
                     }
                 },
+                maskedArrow = new Container{
+                    RelativeSizeAxes = Axes.Both,
+                    Size = new Vector2(.5f),
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    Masking = true,
+                    BorderColour = Color4.White,
+                    BorderThickness = 10,
+                    Rotation = 45,
+                    Child = new MaksedPlayerArrow{
+                        RelativeSizeAxes = Axes.Both,
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                        Rotation = -45
+                    }
+                }
             };
+
+            setArrowSkin(ArrowStyle.Pointy);
         }
 
         public bool CanBeHit(DrawableHishigataHitObject hitObject) => hitObject.HitObject.Lane == (int)lastAction;
@@ -125,13 +148,36 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         }
         public void OnReleased(HishigataAction action) { }
 
-        private TransformSequence<PlayerVisual> rotateToClosestEquivalent(float angle, double duration = 0, Easing easing = Easing.None)
+        private void rotateToClosestEquivalent(float angle, double duration = 0, Easing easing = Easing.None)
         {
             float difference = (angle - angleBindable.Value) % 360;
             if (difference > 180) difference -= 360;
             else if (difference < -180) difference += 360;
 
-            return this.TransformBindableTo(angleBindable, angleBindable.Value + difference, duration, easing);
+            double totalDuration = Math.Abs(difference) / 90 * duration;
+
+            this.TransformBindableTo(angleBindable, angleBindable.Value + difference, totalDuration, easing);
+        }
+
+        private void setArrowSkin (ArrowStyle style)
+        {
+            maskedArrow.Alpha = 0;
+            pathArrow.Alpha = 0;
+
+            if ( style == ArrowStyle.Pointy )
+                maskedArrow.Alpha = 1;
+            else
+                pathArrow.Alpha = 1;
+        }
+
+        private Bindable<ArrowStyle> arrowStyleBindable = new Bindable<ArrowStyle>();
+
+        [BackgroundDependencyLoader]
+        private void load (HishigataSettingsManager config)
+        {
+            arrowStyleBindable.ValueChanged += x => setArrowSkin(x.NewValue);
+            config.BindWith(HishigataSetting.ArrowStyle, arrowStyleBindable);
+            setArrowSkin(arrowStyleBindable.Value);
         }
     }
 }
