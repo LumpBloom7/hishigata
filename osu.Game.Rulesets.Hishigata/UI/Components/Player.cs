@@ -1,4 +1,6 @@
+using osu.Framework.Allocation;
 using osu.Framework.Audio.Track;
+using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
@@ -19,6 +21,9 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         private readonly Container rContainer;
         private readonly Container gContainer;
         private readonly Container bContainer;
+
+        [Cached]
+        private readonly Bindable<float> angleBindable = new Bindable<float>();
 
         public PlayerVisual()
         {
@@ -89,14 +94,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
                             Anchor = Anchor.Centre,
                             Origin =Anchor.Centre,
                             Rotation = -45,
-                            Child= new SpriteIcon
-                            {
-                                Icon = FontAwesome.Solid.ChevronUp,
-                                Anchor = Anchor.Centre,
-                                Origin = Anchor.Centre,
-                                Size = new Vector2(65),
-                                Position = new Vector2(0,-15)
-                            }
+                            Child = new PlayerArrow()
                         }
                     }
                 },
@@ -119,10 +117,8 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             FinishTransforms();
             float FacingAngle = action.ToAngle();
 
-            if (lastAction.IsOppositeTo(action))
-                this.ScaleTo(new Vector2(1.3f, 0.3f), 50).Then().ScaleTo(1, 50).RotateTo(FacingAngle);
-            else
-                rotateToClosestEquivalent(FacingAngle, 100);
+            this.ScaleTo(new Vector2(1.1f), 50).Then().ScaleTo(1, 50);
+            rotateToClosestEquivalent(FacingAngle, action.IsOppositeTo(lastAction) ? 100 : 50);
 
             lastAction = action;
             return true;
@@ -131,11 +127,11 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 
         private TransformSequence<PlayerVisual> rotateToClosestEquivalent(float angle, double duration = 0, Easing easing = Easing.None)
         {
-            float difference = (angle - Rotation) % 360;
+            float difference = (angle - angleBindable.Value) % 360;
             if (difference > 180) difference -= 360;
             else if (difference < -180) difference += 360;
 
-            return this.RotateTo(Rotation + difference, duration, easing);
+            return this.TransformBindableTo(angleBindable, angleBindable.Value + difference, duration, easing);
         }
     }
 }
