@@ -5,6 +5,9 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input.Bindings;
 using osu.Game.Beatmaps;
+using osu.Game.Configuration;
+using osu.Game.Overlays.Settings;
+using osu.Game.Rulesets.Configuration;
 using osu.Game.Rulesets.Difficulty;
 using osu.Game.Rulesets.Hishigata.Beatmaps;
 using osu.Game.Rulesets.Hishigata.Difficulty;
@@ -12,6 +15,7 @@ using osu.Game.Rulesets.Hishigata.Mods;
 using osu.Game.Rulesets.Hishigata.Replays;
 using osu.Game.Rulesets.Hishigata.Scoring;
 using osu.Game.Rulesets.Hishigata.UI;
+using osu.Game.Rulesets.Hishigata.UI.Settings;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.Replays.Types;
 using osu.Game.Rulesets.Scoring;
@@ -33,6 +37,10 @@ namespace osu.Game.Rulesets.Hishigata
         public override DifficultyCalculator CreateDifficultyCalculator(WorkingBeatmap beatmap) => new HishigataDifficultyCalculator(this, beatmap);
 
         public override IConvertibleReplayFrame CreateConvertibleReplayFrame() => new HishigataReplayFrame();
+
+        public override RulesetSettingsSubsection CreateSettings () => new HishigataSettingsSubsection(this);
+
+        public override IRulesetConfigManager CreateConfig (SettingsStore settings) => new HishigataSettingsManager(settings, RulesetInfo);
 
         public override IEnumerable<Mod> GetModsFor(ModType type)
         {
