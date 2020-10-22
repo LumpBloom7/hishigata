@@ -4,6 +4,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
+using osu.Framework.Graphics.Transforms;
 using osu.Framework.Input.Bindings;
 using osu.Framework.Utils;
 using osu.Game.Beatmaps.ControlPoints;
@@ -126,7 +127,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             }
             else
             {
-                this.RotateTo(FacingAngle, 50);
+                rotateToClosestEquivalent(FacingAngle, 50);
                 this.ScaleTo(1.1f, 50).Then().ScaleTo(1, 50);
             }
 
@@ -134,5 +135,14 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             return true;
         }
         public void OnReleased(HishigataAction action) { }
+
+        private TransformSequence<PlayerVisual> rotateToClosestEquivalent ( float angle, double duration = 0, Easing easing = Easing.None )
+        {
+            float difference = ( angle - Rotation ) % 360;
+            if ( difference > 180 ) difference = difference - 360;
+            else if ( difference < -180 ) difference = difference + 360;
+
+            return this.RotateTo( Rotation + difference, duration, easing );
+        }
     }
 }
