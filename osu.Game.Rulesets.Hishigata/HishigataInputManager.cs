@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using osu.Framework.Input.Bindings;
 using osu.Game.Rulesets.UI;
+using System;
 
 namespace osu.Game.Rulesets.Hishigata
 {
@@ -32,18 +33,8 @@ namespace osu.Game.Rulesets.Hishigata
 
     public static class HishigataActionExtensions
     {
-        public static float Angle (this HishigataAction direction)
-            => direction switch
-            {
-                HishigataAction.Up => 0,
-                HishigataAction.Right => 90,
-                HishigataAction.Down => 180,
-                HishigataAction.Left => 270,
+        public static float Angle(this HishigataAction direction) => (int)direction * 90;
 
-                _ => 0
-            };
-
-        public static bool IsOppositeTo (this HishigataAction direction, HishigataAction other)
-            => direction != other && ( direction.Angle() + other.Angle() ) % 180 == 0; // mod 180 makes sure they are on the same "line"
+        public static bool IsOppositeTo(this HishigataAction direction, HishigataAction other) => Math.Abs((int)direction - (int)other) == 2;
     }
 }
