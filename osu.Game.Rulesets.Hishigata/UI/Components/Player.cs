@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using osu.Framework.Audio.Track;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -104,7 +103,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             };
         }
 
-        public bool CanBeHit(DrawableHishigataHitObject hitObject) => hitObject.HitObject.Lane == ((int)FacingAngle / 90);
+        public bool CanBeHit(DrawableHishigataHitObject hitObject) => hitObject.HitObject.Lane == (int)lastAction;
 
         protected override void OnNewBeat(int beatIndex, TimingControlPoint timingPoint, EffectControlPoint effectPoint, ChannelAmplitudes amplitudes)
         {
@@ -114,35 +113,29 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             bContainer.MoveToOffset(new Vector2(RNG.NextSingle(-maximumDankness, maximumDankness), RNG.NextSingle(-maximumDankness, maximumDankness)), 50).Then().MoveTo(new Vector2(0), 100);
         }
 
-        public float FacingAngle { get; private set; }
         private HishigataAction lastAction = HishigataAction.Up;
         public bool OnPressed(HishigataAction action)
         {
             FinishTransforms();
-            FacingAngle = action.Angle();
+            float FacingAngle = action.Angle();
 
-            if ( lastAction.IsOppositeTo( action ) )
-            {
+            if (lastAction.IsOppositeTo(action))
                 this.ScaleTo(new Vector2(1.3f, 0.3f), 50).Then().ScaleTo(1, 50).RotateTo(FacingAngle);
-            }
             else
-            {
-                rotateToClosestEquivalent(FacingAngle, 50);
-                this.ScaleTo(1.1f, 50).Then().ScaleTo(1, 50);
-            }
+                rotateToClosestEquivalent(FacingAngle, 100);
 
             lastAction = action;
             return true;
         }
         public void OnReleased(HishigataAction action) { }
 
-        private TransformSequence<PlayerVisual> rotateToClosestEquivalent ( float angle, double duration = 0, Easing easing = Easing.None )
+        private TransformSequence<PlayerVisual> rotateToClosestEquivalent(float angle, double duration = 0, Easing easing = Easing.None)
         {
-            float difference = ( angle - Rotation ) % 360;
-            if ( difference > 180 ) difference = difference - 360;
-            else if ( difference < -180 ) difference = difference + 360;
+            float difference = (angle - Rotation) % 360;
+            if (difference > 180) difference -= 360;
+            else if (difference < -180) difference += 360;
 
-            return this.RotateTo( Rotation + difference, duration, easing );
+            return this.RotateTo(Rotation + difference, duration, easing);
         }
     }
 }
