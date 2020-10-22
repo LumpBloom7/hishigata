@@ -4,8 +4,8 @@ namespace osu.Game.Rulesets.Hishigata
 {
     public static class HishigataExtensions
     {
-        public static float AngleForAction(this HishigataAction direction) => (int)direction * 90;
+        public static float ToAngle(this HishigataAction direction) => (int)direction * 90;
 
-        public static bool IsOppositeActionTo(this HishigataAction direction, HishigataAction other) => Math.Abs(direction - other) == 2;
+        public static bool IsOppositeTo(this HishigataAction direction, HishigataAction other) => Math.Abs(direction - other) == 2;
     }
 }
