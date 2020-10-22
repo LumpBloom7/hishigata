@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using osu.Framework.Audio.Track;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -102,7 +103,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             };
         }
 
-        public bool CanBeHit(DrawableHishigataHitObject hitObject) => hitObject.HitObject.Lane == ((int)Rotation / 90);
+        public bool CanBeHit(DrawableHishigataHitObject hitObject) => hitObject.HitObject.Lane == ((int)FacingAngle / 90);
 
         protected override void OnNewBeat(int beatIndex, TimingControlPoint timingPoint, EffectControlPoint effectPoint, ChannelAmplitudes amplitudes)
         {
@@ -112,11 +113,24 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             bContainer.MoveToOffset(new Vector2(RNG.NextSingle(-maximumDankness, maximumDankness), RNG.NextSingle(-maximumDankness, maximumDankness)), 50).Then().MoveTo(new Vector2(0), 100);
         }
 
+        public float FacingAngle { get; private set; }
+        private HishigataAction lastAction = HishigataAction.Up;
         public bool OnPressed(HishigataAction action)
         {
             FinishTransforms();
-            this.ScaleTo(1.1f, 50).Then().ScaleTo(1, 50);
-            Rotation = 90 * (int)action;
+            FacingAngle = action.Angle();
+
+            if ( lastAction.IsOppositeTo( action ) )
+            {
+                this.ScaleTo(new Vector2(1.3f, 0.3f), 50).Then().ScaleTo(1, 50).RotateTo(FacingAngle);
+            }
+            else
+            {
+                this.RotateTo(FacingAngle, 50);
+                this.ScaleTo(1.1f, 50).Then().ScaleTo(1, 50);
+            }
+
+            lastAction = action;
             return true;
         }
         public void OnReleased(HishigataAction action) { }
