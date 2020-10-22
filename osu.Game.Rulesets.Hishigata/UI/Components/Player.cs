@@ -117,9 +117,9 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         public bool OnPressed(HishigataAction action)
         {
             FinishTransforms();
-            float FacingAngle = action.Angle();
+            float FacingAngle = action.AngleForAction();
 
-            if (lastAction.IsOppositeTo(action))
+            if (lastAction.IsOppositeActionTo(action))
                 this.ScaleTo(new Vector2(1.3f, 0.3f), 50).Then().ScaleTo(1, 50).RotateTo(FacingAngle);
             else
                 rotateToClosestEquivalent(FacingAngle, 100);
