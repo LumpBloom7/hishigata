@@ -1,13 +1,16 @@
+using System;
+using osu.Framework.Allocation;
 using osu.Framework.Audio.Track;
+using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
-using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input.Bindings;
 using osu.Framework.Utils;
 using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Graphics.Containers;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
+using osu.Game.Rulesets.Hishigata.Configuration;
 using osuTK;
 using osuTK.Graphics;
 
@@ -18,6 +21,12 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         private readonly Container rContainer;
         private readonly Container gContainer;
         private readonly Container bContainer;
+
+        [Cached]
+        private readonly BindableFloat angleBindable = new BindableFloat();
+
+        private readonly MaskedPlayerArrow maskedArrow;
+        private readonly PathPlayerArrow pathArrow;
 
         public PlayerVisual()
         {
@@ -72,37 +81,26 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
                 },
                 new Container{
                     RelativeSizeAxes = Axes.Both,
-                    Anchor= Anchor.Centre,
+                    Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     Masking = true,
                     BorderColour = Color4.White,
                     BorderThickness = 20,
-                    Rotation= 45,
+                    Rotation = 45,
                     Children = new Drawable[]{
                         new Box{
                             RelativeSizeAxes = Axes.Both,
-                            Alpha= 0,
+                            Alpha = 0,
                             AlwaysPresent = true
                         },
-                        new Container{
-                            Anchor = Anchor.Centre,
-                            Origin =Anchor.Centre,
-                            Rotation = -45,
-                            Child= new SpriteIcon
-                            {
-                                Icon = FontAwesome.Solid.ChevronUp,
-                                Anchor = Anchor.Centre,
-                                Origin = Anchor.Centre,
-                                Size = new Vector2(65),
-                                Position = new Vector2(0,-15)
-                            }
-                        }
                     }
                 },
+                pathArrow = new PathPlayerArrow(),
+                maskedArrow = new MaskedPlayerArrow()
             };
         }
 
-        public bool CanBeHit(DrawableHishigataHitObject hitObject) => hitObject.HitObject.Lane == ((int)Rotation / 90);
+        public bool CanBeHit(DrawableHishigataHitObject hitObject) => hitObject.HitObject.Lane == (int)lastAction;
 
         protected override void OnNewBeat(int beatIndex, TimingControlPoint timingPoint, EffectControlPoint effectPoint, ChannelAmplitudes amplitudes)
         {
@@ -112,13 +110,49 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             bContainer.MoveToOffset(new Vector2(RNG.NextSingle(-maximumDankness, maximumDankness), RNG.NextSingle(-maximumDankness, maximumDankness)), 50).Then().MoveTo(new Vector2(0), 100);
         }
 
+        private HishigataAction lastAction = HishigataAction.Up;
         public bool OnPressed(HishigataAction action)
         {
             FinishTransforms();
-            this.ScaleTo(1.1f, 50).Then().ScaleTo(1, 50);
-            Rotation = 90 * (int)action;
+            float FacingAngle = action.ToAngle();
+
+            this.ScaleTo(new Vector2(1.1f), 50).Then().ScaleTo(1, 50);
+            rotateToClosestEquivalent(FacingAngle, 50);
+
+            lastAction = action;
             return true;
         }
         public void OnReleased(HishigataAction action) { }
+
+        private void rotateToClosestEquivalent(float angle, double duration = 0, Easing easing = Easing.None)
+        {
+            float difference = (angle - angleBindable.Value) % 360;
+            if (difference > 180) difference -= 360;
+            else if (difference < -180) difference += 360;
+
+            double totalDuration = Math.Abs(difference) / 90 * duration;
+
+            this.TransformBindableTo(angleBindable, angleBindable.Value + difference, totalDuration, easing);
+        }
+
+        private void setArrowSkin(ArrowStyle style)
+        {
+            maskedArrow.Alpha = 0;
+            pathArrow.Alpha = 0;
+
+            if (style == ArrowStyle.Sharp)
+                maskedArrow.Alpha = 1;
+            else
+                pathArrow.Alpha = 1;
+        }
+
+        private readonly Bindable<ArrowStyle> arrowStyleBindable = new Bindable<ArrowStyle>();
+
+        [BackgroundDependencyLoader(true)]
+        private void load(HishigataRulesetConfigManager config)
+        {
+            config?.BindWith(HishigataRulesetSettings.ArrowStyle, arrowStyleBindable);
+            arrowStyleBindable.BindValueChanged(x => setArrowSkin(x.NewValue), true);
+        }
     }
 }
