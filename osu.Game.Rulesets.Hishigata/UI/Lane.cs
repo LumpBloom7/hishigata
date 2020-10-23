@@ -1,9 +1,7 @@
-using System;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Pooling;
 using osu.Framework.Input;
-using osu.Framework.Input.Bindings;
 using osu.Framework.Input.Events;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osu.Game.Rulesets.Judgements;
@@ -19,10 +17,8 @@ namespace osu.Game.Rulesets.Hishigata.UI
 
         private readonly DrawablePool<PoolableHitExplosion> hitExplosionPool;
 
-        private int id;
         public Lane(int ID = 0)
         {
-            id = ID;
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
             AddRangeInternal(new Drawable[]{
@@ -41,8 +37,6 @@ namespace osu.Game.Rulesets.Hishigata.UI
 
         private void onNewResult(DrawableHitObject h, JudgementResult judgement)
         {
-            Console.WriteLine(id.ToString() + ": " + hitExplosionPool.CountAvailable.ToString());
-
             if (judgement.IsHit)
                 hitExplosionContainer.Add(hitExplosionPool.Get(e => e.Apply(h as DrawableHishigataHitObject)));
         }
