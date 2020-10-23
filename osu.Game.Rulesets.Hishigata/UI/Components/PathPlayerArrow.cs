@@ -15,7 +15,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
     public class PathPlayerArrow : SmoothPath
     {
-        public PathPlayerArrow ()
+        public PathPlayerArrow()
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.TopLeft;
@@ -31,13 +31,12 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         };
 
         [BackgroundDependencyLoader]
-        private void load ( Bindable<float> angleBindable )
+        private void load(BindableFloat angleBindable)
         {
-            angleBindable.ValueChanged += (x) => redraw(x.NewValue);
-            redraw( angleBindable.Value );
+            angleBindable.BindValueChanged(a => redraw(a.NewValue), true);
         }
 
-        private void redraw ( float angle )
+        private void redraw(float angle)
         {
             angle = angle / 180 * MathF.PI; // to radians
             ClearVertices();
@@ -46,13 +45,13 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             const float radius = 100;
             for (int i = 0; i < count; i++)
             {
-                float progress = i / (float)( count - 1 );
-                var vertexAngle = angle - ( MathF.PI / 2 ) + progress * MathF.PI;
+                float progress = i / (float)(count - 1);
+                var vertexAngle = angle - (MathF.PI / 2) + progress * MathF.PI;
                 LineSegment ray = new LineSegment(Vector2.Zero, new Vector2(MathF.Sin(vertexAngle) * radius, -MathF.Cos(vertexAngle) * radius));
 
                 foreach (var segment in segments)
                 {
-                    if ( ray.TryIntersect(segment, out var point) )
+                    if (ray.TryIntersect(segment, out var point))
                     {
                         AddVertex(point);
                         continue; // dont intersect 2 at once

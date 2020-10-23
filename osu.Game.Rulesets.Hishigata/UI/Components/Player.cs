@@ -25,10 +25,10 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         private readonly Container bContainer;
 
         [Cached]
-        private readonly Bindable<float> angleBindable = new Bindable<float>();
+        private readonly BindableFloat angleBindable = new BindableFloat();
 
-        private Container maskedArrow;
-        private Container pathArrow;
+        private readonly MaskedPlayerArrow maskedArrow;
+        private readonly PathPlayerArrow pathArrow;
 
         public PlayerVisual()
         {
@@ -95,33 +95,11 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
                             Alpha = 0,
                             AlwaysPresent = true
                         },
-                        pathArrow = new Container{
-                            Anchor = Anchor.Centre,
-                            Origin = Anchor.Centre,
-                            Rotation = -45,
-                            Child = new PathPlayerArrow()
-                        }
                     }
                 },
-                maskedArrow = new Container{
-                    RelativeSizeAxes = Axes.Both,
-                    Size = new Vector2(.5f),
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
-                    Masking = true,
-                    BorderColour = Color4.White,
-                    BorderThickness = 10,
-                    Rotation = 45,
-                    Child = new MaksedPlayerArrow{
-                        RelativeSizeAxes = Axes.Both,
-                        Anchor = Anchor.Centre,
-                        Origin = Anchor.Centre,
-                        Rotation = -45
-                    }
-                }
+                pathArrow = new PathPlayerArrow(),
+                maskedArrow = new MaskedPlayerArrow()
             };
-
-            setArrowSkin(ArrowStyle.Pointy);
         }
 
         public bool CanBeHit(DrawableHishigataHitObject hitObject) => hitObject.HitObject.Lane == (int)lastAction;
@@ -141,7 +119,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             float FacingAngle = action.ToAngle();
 
             this.ScaleTo(new Vector2(1.1f), 50).Then().ScaleTo(1, 50);
-            rotateToClosestEquivalent(FacingAngle, action.IsOppositeTo(lastAction) ? 100 : 50);
+            rotateToClosestEquivalent(FacingAngle, 50);
 
             lastAction = action;
             return true;
@@ -159,12 +137,12 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             this.TransformBindableTo(angleBindable, angleBindable.Value + difference, totalDuration, easing);
         }
 
-        private void setArrowSkin (ArrowStyle style)
+        private void setArrowSkin(ArrowStyle style)
         {
             maskedArrow.Alpha = 0;
             pathArrow.Alpha = 0;
 
-            if ( style == ArrowStyle.Pointy )
+            if (style == ArrowStyle.Pointy)
                 maskedArrow.Alpha = 1;
             else
                 pathArrow.Alpha = 1;
@@ -173,11 +151,10 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         private Bindable<ArrowStyle> arrowStyleBindable = new Bindable<ArrowStyle>();
 
         [BackgroundDependencyLoader]
-        private void load (HishigataSettingsManager config)
+        private void load(HishigataSettingsManager config)
         {
-            arrowStyleBindable.ValueChanged += x => setArrowSkin(x.NewValue);
             config.BindWith(HishigataSetting.ArrowStyle, arrowStyleBindable);
-            setArrowSkin(arrowStyleBindable.Value);
+            arrowStyleBindable.BindValueChanged(x => setArrowSkin(x.NewValue), true);
         }
     }
 }
