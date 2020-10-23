@@ -146,12 +146,12 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
                 pathArrow.Alpha = 1;
         }
 
-        private Bindable<ArrowStyle> arrowStyleBindable = new Bindable<ArrowStyle>();
+        private readonly Bindable<ArrowStyle> arrowStyleBindable = new Bindable<ArrowStyle>();
 
-        [BackgroundDependencyLoader]
+        [BackgroundDependencyLoader(true)]
         private void load(HishigataRulesetConfigManager config)
         {
-            config.BindWith(HishigataRulesetSettings.ArrowStyle, arrowStyleBindable);
+            config?.BindWith(HishigataRulesetSettings.ArrowStyle, arrowStyleBindable);
             arrowStyleBindable.BindValueChanged(x => setArrowSkin(x.NewValue), true);
         }
     }
