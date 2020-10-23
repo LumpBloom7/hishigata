@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics.Lines;
-using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics;
 using osuTK;
 using osu.Game.Rulesets.Hishigata.LinearMath;
-using SixLabors.Primitives;
-using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
