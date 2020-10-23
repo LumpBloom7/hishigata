@@ -41,7 +41,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             for (int i = 0; i < count; i++)
             {
                 float progress = i / (float)(count - 1);
-                var vertexAngle = angle - (MathF.PI / 2) + progress * MathF.PI;
+                var vertexAngle = angle - (MathF.PI / 2) + (progress * MathF.PI);
                 LineSegment ray = new LineSegment(Vector2.Zero, new Vector2(MathF.Sin(vertexAngle) * radius, -MathF.Cos(vertexAngle) * radius));
 
                 foreach (var segment in segments)
