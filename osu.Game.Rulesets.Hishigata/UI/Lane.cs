@@ -1,7 +1,7 @@
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Pooling;
 using osu.Framework.Input;
-using osu.Framework.Input.Bindings;
 using osu.Framework.Input.Events;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osu.Game.Rulesets.Judgements;
@@ -14,11 +14,15 @@ namespace osu.Game.Rulesets.Hishigata.UI
     public class Lane : Playfield
     {
         private readonly Container hitExplosionContainer;
+
+        private readonly DrawablePool<PoolableHitExplosion> hitExplosionPool;
+
         public Lane(int ID = 0)
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
             AddRangeInternal(new Drawable[]{
+                hitExplosionPool = new DrawablePool<PoolableHitExplosion>(5),
                 hitExplosionContainer = new Container(),
                 HitObjectContainer,
                 new LaneReceptor{ID = ID}
@@ -34,7 +38,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
         private void onNewResult(DrawableHitObject h, JudgementResult judgement)
         {
             if (judgement.IsHit)
-                hitExplosionContainer.Add(new HitExplosion(h as DrawableHishigataHitObject));
+                hitExplosionContainer.Add(hitExplosionPool.Get(e => e.Apply(h as DrawableHishigataHitObject)));
         }
 
         public class LaneReceptor : CompositeDrawable
