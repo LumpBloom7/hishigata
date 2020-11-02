@@ -7,6 +7,7 @@ using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Graphics.Containers;
 using osuTK;
 using osuTK.Graphics;
+using System;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
@@ -32,7 +33,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 
         protected override void OnNewBeat(int beatIndex, TimingControlPoint timingPoint, EffectControlPoint effectPoint, ChannelAmplitudes amplitudes)
         {
-            if (effectPoint.KiaiMode)
+            if (effectPoint.KiaiMode && (beatIndex % Math.Max((int)(timingPoint.BPM / 80), 1)) == 0)
             {
                 FinishTransforms();
                 this.ResizeTo(454.5f, 100).Then().ResizeTo(450, 50);
