@@ -3,6 +3,7 @@ using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
+using osu.Game.Graphics.Containers;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osu.Game.Rulesets.Hishigata.UI.Components;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -18,32 +19,20 @@ namespace osu.Game.Rulesets.Hishigata.UI
         public override bool ReceivePositionalInputAt(Vector2 screenSpacePos) => true;
 
         private readonly List<Lane> lanes = new List<Lane>();
-        private readonly Container playfieldContainer;
-        private readonly PlayerVisual playerObject;
+        private Container playfieldContainer;
+        private PlayerVisual playerObject;
+
         public HishigataPlayfield()
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
-            RelativeSizeAxes = Axes.None;
-            Size = new Vector2(450);
-            Rotation = 45;
-            Masking = true;
-            BorderColour = Color4.Gray;
-            BorderThickness = 10;
-            AddRangeInternal(new Drawable[]
+            AddInternal(new Rhombus().With(x => x.Add(playfieldContainer = new Container
             {
-                new Box{
-                    Colour = Color4.Black,
-                    RelativeSizeAxes = Axes.Both,
-                    Alpha = .8f
-                },
-                playfieldContainer = new Container{
-                    Rotation = -45,
-                    Anchor = Anchor.Centre,
-                    Origin= Anchor.Centre,
-                    Child = playerObject = new PlayerVisual()
-                }
-            });
+                Rotation = -45,
+                Anchor = Anchor.Centre,
+                Origin = Anchor.Centre,
+                Child = playerObject = new PlayerVisual()
+            })));
 
             for (int i = 0; i < 4; ++i)
             {
