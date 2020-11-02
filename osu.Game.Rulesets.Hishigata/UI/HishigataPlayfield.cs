@@ -26,6 +26,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
+            AddInternal(new EffectContainer());
             AddInternal(new Rhombus().With(x => x.Add(playfieldContainer = new Container
             {
                 Rotation = -45,
