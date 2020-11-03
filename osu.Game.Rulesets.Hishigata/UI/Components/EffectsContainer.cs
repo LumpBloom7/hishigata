@@ -24,23 +24,66 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 
         protected override void OnNewBeat(int beatIndex, TimingControlPoint timingPoint, EffectControlPoint effectPoint, ChannelAmplitudes amplitudes)
         {
-            if (effectPoint.KiaiMode && (beatIndex % Math.Max((int)(timingPoint.BPM / 80), 1)) == 0)
+            int MainBeatInterval = Math.Max((int)(timingPoint.BPM / 80), 1);
+            if (effectPoint.KiaiMode && (beatIndex % MainBeatInterval) == 0)
             {
-                Add(new Effect(timingPoint.BeatLength)
+                Add(new Effect(timingPoint.BeatLength, timingPoint.BeatLength * MainBeatInterval)
+                {
+                    Colour = new Color4(RNG.NextSingle(.5f), RNG.NextSingle(.5f), RNG.NextSingle(.5f), 1),
+                });
+            }
+            else if (effectPoint.KiaiMode)
+            {
+                Add(new LineEffect(timingPoint.BeatLength)
                 {
                     Colour = new Color4(RNG.NextSingle(.5f), RNG.NextSingle(.5f), RNG.NextSingle(.5f), 1),
                 });
             }
         }
 
-        public class Effect : CompositeDrawable
+        public class LineEffect : CompositeDrawable
         {
-            private double animDuration;
+            private readonly double animDuration;
+
             public override bool RemoveWhenNotAlive => base.RemoveWhenNotAlive;
 
-            public Effect(double duration)
+            public LineEffect(double duration)
             {
                 animDuration = duration;
+                Size = new Vector2(450);
+                Anchor = Anchor.Centre;
+                Origin = Anchor.Centre;
+                Masking = true;
+                BorderThickness = 5;
+                BorderColour = Color4.White;
+                RelativeSizeAxes = Axes.None;
+                Alpha = .8f;
+                InternalChild = new Box
+                {
+                    RelativeSizeAxes = Axes.Both,
+                    AlwaysPresent = true,
+                    Alpha = 0,
+                };
+            }
+
+            protected override void LoadComplete()
+            {
+                this.ScaleTo(3, animDuration).FadeOut(animDuration * 2).Expire(true);
+            }
+        }
+
+        public class Effect : CompositeDrawable
+        {
+            private readonly double animDuration;
+            private readonly double fadeDuration;
+
+            public override bool RemoveWhenNotAlive => base.RemoveWhenNotAlive;
+
+            public Effect(double duration, double FadeOut)
+            {
+                animDuration = duration;
+                fadeDuration = FadeOut;
+
                 Size = new Vector2(450);
                 Anchor = Anchor.Centre;
                 Origin = Anchor.Centre;
@@ -54,7 +97,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 
             protected override void LoadComplete()
             {
-                this.ScaleTo(3, animDuration).FadeOut(animDuration * 2).Expire(true);
+                this.ScaleTo(3, animDuration).FadeOut(fadeDuration * 2).Expire(true);
             }
         }
     }
