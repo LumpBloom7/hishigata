@@ -133,8 +133,9 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 
         private void rotatePlayer()
         {
+            if (!registeredActions.Any() || registeredActions.Last() == lastAction) return;
+
             FinishTransforms();
-            if (!registeredActions.Any()) return;
             float FacingAngle = registeredActions.Last().ToAngle();
 
             this.ScaleTo(new Vector2(1.1f), 50).Then().ScaleTo(1, 50);
