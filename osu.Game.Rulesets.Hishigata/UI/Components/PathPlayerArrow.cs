@@ -15,6 +15,9 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             Anchor = Anchor.Centre;
             Origin = Anchor.TopLeft;
             PathRadius = 5;
+
+            AutoSizeAxes = Axes.None;
+            Size = new Vector2(( PathRadius + size ) * 2);
         }
 
         private const float size = 30;
