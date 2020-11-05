@@ -33,11 +33,9 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 
         protected override void OnNewBeat(int beatIndex, TimingControlPoint timingPoint, EffectControlPoint effectPoint, ChannelAmplitudes amplitudes)
         {
-            if (effectPoint.KiaiMode)
-            {
-                FinishTransforms();
-                this.ResizeTo(454.5f, 100).Then().ResizeTo(450, 50);
-            }
+            if (amplitudes.Maximum <= .01f) return;
+            FinishTransforms();
+            this.ResizeTo(effectPoint.KiaiMode ? 459f : 454.5f, 100).Then().ResizeTo(450, 50);
         }
     }
 }

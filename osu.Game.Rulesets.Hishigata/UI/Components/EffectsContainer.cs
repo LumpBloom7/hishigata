@@ -26,10 +26,13 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         {
             int MainBeatInterval = Math.Max((int)(timingPoint.BPM / 80), 1);
 
-            if (effectPoint.KiaiMode && (beatIndex % MainBeatInterval) == 0)
-                Add(new Effect(timingPoint.BeatLength, MainBeatInterval));
-            else if (effectPoint.KiaiMode)
+            if (effectPoint.KiaiMode)
+            {
+                if ((beatIndex % MainBeatInterval) == 0)
+                    Add(new Effect(timingPoint.BeatLength, MainBeatInterval));
+
                 Add(new LineEffect(timingPoint.BeatLength));
+            }
         }
 
         public class LineEffect : CompositeDrawable
