@@ -48,6 +48,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 
         public void ChangeRotation(float newRotation)
         {
+            FinishTransforms(true);
             float difference = (newRotation - rotationContainer.Rotation) % 360;
             if (difference > 180) difference -= 360;
             else if (difference < -180) difference += 360;
