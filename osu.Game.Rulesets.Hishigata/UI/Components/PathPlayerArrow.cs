@@ -39,7 +39,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 
         public void ChangeRotation(float angle, Easing easing = Easing.None)
         {
-            if (Math.Abs(angle + this.angle.Value) % 360 == 180)
+            if ( Math.Abs(angle - this.angle.Value) % 360 == 180 )
             {
                 this.TransformBindableTo(arc, 360, 25, easing)
                     .Then()

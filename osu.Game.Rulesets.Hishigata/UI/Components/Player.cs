@@ -130,8 +130,8 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             else if (difference < -180) difference += 360;
 
             targetAngle += difference;
-            maskedArrow.ChangeRotation(targetAngle + difference, easing);
-            pathArrow.ChangeRotation(targetAngle + difference, easing);
+            maskedArrow.ChangeRotation(targetAngle, easing);
+            pathArrow.ChangeRotation(targetAngle, easing);
         }
 
         private void setArrowSkin(ArrowStyle style)
