@@ -5,6 +5,7 @@ using osu.Framework.Graphics.Lines;
 using osu.Framework.Graphics;
 using osuTK;
 using osu.Game.Rulesets.Hishigata.LinearMath;
+using System.Diagnostics;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
@@ -58,7 +59,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         {
             ClearVertices();
 
-            const int count = 30;
+            const int count = 60;
             const float radius = 100;
             for (int i = 0; i < count; i++)
             {
