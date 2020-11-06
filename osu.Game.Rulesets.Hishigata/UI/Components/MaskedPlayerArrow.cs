@@ -32,11 +32,15 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
                 Rotation = -45,
                 Child = rotationContainer = new Container
                 {
+                    RelativeSizeAxes = Axes.Both,
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     Child = chevron = new Box
                     {
-                        Size = new Vector2(70.72f, 35.36f),
+                        RelativeSizeAxes = Axes.Both,
+                        RelativePositionAxes = Axes.Both,
+                        // Using the hypotenuse length
+                        Size = new Vector2(1.41f, 0.71f),
                         Anchor = Anchor.Centre,
                         Origin = Anchor.BottomCentre,
                         Alpha = 0,
@@ -49,13 +53,9 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         public void ChangeRotation(float newRotation, Easing easing = Easing.None)
         {
             FinishTransforms(true);
-            float difference = (newRotation - rotationContainer.Rotation) % 360;
-            if (difference > 180) difference -= 360;
-            else if (difference < -180) difference += 360;
-
-            if (Math.Abs(difference) == 180)
+            if (Math.Abs(newRotation - rotationContainer.Rotation) == 180)
             {
-                chevron.MoveToY(35.36f, 50, easing).Then().MoveToY(0);
+                chevron.MoveToY(0.71f, 50, easing).Then().MoveToY(0);
                 rotationContainer.Delay(50).RotateTo(newRotation);
             }
             else
