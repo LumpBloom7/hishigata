@@ -133,6 +133,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             double totalDuration = Math.Abs(difference) / 90 * duration;
 
             this.TransformBindableTo(angleBindable, angleBindable.Value + difference, totalDuration, easing);
+            maskedArrow.ChangeRotation(angleBindable.Value + difference);
         }
 
         private void setArrowSkin(ArrowStyle style)

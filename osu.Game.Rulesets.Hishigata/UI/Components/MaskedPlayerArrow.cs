@@ -5,12 +5,14 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
+using System;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
     public class MaskedPlayerArrow : CompositeDrawable
     {
         private readonly Box chevron;
+        private readonly Container rotationContainer;
 
         public MaskedPlayerArrow()
         {
@@ -28,22 +30,37 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
                 Rotation = -45,
-                Child = chevron = new Box
+                Child = rotationContainer = new Container
                 {
-                    RelativeSizeAxes = Axes.Both,
-                    Size = new Vector2(2f),
                     Anchor = Anchor.Centre,
-                    Origin = Anchor.BottomCentre,
-                    Alpha = 0,
-                    AlwaysPresent = true
+                    Origin = Anchor.Centre,
+                    Child = chevron = new Box
+                    {
+                        Size = new Vector2(70.72f, 35.36f),
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.BottomCentre,
+                        Alpha = 0,
+                        AlwaysPresent = true
+                    }
                 }
             };
         }
 
-        [BackgroundDependencyLoader]
-        private void load(BindableFloat angleBindable)
+        public void ChangeRotation(float newRotation)
         {
-            angleBindable.BindValueChanged(a => chevron.Rotation = a.NewValue, true);
+            float difference = (newRotation - rotationContainer.Rotation) % 360;
+            if (difference > 180) difference -= 360;
+            else if (difference < -180) difference += 360;
+
+            if (Math.Abs(difference) == 180)
+            {
+                chevron.MoveToY(35.36f, 50).Then().MoveToY(0);
+                rotationContainer.Delay(50).RotateTo(newRotation);
+            }
+            else
+            {
+                rotationContainer.RotateTo(newRotation, 50);
+            }
         }
     }
 }
