@@ -46,7 +46,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             };
         }
 
-        public void ChangeRotation(float newRotation)
+        public void ChangeRotation(float newRotation, Easing easing = Easing.None)
         {
             float difference = (newRotation - rotationContainer.Rotation) % 360;
             if (difference > 180) difference -= 360;
@@ -54,12 +54,12 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 
             if (Math.Abs(difference) == 180)
             {
-                chevron.MoveToY(35.36f, 50).Then().MoveToY(0);
+                chevron.MoveToY(35.36f, 50, easing).Then().MoveToY(0);
                 rotationContainer.Delay(50).RotateTo(newRotation);
             }
             else
             {
-                rotationContainer.RotateTo(newRotation, 50);
+                rotationContainer.RotateTo(newRotation, 50, easing);
             }
         }
     }

@@ -22,8 +22,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         private readonly Container gContainer;
         private readonly Container bContainer;
 
-        [Cached]
-        private readonly BindableFloat angleBindable = new BindableFloat();
+        private float targetAngle;
 
         private readonly MaskedPlayerArrow maskedArrow;
         private readonly PathPlayerArrow pathArrow;
@@ -117,23 +116,22 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             float FacingAngle = action.ToAngle();
 
             this.ScaleTo(new Vector2(1.1f), 50).Then().ScaleTo(1, 50);
-            rotateToClosestEquivalent(FacingAngle, 50);
+            rotateToClosestEquivalent(FacingAngle);
 
             lastAction = action;
             return true;
         }
         public void OnReleased(HishigataAction action) { }
 
-        private void rotateToClosestEquivalent(float angle, double duration = 0, Easing easing = Easing.None)
+        private void rotateToClosestEquivalent(float angle, Easing easing = Easing.None)
         {
-            float difference = (angle - angleBindable.Value) % 360;
+            float difference = (angle - targetAngle) % 360;
             if (difference > 180) difference -= 360;
             else if (difference < -180) difference += 360;
 
-            double totalDuration = Math.Abs(difference) / 90 * duration;
-
-            this.TransformBindableTo(angleBindable, angleBindable.Value + difference, totalDuration, easing);
-            maskedArrow.ChangeRotation(angleBindable.Value + difference);
+            targetAngle += difference;
+            maskedArrow.ChangeRotation(targetAngle + difference, easing);
+            pathArrow.ChangeRotation(targetAngle + difference, easing);
         }
 
         private void setArrowSkin(ArrowStyle style)
