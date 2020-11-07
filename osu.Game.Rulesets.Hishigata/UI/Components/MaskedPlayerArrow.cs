@@ -1,11 +1,9 @@
-﻿using osu.Framework.Graphics.Containers;
+﻿using System;
+using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Shapes;
 using osuTK;
 using osuTK.Graphics;
-using osu.Framework.Graphics;
-using osu.Framework.Graphics.Shapes;
-using osu.Framework.Allocation;
-using osu.Framework.Bindables;
-using System;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {

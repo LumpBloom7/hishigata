@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using osuTK;
 
 namespace osu.Game.Rulesets.Hishigata.LinearMath
