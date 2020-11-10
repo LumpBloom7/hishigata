@@ -12,6 +12,8 @@ using osu.Game.Rulesets.Hishigata.Configuration;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osuTK;
 using osuTK.Graphics;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
@@ -109,18 +111,36 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         }
 
         private HishigataAction lastAction = HishigataAction.Up;
+        private BindableList<HishigataAction> registeredActions = new BindableList<HishigataAction>();
+
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+            registeredActions.BindCollectionChanged((x, y) => rotatePlayer());
+        }
+
         public bool OnPressed(HishigataAction action)
         {
-            FinishTransforms();
-            float FacingAngle = action.ToAngle();
-
-            this.ScaleTo(new Vector2(1.1f), 50).Then().ScaleTo(1, 50);
-            rotateToClosestEquivalent(FacingAngle);
-
-            lastAction = action;
+            registeredActions.Add(action);
             return true;
         }
-        public void OnReleased(HishigataAction action) { }
+        public void OnReleased(HishigataAction action)
+        {
+            registeredActions.Remove(action);
+        }
+
+        private void rotatePlayer()
+        {
+            if (!registeredActions.Any() || registeredActions.Last() == lastAction) return;
+
+            FinishTransforms();
+            float FacingAngle = registeredActions.Last().ToAngle();
+
+            this.ScaleTo(new Vector2(1.1f), 50).Then().ScaleTo(1, 50);
+
+            rotateToClosestEquivalent(FacingAngle);
+            lastAction = registeredActions.Last();
+        }
 
         private void rotateToClosestEquivalent(float angle, Easing easing = Easing.None)
         {
