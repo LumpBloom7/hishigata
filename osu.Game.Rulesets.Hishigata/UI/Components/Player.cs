@@ -1,4 +1,3 @@
-using System;
 using osu.Framework.Allocation;
 using osu.Framework.Audio.Track;
 using osu.Framework.Bindables;
@@ -9,8 +8,8 @@ using osu.Framework.Input.Bindings;
 using osu.Framework.Utils;
 using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Graphics.Containers;
-using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osu.Game.Rulesets.Hishigata.Configuration;
+using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osuTK;
 using osuTK.Graphics;
 using System.Collections.Generic;
@@ -24,8 +23,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         private readonly Container gContainer;
         private readonly Container bContainer;
 
-        [Cached]
-        private readonly BindableFloat angleBindable = new BindableFloat();
+        private float targetAngle;
 
         private readonly MaskedPlayerArrow maskedArrow;
         private readonly PathPlayerArrow pathArrow;
@@ -139,19 +137,20 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             float FacingAngle = registeredActions.Last().ToAngle();
 
             this.ScaleTo(new Vector2(1.1f), 50).Then().ScaleTo(1, 50);
-            rotateToClosestEquivalent(FacingAngle, 50);
+
+            rotateToClosestEquivalent(FacingAngle);
             lastAction = registeredActions.Last();
         }
 
-        private void rotateToClosestEquivalent(float angle, double duration = 0, Easing easing = Easing.None)
+        private void rotateToClosestEquivalent(float angle, Easing easing = Easing.None)
         {
-            float difference = (angle - angleBindable.Value) % 360;
+            float difference = (angle - targetAngle) % 360;
             if (difference > 180) difference -= 360;
             else if (difference < -180) difference += 360;
 
-            double totalDuration = Math.Abs(difference) / 90 * duration;
-
-            this.TransformBindableTo(angleBindable, angleBindable.Value + difference, totalDuration, easing);
+            targetAngle += difference;
+            maskedArrow.ChangeRotation(targetAngle, easing);
+            pathArrow.ChangeRotation(targetAngle, easing);
         }
 
         private void setArrowSkin(ArrowStyle style)
