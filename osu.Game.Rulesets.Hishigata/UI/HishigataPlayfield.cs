@@ -43,6 +43,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
                 };
                 lanes.Add(lane);
                 playfieldContainer.Add(lane);
+                AddNested(lane);
             }
         }
 
