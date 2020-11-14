@@ -1,3 +1,4 @@
+using System;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Pooling;
@@ -39,6 +40,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
         {
             if (judgement.IsHit)
                 hitExplosionContainer.Add(hitExplosionPool.Get(e => e.Apply(h as DrawableHishigataHitObject)));
+            Console.WriteLine(judgement.Type.ToString());
         }
 
         public class LaneReceptor : CompositeDrawable
