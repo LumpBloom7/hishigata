@@ -52,6 +52,12 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
                 ApplyResult(r => r.Type = r.Judgement.MinResult);
         }
 
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+            LifetimeStart = HitObject.StartTime - InitialLifetimeOffset;
+        }
+
         protected override void UpdateInitialTransforms()
         {
             if (HitObject.IsFeign)
@@ -63,7 +69,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
                 note.MoveTo(new Vector2(0, -80), HitObject.TimePreempt);
         }
 
-        protected override void UpdateStateTransforms(ArmedState state)
+        protected override void UpdateHitStateTransforms(ArmedState state)
         {
             double animationDuration = HitObject.TimePreempt / 6;
 
