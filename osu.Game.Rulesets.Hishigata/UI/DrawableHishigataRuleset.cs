@@ -25,16 +25,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
 
         protected override ReplayInputHandler CreateReplayInputHandler(Replay replay) => new HishigataFramedReplayInputHandler(replay);
 
-        public override DrawableHitObject<HishigataHitObject> CreateDrawableRepresentation(HishigataHitObject h)
-        {
-            switch (h)
-            {
-                case HishigataBonus _:
-                    return new DrawableHishigataBonus(h);
-                default:
-                    return new DrawableHishigataHitObject(h);
-            }
-        }
+        public override DrawableHitObject<HishigataHitObject> CreateDrawableRepresentation(HishigataHitObject h) => null;
 
         protected override PassThroughInputManager CreateInputManager() => new HishigataInputManager(Ruleset?.RulesetInfo);
 

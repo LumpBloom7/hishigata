@@ -67,7 +67,7 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                     break;
 
                 default:
-                    yield return new HishigataHitObject
+                    yield return new HishigataNote
                     {
                         Lane = lane,
                         Samples = original.Samples,
