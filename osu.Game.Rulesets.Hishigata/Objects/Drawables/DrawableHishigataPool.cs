@@ -18,9 +18,9 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
 
         protected override T CreateNewDrawable() => base.CreateNewDrawable().With(o =>
         {
-            var osuObject = (DrawableHishigataHitObject)(object)o;
+            var hishiObject = (DrawableHishigataHitObject)(object)o;
 
-            osuObject.CanBeHit = checkHittable;
+            hishiObject.CanBeHit = checkHittable;
         });
     }
 }
