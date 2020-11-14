@@ -46,12 +46,6 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
             });
         }
 
-        protected override void OnApply(HitObject hitObject)
-        {
-            base.OnApply(hitObject);
-            LifetimeStart = HitObject.StartTime - InitialLifetimeOffset;
-        }
-
         public Func<DrawableHishigataHitObject, bool> CanBeHit;
 
         protected override void CheckForResult(bool userTriggered, double timeOffset)

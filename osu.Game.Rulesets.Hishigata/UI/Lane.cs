@@ -67,6 +67,8 @@ namespace osu.Game.Rulesets.Hishigata.UI
             where TDrawable : DrawableHitObject, new()
             => new DrawableHishigataPool<TDrawable>(checkHittable, initialSize, maximumSize);
 
+        protected override HitObjectLifetimeEntry CreateLifetimeEntry(HitObject hitObject) => new HishigataHitObjectLifetimeEntry(hitObject);
+
         public class LaneReceptor : CompositeDrawable
         {
             public int ID { get; set; }
