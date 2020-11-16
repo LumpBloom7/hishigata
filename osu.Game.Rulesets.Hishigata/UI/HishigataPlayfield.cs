@@ -4,8 +4,10 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Graphics.Containers;
+using osu.Game.Rulesets.Hishigata.Objects;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osu.Game.Rulesets.Hishigata.UI.Components;
+using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 using osuTK;
@@ -20,6 +22,8 @@ namespace osu.Game.Rulesets.Hishigata.UI
 
         private readonly List<Lane> lanes = new List<Lane>();
         private Container playfieldContainer;
+
+        [Cached]
         private PlayerVisual playerObject;
 
         public HishigataPlayfield()
@@ -45,6 +49,12 @@ namespace osu.Game.Rulesets.Hishigata.UI
                 playfieldContainer.Add(lane);
                 AddNested(lane);
             }
+        }
+
+        public override void Add(HitObject hitObject)
+        {
+            var hishiObj = hitObject as HishigataHitObject;
+            lanes[hishiObj.Lane].Add(hitObject);
         }
 
         public override void Add(DrawableHitObject hitObject)

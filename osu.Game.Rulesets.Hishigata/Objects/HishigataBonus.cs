@@ -7,8 +7,6 @@ namespace osu.Game.Rulesets.Hishigata.Objects
 {
     public class HishigataBonus : HishigataHitObject
     {
-        public override bool IsFeign => false;
-
         private static readonly List<HitSampleInfo> samples = new List<HitSampleInfo> { new BonusHitSampleInfo() };
 
         public HishigataBonus()
