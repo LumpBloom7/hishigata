@@ -1,8 +1,10 @@
 using System;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using osu.Framework.Audio.Track;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Pooling;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Utils;
 using osu.Game.Beatmaps.ControlPoints;
@@ -14,12 +16,14 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
     public class EffectContainer : BeatSyncedContainer
     {
+        private DrawablePool<Effect> effectPool;
         public EffectContainer()
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
             RelativeSizeAxes = Axes.None;
             Rotation = 45;
+            AddInternal(effectPool = new DrawablePool<Effect>(5));
         }
 
         protected override void OnNewBeat(int beatIndex, TimingControlPoint timingPoint, EffectControlPoint effectPoint, ChannelAmplitudes amplitudes)
@@ -29,71 +33,33 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             if (effectPoint.KiaiMode)
             {
                 if ((beatIndex % MainBeatInterval) == 0)
-                    Add(new Effect(timingPoint.BeatLength, MainBeatInterval));
-
-                Add(new LineEffect(timingPoint.BeatLength));
+                    Add(effectPool.Get(e => e.Animate(timingPoint.BeatLength, MainBeatInterval, true)));
+                else
+                    Add(effectPool.Get(e => e.Animate(timingPoint.BeatLength)));
             }
         }
 
-        public class LineEffect : CompositeDrawable
+        public class Effect : PoolableDrawable
         {
-            private readonly double animDuration;
-
-            public override bool RemoveWhenNotAlive => base.RemoveWhenNotAlive;
-
-            public LineEffect(double duration)
+            public Effect()
             {
-                animDuration = duration;
                 Size = new Vector2(450);
                 Anchor = Anchor.Centre;
                 Origin = Anchor.Centre;
+                RelativeSizeAxes = Axes.None;
                 Masking = true;
                 BorderThickness = 5;
-                BorderColour = Color4.White;
-                RelativeSizeAxes = Axes.None;
-                Alpha = .8f;
-                Colour = new Color4(RNG.NextSingle(.5f), RNG.NextSingle(.5f), RNG.NextSingle(.5f), 1);
-                InternalChild = new Box
-                {
-                    RelativeSizeAxes = Axes.Both,
-                    AlwaysPresent = true,
-                    Alpha = 0,
-                };
-            }
-
-            protected override void LoadComplete()
-            {
-                this.ScaleTo(6, animDuration * 2).FadeOut(animDuration * 2).Expire(true);
-            }
-        }
-
-        public class Effect : CompositeDrawable
-        {
-            private readonly double animDuration;
-            private readonly double durationMultiplier;
-
-            public override bool RemoveWhenNotAlive => base.RemoveWhenNotAlive;
-
-            public Effect(double duration, double multiplier)
-            {
-                animDuration = duration;
-                durationMultiplier = multiplier;
-
-                Size = new Vector2(450);
-                Anchor = Anchor.Centre;
-                Origin = Anchor.Centre;
-                RelativeSizeAxes = Axes.None;
-                Alpha = .4f;
-                Colour = new Color4(RNG.NextSingle(.5f), RNG.NextSingle(.5f), RNG.NextSingle(.5f), 1);
                 InternalChild = new Box
                 {
                     RelativeSizeAxes = Axes.Both,
                 };
             }
 
-            protected override void LoadComplete()
+            public void Animate(double duration, double durationMultiplier = 1, bool hasBackgroundColor = false)
             {
-                this.ScaleTo(6 * (float)durationMultiplier, animDuration * 2 * durationMultiplier).FadeOut(animDuration * 2 * durationMultiplier).Expire(true);
+                BorderColour = new Color4(RNG.NextSingle(1), RNG.NextSingle(1), RNG.NextSingle(1), 1);
+                InternalChild.Colour = hasBackgroundColor ? new Color4(RNG.NextSingle(1), RNG.NextSingle(1), RNG.NextSingle(1), .2f) : Color4.Transparent;
+                this.ScaleTo(1).ScaleTo(6 * (float)durationMultiplier, duration * 2 * durationMultiplier).FadeOutFromOne(duration * 2 * durationMultiplier).Expire(true);
             }
         }
     }
