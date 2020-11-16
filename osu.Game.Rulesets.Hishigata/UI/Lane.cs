@@ -27,7 +27,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
             AddRangeInternal(new Drawable[]{
-                hitExplosionPool = new DrawablePool<PoolableHitExplosion>(5),
+                hitExplosionPool = new DrawablePool<PoolableHitExplosion>(3),
                 hitExplosionContainer = new Container(),
                 HitObjectContainer,
                 new LaneReceptor{ID = ID}
@@ -55,7 +55,6 @@ namespace osu.Game.Rulesets.Hishigata.UI
         {
             if (judgement.IsHit)
                 hitExplosionContainer.Add(hitExplosionPool.Get(e => e.Apply(h as DrawableHishigataHitObject)));
-            Console.WriteLine(judgement.Type.ToString());
         }
 
         private void registerPool<TObject, TDrawable>(int initialSize, int? maximumSize = null)
