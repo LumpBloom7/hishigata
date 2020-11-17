@@ -27,7 +27,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             BorderThickness = 10;
             EdgeEffect = new EdgeEffectParameters
             {
-                Type = EdgeEffectType.Glow,
+                Type = EdgeEffectType.Shadow,
                 Hollow = true,
                 Radius = 20,
                 Colour = Color4.Gray,
@@ -47,15 +47,14 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         protected override void OnNewBeat(int beatIndex, TimingControlPoint timingPoint, EffectControlPoint effectPoint, ChannelAmplitudes amplitudes)
         {
             kiaiBindable.Value = effectPoint.KiaiMode;
+            float expandSize = 5 * amplitudes.Average * (effectPoint.KiaiMode ? 2 : 1);
 
-            if (amplitudes.Maximum <= .01f) return;
             FinishTransforms(false, nameof(Size));
-            this.ResizeTo(effectPoint.KiaiMode ? 459f : 454.5f, 100).Then().ResizeTo(450, 50);
+            this.ResizeTo(450 + expandSize, 100).Then().ResizeTo(450, 50);
         }
 
         private void updateGlowState(ValueChangedEvent<bool> value)
         {
-
             if (value.NewValue)
                 FadeEdgeEffectTo(1, 100);
             else
