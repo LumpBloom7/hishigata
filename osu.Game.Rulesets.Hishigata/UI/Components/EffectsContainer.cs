@@ -33,9 +33,9 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             if (effectPoint.KiaiMode)
             {
                 if ((beatIndex % MainBeatInterval) == 0)
-                    Add(effectPool.Get(e => e.Animate(timingPoint.BeatLength, MainBeatInterval, true)));
+                    Add(effectPool.Get(e => e.Apply(timingPoint.BeatLength, MainBeatInterval, true)));
                 else
-                    Add(effectPool.Get(e => e.Animate(timingPoint.BeatLength)));
+                    Add(effectPool.Get(e => e.Apply(timingPoint.BeatLength)));
             }
         }
 
@@ -55,10 +55,21 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
                 };
             }
 
-            public void Animate(double duration, double durationMultiplier = 1, bool hasBackgroundColor = false)
+            private double duration;
+            private double durationMultiplier;
+
+            public void Apply(double duration, double durationMultiplier = 1, bool hasBackgroundColor = false)
             {
+                this.duration = duration;
+                this.durationMultiplier = durationMultiplier;
                 BorderColour = new Color4(RNG.NextSingle(1), RNG.NextSingle(1), RNG.NextSingle(1), 1);
                 InternalChild.Colour = hasBackgroundColor ? new Color4(RNG.NextSingle(1), RNG.NextSingle(1), RNG.NextSingle(1), .2f) : Color4.Transparent;
+
+            }
+
+            protected override void PrepareForUse()
+            {
+                base.PrepareForUse();
                 this.ScaleTo(1).ScaleTo(6 * (float)durationMultiplier, duration * 2 * durationMultiplier).FadeOutFromOne(duration * 2 * durationMultiplier).Expire(true);
             }
         }
