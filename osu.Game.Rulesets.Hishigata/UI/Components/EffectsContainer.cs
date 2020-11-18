@@ -62,9 +62,8 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             {
                 this.duration = duration;
                 this.durationMultiplier = durationMultiplier;
-                BorderColour = new Color4(RNG.NextSingle(1), RNG.NextSingle(1), RNG.NextSingle(1), 1);
-                InternalChild.Colour = hasBackgroundColor ? new Color4(RNG.NextSingle(1), RNG.NextSingle(1), RNG.NextSingle(1), .2f) : Color4.Transparent;
-
+                BorderColour = Color4Extensions.FromHSV(RNG.NextSingle(360), 1, 1).Opacity(.6f);
+                InternalChild.Colour = hasBackgroundColor ? Color4Extensions.FromHSV(RNG.NextSingle(360), 1, 1).Opacity(.2f) : Color4.Transparent;
             }
 
             protected override void PrepareForUse()
