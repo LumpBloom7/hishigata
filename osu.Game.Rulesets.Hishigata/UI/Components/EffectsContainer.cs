@@ -1,9 +1,7 @@
 using System;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using osu.Framework.Audio.Track;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Pooling;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Utils;
@@ -26,15 +24,21 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             AddInternal(effectPool = new DrawablePool<Effect>(5));
         }
 
+        private float accumulator;
         protected override void OnNewBeat(int beatIndex, TimingControlPoint timingPoint, EffectControlPoint effectPoint, ChannelAmplitudes amplitudes)
         {
             int MainBeatInterval = Math.Max((int)(timingPoint.BPM / 80), 1);
+            accumulator += MainBeatInterval / 2f;
+
+            bool isMainBeat = (beatIndex % MainBeatInterval) == 0;
+            bool isSubBeat = accumulator > 1;
+            accumulator %= 1;
 
             if (effectPoint.KiaiMode)
             {
-                if ((beatIndex % MainBeatInterval) == 0)
+                if (isMainBeat)
                     Add(effectPool.Get(e => e.Apply(timingPoint.BeatLength, MainBeatInterval, true)));
-                else
+                else if (isSubBeat)
                     Add(effectPool.Get(e => e.Apply(timingPoint.BeatLength)));
             }
         }
@@ -62,8 +66,10 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             {
                 this.duration = duration;
                 this.durationMultiplier = durationMultiplier;
-                BorderColour = Color4Extensions.FromHSV(RNG.NextSingle(360), 1, 1).Opacity(.6f);
-                InternalChild.Colour = hasBackgroundColor ? Color4Extensions.FromHSV(RNG.NextSingle(360), 1, 1).Opacity(.2f) : Color4.Transparent;
+
+                var newColor = Color4Extensions.FromHSV(RNG.NextSingle(360), 1, 1);
+                BorderColour = newColor.Opacity(.6f);
+                InternalChild.Colour = hasBackgroundColor ? newColor.Opacity(.2f) : Color4.Transparent;
             }
 
             protected override void PrepareForUse()

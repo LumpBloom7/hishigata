@@ -1,3 +1,4 @@
+using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Audio.Track;
 using osu.Framework.Bindables;
@@ -12,8 +13,6 @@ using osu.Game.Rulesets.Hishigata.Configuration;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osuTK;
 using osuTK.Graphics;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {

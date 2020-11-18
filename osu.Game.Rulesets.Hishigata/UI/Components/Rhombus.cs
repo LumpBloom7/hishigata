@@ -1,15 +1,12 @@
 using osu.Framework.Audio.Track;
 using osu.Framework.Bindables;
-using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Effects;
 using osu.Framework.Graphics.Shapes;
-using osu.Framework.Utils;
 using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Graphics.Containers;
 using osuTK;
 using osuTK.Graphics;
-using System;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
