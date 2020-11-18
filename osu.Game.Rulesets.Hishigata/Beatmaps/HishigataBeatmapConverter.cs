@@ -43,31 +43,16 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                     goto default;
 
                 case IHasDuration spinner:
-                    double spacing = spinner.Duration;
-                    while (spacing > 100)
-                        spacing /= 2;
-
-                    if (spacing <= 0)
-                        break;
-
-                    double time = original.StartTime;
-                    int i = 0;
-
-                    while (time <= original.GetEndTime())
+                    yield return new HishigataBonus
                     {
-                        yield return new HishigataBonus
-                        {
-                            Lane = rng.Next(0, 4),
-                            StartTime = time
-                        };
-
-                        time += spacing;
-                        i++;
-                    }
+                        Samples = original.Samples,
+                        StartTime = original.StartTime,
+                        Duration = spinner.Duration
+                    };
                     break;
 
                 default:
-                    yield return new HishigataNote
+                    yield return new HishigataLanedHitObject
                     {
                         Lane = lane,
                         Samples = original.Samples,

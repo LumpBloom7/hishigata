@@ -41,7 +41,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
             };
         }
 
-        public void Apply(DrawableHishigataHitObject h)
+        public void Apply(DrawableHishigataLanedHitObject h)
         {
             duration = h.HitObject.TimePreempt / 3;
             Colour = h.Colour;

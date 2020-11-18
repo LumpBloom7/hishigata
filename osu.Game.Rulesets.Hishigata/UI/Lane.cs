@@ -35,14 +35,13 @@ namespace osu.Game.Rulesets.Hishigata.UI
             NewResult += onNewResult;
         }
 
-        private Func<DrawableHishigataHitObject, bool> checkHittable;
+        private Func<DrawableHishigataLanedHitObject, bool> checkHittable;
 
         [BackgroundDependencyLoader]
         private void load(PlayerVisual playerobj)
         {
             checkHittable = playerobj.CanBeHit;
-            registerPool<HishigataNote, DrawableHishigataNote>(10);
-            registerPool<HishigataBonus, DrawableHishigataBonus>(10);
+            registerPool<HishigataLanedHitObject, DrawableHishigataLanedHitObject>(10);
         }
 
         public override void Add(DrawableHitObject h)
@@ -54,7 +53,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
         private void onNewResult(DrawableHitObject h, JudgementResult judgement)
         {
             if (judgement.IsHit)
-                hitExplosionContainer.Add(hitExplosionPool.Get(e => e.Apply(h as DrawableHishigataHitObject)));
+                hitExplosionContainer.Add(hitExplosionPool.Get(e => e.Apply(h as DrawableHishigataLanedHitObject)));
         }
 
         private void registerPool<TObject, TDrawable>(int initialSize, int? maximumSize = null)
@@ -64,7 +63,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
 
         protected virtual DrawablePool<TDrawable> CreatePool<TDrawable>(int initialSize, int? maximumSize = null)
             where TDrawable : DrawableHitObject, new()
-            => new DrawableHishigataPool<TDrawable>(checkHittable, initialSize, maximumSize);
+            => new DrawableHishigataPool<TDrawable>(checkHittable, null, initialSize, maximumSize);
 
         protected override HitObjectLifetimeEntry CreateLifetimeEntry(HitObject hitObject) => new HishigataHitObjectLifetimeEntry(hitObject);
 

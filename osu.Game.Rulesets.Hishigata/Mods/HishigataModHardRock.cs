@@ -13,9 +13,11 @@ namespace osu.Game.Rulesets.Hishigata.Mods
 
         public void ApplyToHitObject(HitObject hitObject)
         {
-            var hishiObj = hitObject as HishigataHitObject;
-            if (hishiObj.Lane == 0) hishiObj.Lane = 2;
-            else if (hishiObj.Lane == 2) hishiObj.Lane = 0;
+            if (hitObject is HishigataLanedHitObject hishiObj)
+            {
+                if (hishiObj.Lane == 0) hishiObj.Lane = 2;
+                else if (hishiObj.Lane == 2) hishiObj.Lane = 0;
+            }
         }
     }
 }

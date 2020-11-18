@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Pooling;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Graphics.Containers;
 using osu.Game.Rulesets.Hishigata.Objects;
@@ -36,9 +38,9 @@ namespace osu.Game.Rulesets.Hishigata.UI
                 Rotation = -45,
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Child = playerObject = new PlayerVisual()
             })));
-
+            playfieldContainer.Add(HitObjectContainer);
+            playfieldContainer.Add(playerObject = new PlayerVisual());
             for (int i = 0; i < 4; ++i)
             {
                 var lane = new Lane(i)
@@ -47,22 +49,52 @@ namespace osu.Game.Rulesets.Hishigata.UI
                 };
                 lanes.Add(lane);
                 playfieldContainer.Add(lane);
+
                 AddNested(lane);
             }
         }
 
+
+        [BackgroundDependencyLoader]
+        private void load()
+        {
+            registerPool<HishigataBonus, DrawableHishigataBonus>(2);
+            registerPool<HishigataBonusTick, DrawableHishigataBonusTick>(2);
+        }
+
+        private void registerPool<TObject, TDrawable>(int initialSize, int? maximumSize = null)
+            where TObject : HitObject
+            where TDrawable : DrawableHitObject, new()
+            => RegisterPool<TObject, TDrawable>(CreatePool<TDrawable>(initialSize, maximumSize));
+
+        protected virtual DrawablePool<TDrawable> CreatePool<TDrawable>(int initialSize, int? maximumSize = null)
+            where TDrawable : DrawableHitObject, new()
+            => new DrawableHishigataPool<TDrawable>(playerObject.CanBeHit, playerObject.ContiguousRotationCount, initialSize, maximumSize);
+
+        protected override HitObjectLifetimeEntry CreateLifetimeEntry(HitObject hitObject) => new HishigataHitObjectLifetimeEntry(hitObject);
+
         public override void Add(HitObject hitObject)
         {
-            var hishiObj = hitObject as HishigataHitObject;
-            lanes[hishiObj.Lane].Add(hitObject);
+            switch (hitObject)
+            {
+                case HishigataLanedHitObject hishigataLaned:
+                    lanes[hishigataLaned.Lane].Add(hitObject);
+                    break;
+                case HishigataBonus _:
+                    base.Add(hitObject);
+                    break;
+            }
         }
 
         public override void Add(DrawableHitObject hitObject)
         {
-            var hishigataObject = hitObject as DrawableHishigataHitObject;
-
-            hishigataObject.CanBeHit = playerObject.CanBeHit;
-            lanes[hishigataObject.HitObject.Lane].Add(hitObject);
+            switch (hitObject)
+            {
+                case DrawableHishigataLanedHitObject hishiLaned:
+                    hishiLaned.CanBeHit = playerObject.CanBeHit;
+                    lanes[hishiLaned.HitObject.Lane].Add(hitObject);
+                    break;
+            }
         }
     }
 }

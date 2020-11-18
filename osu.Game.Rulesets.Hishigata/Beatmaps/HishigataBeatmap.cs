@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                     case HishigataBonus _:
                         ++bonus;
                         break;
-                    case HishigataNote n:
+                    case HishigataLanedHitObject n:
                         if (n.IsFeign) ++feigns;
                         else ++notes;
                         break;

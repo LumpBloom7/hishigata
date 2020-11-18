@@ -1,26 +1,38 @@
+using System;
 using System.Collections.Generic;
 using osu.Game.Audio;
+using osu.Game.Beatmaps;
+using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Rulesets.Hishigata.Judgements;
 using osu.Game.Rulesets.Judgements;
+using osu.Game.Rulesets.Objects.Types;
+using System.Threading;
 
 namespace osu.Game.Rulesets.Hishigata.Objects
 {
-    public class HishigataBonus : HishigataHitObject
+    public class HishigataBonus : HishigataHitObject, IHasDuration
     {
-        private static readonly List<HitSampleInfo> samples = new List<HitSampleInfo> { new BonusHitSampleInfo() };
-
-        public HishigataBonus()
+        public double EndTime
         {
-            Samples = samples;
+            get => StartTime + Duration;
+            set => Duration = value - StartTime;
         }
 
-        public override Judgement CreateJudgement() => new HishigataBonusJudgement();
+        public double Duration { get; set; }
 
-        private class BonusHitSampleInfo : HitSampleInfo
+        public override Judgement CreateJudgement() => new IgnoreJudgement();
+
+        protected override void CreateNestedHitObjects(CancellationToken cancellationToken)
         {
-            private static string[] lookupNames { get; } = { "metronomelow", "catch-banana" };
+            base.CreateNestedHitObjects(cancellationToken);
 
-            public override IEnumerable<string> LookupNames => lookupNames;
+            int hitsRequired = (int)Math.Max(1, Duration / 200);
+
+            for (int i = 0; i < hitsRequired; ++i)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                AddNested(new HishigataBonusTick());
+            }
         }
     }
 }

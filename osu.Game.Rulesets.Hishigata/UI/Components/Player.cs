@@ -1,3 +1,4 @@
+using FFmpeg.AutoGen;
 using osu.Framework.Allocation;
 using osu.Framework.Audio.Track;
 using osu.Framework.Bindables;
@@ -12,6 +13,7 @@ using osu.Game.Rulesets.Hishigata.Configuration;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osuTK;
 using osuTK.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -100,7 +102,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             };
         }
 
-        public bool CanBeHit(DrawableHishigataHitObject hitObject) => hitObject.HitObject.Lane == (int)lastAction;
+        public bool CanBeHit(DrawableHishigataLanedHitObject hitObject) => hitObject.HitObject.Lane == (int)lastAction;
 
         protected override void OnNewBeat(int beatIndex, TimingControlPoint timingPoint, EffectControlPoint effectPoint, ChannelAmplitudes amplitudes)
         {
@@ -129,9 +131,28 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             registeredActions.Remove(action);
         }
 
+        public BindableInt ContiguousRotationCount = new BindableInt();
+        private RotationDirection rotationDirection = RotationDirection.Clockwise;
+
         private void rotatePlayer()
         {
             if (!registeredActions.Any() || registeredActions.Last() == lastAction) return;
+
+            var currentAction = registeredActions.Last();
+            RotationDirection newDirection;
+            if ((int)currentAction == ((int)lastAction + 1) % 4)
+                newDirection = RotationDirection.Clockwise;
+            else
+                newDirection = RotationDirection.CounterClockwise;
+
+            bool adjacent = ((int)currentAction == ((int)lastAction + 1) % 4) || ((int)currentAction == (((int)lastAction - 1 + 4) % 4));
+
+            if (newDirection != rotationDirection || !adjacent)
+                ContiguousRotationCount.Value = 0;
+            else
+                ++ContiguousRotationCount.Value;
+
+            rotationDirection = newDirection;
 
             FinishTransforms();
             float FacingAngle = registeredActions.Last().ToAngle();
