@@ -10,6 +10,7 @@ using osu.Game.Rulesets.Hishigata.Replays;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
+using osu.Game.Scoring;
 
 namespace osu.Game.Rulesets.Hishigata.UI
 {
@@ -29,6 +30,6 @@ namespace osu.Game.Rulesets.Hishigata.UI
 
         protected override PassThroughInputManager CreateInputManager() => new HishigataInputManager(Ruleset?.RulesetInfo);
 
-        protected override ReplayRecorder CreateReplayRecorder(Replay replay) => new HishigataReplayRecorder(replay);
+        protected override ReplayRecorder CreateReplayRecorder(Score score) => new HishigataReplayRecorder(score);
     }
 }
