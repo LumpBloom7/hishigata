@@ -1,16 +1,16 @@
 using System.Collections.Generic;
-using osu.Game.Replays;
 using osu.Game.Rulesets.Hishigata.Replays;
 using osu.Game.Rulesets.Replays;
 using osu.Game.Rulesets.UI;
+using osu.Game.Scoring;
 using osuTK;
 
 namespace osu.Game.Rulesets.Hishigata.UI
 {
     public class HishigataReplayRecorder : ReplayRecorder<HishigataAction>
     {
-        public HishigataReplayRecorder(Replay replay)
-            : base(replay)
+        public HishigataReplayRecorder(Score score)
+            : base(score)
         {
         }
 
