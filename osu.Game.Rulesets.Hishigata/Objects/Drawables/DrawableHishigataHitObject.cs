@@ -5,6 +5,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
+using osu.Framework.Graphics.Textures;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
@@ -16,7 +17,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
     public class DrawableHishigataHitObject : DrawableHitObject<HishigataHitObject>
     {
         protected override double InitialLifetimeOffset => HitObject.TimePreempt;
-        protected Container Note;
+        protected Sprite Note;
 
         public DrawableHishigataHitObject() : base(null)
         {
@@ -28,21 +29,16 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
         }
 
         [BackgroundDependencyLoader]
-        private void load()
+        private void load(TextureStore textures)
         {
             Origin = Anchor.Centre;
             Anchor = Anchor.Centre;
-            AddInternal(Note = new Container
+            AddInternal(Note = new Sprite
             {
                 Position = new Vector2(0, -300),
-                Size = new Vector2(50),
-                Origin = Anchor.Centre,
+                Origin = Anchor.BottomCentre,
                 Anchor = Anchor.Centre,
-                Child = new SpriteIcon
-                {
-                    RelativeSizeAxes = Axes.Both,
-                    Icon = FontAwesome.Solid.ChevronDown,
-                }
+                Texture = textures.Get("chevron"),
             });
         }
 
