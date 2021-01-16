@@ -91,7 +91,8 @@ namespace osu.Game.Rulesets.Hishigata.UI
                     {
                         if (!touchedLane.Equals(i))
                         {
-                            HishigataActionInputManager.TriggerReleased(HishigataAction.Up + touchedLane.Value);
+                            if (touchedLane.HasValue)
+                                HishigataActionInputManager.TriggerReleased(HishigataAction.Up + touchedLane.Value);
                             HishigataActionInputManager.TriggerPressed(HishigataAction.Up + i);
                             touchedLane = i;
                         }
