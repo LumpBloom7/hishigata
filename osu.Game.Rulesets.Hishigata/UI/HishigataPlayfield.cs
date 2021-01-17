@@ -82,11 +82,13 @@ namespace osu.Game.Rulesets.Hishigata.UI
             if (touchInput.ActiveSources.Any())
             {
                 var focusedTouch = touchInput.GetTouchPosition(touchInput.ActiveSources.Last());
-                var TouchCoord = ToLocalSpace(focusedTouch.Value);
-                var TouchAngle = Vector2.Zero.GetDegreesFromPosition(TouchCoord);
+                var TouchAngle = ToScreenSpace(OriginPosition).GetDegreesFromPosition(focusedTouch.Value);
+
+                Console.WriteLine(TouchAngle);
 
                 for (int i = 0; i < 4; ++i)
                 {
+                    Console.WriteLine(HishigataExtensions.GetDeltaAngle(TouchAngle, i * 90));
                     if (Math.Abs(HishigataExtensions.GetDeltaAngle(TouchAngle, i * 90)) <= 45)
                     {
                         if (!touchedLane.Equals(i))
