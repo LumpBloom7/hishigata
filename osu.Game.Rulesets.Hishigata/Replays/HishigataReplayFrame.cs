@@ -26,6 +26,7 @@ namespace osu.Game.Rulesets.Hishigata.Replays
             if (currentFrame.MouseLeft2) Actions.Add(HishigataAction.Right);
             if (currentFrame.MouseRight1) Actions.Add(HishigataAction.Down);
             if (currentFrame.MouseRight2) Actions.Add(HishigataAction.Left);
+            if (currentFrame.ButtonState.HasFlag(ReplayButtonState.Smoke)) Actions.Add(HishigataAction.Clap);
         }
 
         public LegacyReplayFrame ToLegacy(IBeatmap beatmap)
@@ -36,6 +37,7 @@ namespace osu.Game.Rulesets.Hishigata.Replays
             if (Actions.Contains(HishigataAction.Right)) state |= ReplayButtonState.Left2;
             if (Actions.Contains(HishigataAction.Down)) state |= ReplayButtonState.Right1;
             if (Actions.Contains(HishigataAction.Left)) state |= ReplayButtonState.Right2;
+            if (Actions.Contains(HishigataAction.Clap)) state |= ReplayButtonState.Smoke;
 
             return new LegacyReplayFrame(Time, null, null, state);
         }
