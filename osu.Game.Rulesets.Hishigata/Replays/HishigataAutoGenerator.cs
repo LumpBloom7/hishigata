@@ -24,14 +24,25 @@ namespace osu.Game.Rulesets.Hishigata.Replays
             int currentLane = 0;
             Frames.Add(new HishigataReplayFrame());
 
-            foreach (HishigataNote hitObject in Beatmap.HitObjects)
+            foreach (HishigataHitObject hitObject in Beatmap.HitObjects)
             {
-                if (currentLane != hitObject.Lane)
+                switch (hitObject)
                 {
-                    Frames.Add(new HishigataReplayFrame(hitObject.StartTime, (HishigataAction)hitObject.Lane));
-                    Frames.Add(new HishigataReplayFrame(hitObject.StartTime + 20));
-                    currentLane = hitObject.Lane;
+                    case HishigataNote note:
+                        if (currentLane != note.Lane)
+                        {
+                            Frames.Add(new HishigataReplayFrame(hitObject.StartTime, (HishigataAction)note.Lane));
+                            Frames.Add(new HishigataReplayFrame(hitObject.StartTime + 20));
+                            currentLane = note.Lane;
+                        }
+                        break;
+                    case HishigataClap _:
+                        Frames.Add(new HishigataReplayFrame(hitObject.StartTime, HishigataAction.Clap));
+                        Frames.Add(new HishigataReplayFrame(hitObject.StartTime + 20));
+                        break;
+
                 }
+
             }
             return Replay;
         }
