@@ -25,9 +25,5 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
             : base(hitObject)
         {
         }
-
-
-
-        public Func<DrawableHishigataHitObject, bool> CanBeHit;
     }
 }

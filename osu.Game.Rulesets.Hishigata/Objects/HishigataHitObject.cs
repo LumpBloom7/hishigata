@@ -11,13 +11,6 @@ namespace osu.Game.Rulesets.Hishigata.Objects
     {
         public double TimePreempt;
 
-        public BindableInt LaneBindable = new BindableInt();
-        public int Lane
-        {
-            get => LaneBindable.Value;
-            set => LaneBindable.Value = value;
-        }
-
         public override Judgement CreateJudgement() => new Judgement();
 
         protected override void ApplyDefaultsToSelf(ControlPointInfo controlPointInfo, BeatmapDifficulty difficulty)

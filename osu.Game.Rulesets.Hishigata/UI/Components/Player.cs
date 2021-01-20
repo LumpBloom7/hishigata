@@ -99,7 +99,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             };
         }
 
-        public bool CanBeHit(DrawableHishigataHitObject hitObject) => hitObject.HitObject.Lane == (int)lastAction;
+        public bool CanBeHit(DrawableHishigataNote hitObject) => hitObject.HitObject.Lane == (int)lastAction;
 
         protected override void OnNewBeat(int beatIndex, TimingControlPoint timingPoint, EffectControlPoint effectPoint, ChannelAmplitudes amplitudes)
         {

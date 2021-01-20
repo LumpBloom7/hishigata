@@ -20,11 +20,13 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
 
         protected Container Note;
 
+        public Func<DrawableHishigataNote, bool> CanBeHit;
+
         public DrawableHishigataNote() : base(null)
         {
         }
 
-        public DrawableHishigataNote(HishigataHitObject hitObject = null)
+        public DrawableHishigataNote(HishigataNote hitObject = null)
             : base(hitObject)
         {
         }

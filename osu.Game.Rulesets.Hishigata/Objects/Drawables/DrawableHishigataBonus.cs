@@ -7,7 +7,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
         public DrawableHishigataBonus() : this(null)
         { }
 
-        public DrawableHishigataBonus(HishigataHitObject hitObject = null)
+        public DrawableHishigataBonus(HishigataNote hitObject = null)
             : base(hitObject)
         {
             Colour = Color4.Gold;

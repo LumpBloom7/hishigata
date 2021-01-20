@@ -7,7 +7,7 @@ using osu.Game.Utils;
 
 namespace osu.Game.Rulesets.Hishigata.Objects
 {
-    public class HishigataBonus : HishigataHitObject
+    public class HishigataBonus : HishigataNote
     {
         private static readonly List<HitSampleInfo> samples = new List<HitSampleInfo> { new BonusHitSampleInfo() };
 

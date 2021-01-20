@@ -10,5 +10,12 @@ namespace osu.Game.Rulesets.Hishigata.Objects
     public class HishigataNote : HishigataHitObject
     {
         public bool IsFeign { get; set; }
+
+        public BindableInt LaneBindable = new BindableInt();
+        public int Lane
+        {
+            get => LaneBindable.Value;
+            set => LaneBindable.Value = value;
+        }
     }
 }

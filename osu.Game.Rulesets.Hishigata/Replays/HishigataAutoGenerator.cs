@@ -24,7 +24,7 @@ namespace osu.Game.Rulesets.Hishigata.Replays
             int currentLane = 0;
             Frames.Add(new HishigataReplayFrame());
 
-            foreach (HishigataHitObject hitObject in Beatmap.HitObjects)
+            foreach (HishigataNote hitObject in Beatmap.HitObjects)
             {
                 if (currentLane != hitObject.Lane)
                 {

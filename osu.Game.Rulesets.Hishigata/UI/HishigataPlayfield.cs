@@ -53,16 +53,12 @@ namespace osu.Game.Rulesets.Hishigata.UI
 
         public override void Add(HitObject hitObject)
         {
-            var hishiObj = hitObject as HishigataHitObject;
-            lanes[hishiObj.Lane].Add(hitObject);
-        }
-
-        public override void Add(DrawableHitObject hitObject)
-        {
-            var hishigataObject = hitObject as DrawableHishigataHitObject;
-
-            hishigataObject.CanBeHit = playerObject.CanBeHit;
-            lanes[hishigataObject.HitObject.Lane].Add(hitObject);
+            switch (hitObject)
+            {
+                case HishigataNote note:
+                    lanes[note.Lane].Add(hitObject);
+                    break;
+            }
         }
     }
 }

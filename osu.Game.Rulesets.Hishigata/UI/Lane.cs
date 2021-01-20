@@ -35,7 +35,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
             NewResult += onNewResult;
         }
 
-        private Func<DrawableHishigataHitObject, bool> checkHittable;
+        private Func<DrawableHishigataNote, bool> checkHittable;
 
         [BackgroundDependencyLoader]
         private void load(PlayerVisual playerobj)
@@ -55,7 +55,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
         {
             base.OnNewDrawableHitObject(drawableHitObject);
 
-            if (drawableHitObject is DrawableHishigataHitObject hishiObj)
+            if (drawableHitObject is DrawableHishigataNote hishiObj)
                 hishiObj.CanBeHit = checkHittable;
         }
 
