@@ -38,6 +38,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
                 Origin = Anchor.Centre,
                 Child = playerObject = new PlayerVisual()
             })));
+            AddInternal(HitObjectContainer);
 
             for (int i = 0; i < 4; ++i)
             {
@@ -51,12 +52,21 @@ namespace osu.Game.Rulesets.Hishigata.UI
             }
         }
 
+        [BackgroundDependencyLoader]
+        private void load()
+        {
+            RegisterPool<HishigataClap, DrawableHishigataClap>(5);
+        }
+
         public override void Add(HitObject hitObject)
         {
             switch (hitObject)
             {
                 case HishigataNote note:
                     lanes[note.Lane].Add(hitObject);
+                    break;
+                case HishigataClap clap:
+                    base.Add(clap);
                     break;
             }
         }

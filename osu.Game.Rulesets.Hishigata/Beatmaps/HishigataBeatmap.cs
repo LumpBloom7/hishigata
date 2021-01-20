@@ -11,6 +11,7 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
             int notes = 0;
             int feigns = 0;
             int bonus = 0;
+            int claps = 0;
 
             foreach (var h in HitObjects)
             {
@@ -22,6 +23,9 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                     case HishigataNote n:
                         if (n.IsFeign) ++feigns;
                         else ++notes;
+                        break;
+                    case HishigataClap c:
+                        ++claps;
                         break;
                 }
             }
@@ -38,6 +42,12 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                 {
                     Name = "Feign Count",
                     Content = feigns.ToString(),
+                    CreateIcon = () => new BeatmapStatisticIcon(BeatmapStatisticsIconType.Circles),
+                },
+                new BeatmapStatistic
+                {
+                    Name = "Clap Count",
+                    Content = claps.ToString(),
                     CreateIcon = () => new BeatmapStatisticIcon(BeatmapStatisticsIconType.Circles),
                 },
                 new BeatmapStatistic

@@ -35,6 +35,7 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
             int lane = (int)Math.Round(angle);
 
             bool isFeign = original.Samples.Any(x => x.Name == HitSampleInfo.HIT_WHISTLE);
+            bool isClap = original.Samples.Any(x => x.Name == HitSampleInfo.HIT_CLAP);
 
             if (lane >= 4) lane -= 4;
             switch (original)
@@ -67,13 +68,20 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                     break;
 
                 default:
-                    yield return new HishigataNote
-                    {
-                        Lane = lane,
-                        Samples = original.Samples,
-                        StartTime = original.StartTime,
-                        IsFeign = isFeign
-                    };
+                    if (isClap)
+                        yield return new HishigataClap
+                        {
+                            Samples = original.Samples,
+                            StartTime = original.StartTime
+                        };
+                    else
+                        yield return new HishigataNote
+                        {
+                            Lane = lane,
+                            Samples = original.Samples,
+                            StartTime = original.StartTime,
+                            IsFeign = isFeign
+                        };
                     break;
             }
         }

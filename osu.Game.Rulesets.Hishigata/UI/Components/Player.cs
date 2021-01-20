@@ -120,11 +120,13 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 
         public bool OnPressed(HishigataAction action)
         {
+            if (action == HishigataAction.Clap) return false;
             registeredActions.Add(action);
             return true;
         }
         public void OnReleased(HishigataAction action)
         {
+            if (action == HishigataAction.Clap) return;
             registeredActions.Remove(action);
         }
 
