@@ -90,6 +90,7 @@ namespace osu.Game.Rulesets.Hishigata
             new KeyBinding(InputKey.S, HishigataAction.Down),
             new KeyBinding(InputKey.Left, HishigataAction.Left),
             new KeyBinding(InputKey.A, HishigataAction.Left),
+            new KeyBinding(InputKey.Space, HishigataAction.Clap),
         };
 
         public override Drawable CreateIcon() => new Container

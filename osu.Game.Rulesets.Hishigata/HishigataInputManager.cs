@@ -28,5 +28,8 @@ namespace osu.Game.Rulesets.Hishigata
 
         [Description("Left")]
         Left,
+
+        [Description("Clap")]
+        Clap,
     }
 }
