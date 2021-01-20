@@ -30,15 +30,37 @@ namespace osu.Game.Rulesets.Hishigata.UI
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
-            AddInternal(new EffectContainer());
-            AddInternal(new Rhombus().With(x => x.Add(playfieldContainer = new Container
-            {
-                Rotation = -45,
-                Anchor = Anchor.Centre,
-                Origin = Anchor.Centre,
-                Child = playerObject = new PlayerVisual()
-            })));
-            AddInternal(HitObjectContainer);
+            AddRangeInternal(new Drawable[]{
+                new EffectContainer(),
+                new Container
+                {
+                    Size = new Vector2(113.137f),
+                    Rotation = 45,
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    Masking = true,
+                    BorderThickness = 2,
+                    BorderColour = Color4.LightGray,
+                    Child = new Box
+                    {
+                        Alpha = 0,
+                        RelativeSizeAxes = Axes.Both,
+                        AlwaysPresent = true
+                    }
+                },
+                new Rhombus().With(x => x.AddRange(new Drawable[]
+                {
+                    playfieldContainer = new Container
+                    {
+                        Rotation = -45,
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                        Child = playerObject = new PlayerVisual()
+                    },
+                    HitObjectContainer
+                }))
+            });
+
 
             for (int i = 0; i < 4; ++i)
             {
@@ -57,6 +79,8 @@ namespace osu.Game.Rulesets.Hishigata.UI
         {
             RegisterPool<HishigataClap, DrawableHishigataClap>(5);
         }
+
+        protected override HitObjectLifetimeEntry CreateLifetimeEntry(HitObject hitObject) => new HishigataHitObjectLifetimeEntry(hitObject);
 
         public override void Add(HitObject hitObject)
         {

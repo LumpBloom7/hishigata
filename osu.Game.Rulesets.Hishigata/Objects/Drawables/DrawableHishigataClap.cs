@@ -36,19 +36,35 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
             Anchor = Anchor.Centre;
             AddInternal(Note = new Container
             {
-                Masking = true,
-                BorderColour = Color4.White,
-                BorderThickness = 10,
-                Size = new Vector2(1000),
+                Colour = Color4.BlueViolet,
+                Size = new Vector2(450),
                 Origin = Anchor.Centre,
                 Anchor = Anchor.Centre,
-                Rotation = 45,
-                Alpha = 0,
-                Child = new Box
-                {
-                    RelativeSizeAxes = Axes.Both,
-                    Alpha = 0,
-                    AlwaysPresent = true
+                Children = new Drawable[]{
+                    new Box
+                    {
+                        Anchor = Anchor.TopCentre,
+                        Origin = Anchor.TopCentre,
+                        Size = new Vector2(113.137f, 5)
+                    },
+                    new Box
+                    {
+                        Anchor = Anchor.BottomCentre,
+                        Origin = Anchor.BottomCentre,
+                        Size = new Vector2(113.137f, 5)
+                    },
+                    new Box
+                    {
+                        Anchor = Anchor.CentreLeft,
+                        Origin = Anchor.CentreLeft,
+                        Size = new Vector2(5, 113.137f)
+                    },
+                    new Box
+                    {
+                        Anchor = Anchor.CentreRight,
+                        Origin = Anchor.CentreRight,
+                        Size = new Vector2(5, 113.137f)
+                    }
                 }
             });
         }
@@ -68,7 +84,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
 
         protected override void UpdateInitialTransforms()
         {
-            Note.FadeInFromZero(HitObject.TimePreempt).ResizeTo(450, HitObject.TimePreempt);
+            Note.ResizeTo(113.137f, HitObject.TimePreempt);
         }
 
         protected override void UpdateHitStateTransforms(ArmedState state)
