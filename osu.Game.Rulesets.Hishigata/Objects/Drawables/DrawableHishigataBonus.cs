@@ -2,7 +2,7 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
 {
-    public class DrawableHishigataBonus : DrawableHishigataHitObject
+    public class DrawableHishigataBonus : DrawableHishigataNote
     {
         public DrawableHishigataBonus() : this(null)
         { }
