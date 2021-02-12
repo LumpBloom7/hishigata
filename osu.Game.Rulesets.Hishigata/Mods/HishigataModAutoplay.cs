@@ -1,4 +1,5 @@
-﻿using osu.Game.Beatmaps;
+﻿using System.Collections.Generic;
+using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Hishigata.Objects;
 using osu.Game.Rulesets.Hishigata.Replays;
 using osu.Game.Rulesets.Mods;
@@ -9,12 +10,9 @@ namespace osu.Game.Rulesets.Hishigata.Mods
 {
     public class HishigataModAutoplay : ModAutoplay<HishigataHitObject>
     {
-        public override Score CreateReplayScore(IBeatmap beatmap) => new Score
+        public override Score CreateReplayScore(IBeatmap beatmap, IReadOnlyList<Mod> mods) => new Score
         {
-            ScoreInfo = new ScoreInfo
-            {
-                User = new User { Username = "Hishi" },
-            },
+            ScoreInfo = new ScoreInfo { User = new User { Username = "Hishi" } },
             Replay = new HishigataAutoGenerator(beatmap).Generate(),
         };
     }
