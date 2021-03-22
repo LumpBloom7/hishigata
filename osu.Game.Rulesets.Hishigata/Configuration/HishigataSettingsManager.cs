@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Hishigata.Configuration
         {
             base.InitialiseDefaults();
 
-            Set(HishigataRulesetSettings.ArrowStyle, ArrowStyle.Sharp);
+            SetDefault(HishigataRulesetSettings.ArrowStyle, ArrowStyle.Sharp);
         }
     }
 
