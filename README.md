@@ -50,7 +50,7 @@ Using the `Build` command from your IDE should generate a DLL file within the ou
 You can also build hishigata from the command-line with a single command:
 
 ```sh
-dotnet build osu.Game.Rulesets.hishigata
+dotnet build osu.Game.Rulesets.Hishigata
 ```
 
 ## Contributing
