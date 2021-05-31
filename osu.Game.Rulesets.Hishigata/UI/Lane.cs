@@ -22,7 +22,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
 
         private readonly DrawablePool<PoolableHitExplosion> hitExplosionPool;
 
-        public Lane(int ID = 0)
+        public Lane()
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
@@ -30,7 +30,6 @@ namespace osu.Game.Rulesets.Hishigata.UI
                 hitExplosionPool = new DrawablePool<PoolableHitExplosion>(3),
                 hitExplosionContainer = new Container(),
                 HitObjectContainer,
-                new LaneReceptor{ID = ID}
             });
             NewResult += onNewResult;
         }
@@ -66,47 +65,5 @@ namespace osu.Game.Rulesets.Hishigata.UI
         }
 
         protected override HitObjectLifetimeEntry CreateLifetimeEntry(HitObject hitObject) => new HishigataHitObjectLifetimeEntry(hitObject);
-
-        public class LaneReceptor : CompositeDrawable
-        {
-            public int ID { get; set; }
-            private HishigataInputManager hishigataInputManager;
-            internal HishigataInputManager HishigataActionInputManager => hishigataInputManager ??= GetContainingInputManager() as HishigataInputManager;
-
-            public override bool HandlePositionalInput => true;
-
-            public LaneReceptor()
-            {
-                Position = new Vector2(0, -70);
-                Size = new Vector2(140, 1000);
-
-                Anchor = Anchor.Centre;
-                Origin = Anchor.BottomCentre;
-                Alpha = 0;
-                AlwaysPresent = true;
-            }
-
-            private TouchSource? touchMemory;
-
-            protected override bool OnTouchDown(TouchDownEvent e)
-            {
-                if (ReceivePositionalInputAt(e.ScreenSpaceTouchDownPosition) && !touchMemory.HasValue)
-                {
-                    touchMemory = e.Touch.Source;
-                    HishigataActionInputManager.TriggerPressed(HishigataAction.Up + ID);
-                    return true;
-                }
-                return base.OnTouchDown(e);
-            }
-
-            protected override void OnTouchUp(TouchUpEvent e)
-            {
-                if (touchMemory.HasValue && e.Touch.Source == touchMemory.Value)
-                {
-                    touchMemory = null;
-                    HishigataActionInputManager.TriggerReleased(HishigataAction.Up + ID);
-                }
-            }
-        }
     }
 }

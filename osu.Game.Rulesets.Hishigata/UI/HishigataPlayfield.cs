@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore.Internal;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -18,6 +21,9 @@ namespace osu.Game.Rulesets.Hishigata.UI
     [Cached]
     public class HishigataPlayfield : Playfield
     {
+        private HishigataInputManager hishigataActionInputManager;
+        internal HishigataInputManager HishigataActionInputManager => hishigataActionInputManager ??= GetContainingInputManager() as HishigataInputManager;
+
         public override bool ReceivePositionalInputAt(Vector2 screenSpacePos) => true;
 
         private readonly List<Lane> lanes = new List<Lane>();
@@ -59,7 +65,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
 
             for (int i = 0; i < 4; ++i)
             {
-                var lane = new Lane(i)
+                var lane = new Lane
                 {
                     Rotation = 90 * i
                 };
@@ -81,6 +87,42 @@ namespace osu.Game.Rulesets.Hishigata.UI
 
             hishigataObject.CanBeHit = playerObject.CanBeHit;
             lanes[hishigataObject.HitObject.Lane].Add(hitObject);
+        }
+
+        private int? touchedLane;
+
+        protected override void Update()
+        {
+            base.Update();
+
+            var touchInput = HishigataActionInputManager.CurrentState.Touch;
+
+            if (touchInput.ActiveSources.Any())
+            {
+                var focusedTouch = touchInput.GetTouchPosition(touchInput.ActiveSources.Last());
+                var TouchAngle = ToScreenSpace(OriginPosition).GetDegreesFromPosition(focusedTouch.Value);
+
+                for (int i = 0; i < 4; ++i)
+                {
+                    if (Math.Abs(HishigataExtensions.GetDeltaAngle(TouchAngle, i * 90)) <= 45)
+                    {
+                        if (!touchedLane.Equals(i))
+                        {
+                            if (touchedLane.HasValue)
+                                HishigataActionInputManager.TriggerReleased(HishigataAction.Up + touchedLane.Value);
+                            HishigataActionInputManager.TriggerPressed(HishigataAction.Up + i);
+                            touchedLane = i;
+                        }
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                if (touchedLane.HasValue)
+                    HishigataActionInputManager.TriggerReleased(HishigataAction.Up + touchedLane.Value);
+                touchedLane = null;
+            }
         }
     }
 }
