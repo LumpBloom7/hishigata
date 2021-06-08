@@ -8,7 +8,7 @@ using osu.Game.Users;
 
 namespace osu.Game.Rulesets.Hishigata.Mods
 {
-    public class HishigataModAutoplay : ModAutoplay<HishigataHitObject>
+    public class HishigataModAutoplay : ModAutoplay
     {
         public override Score CreateReplayScore(IBeatmap beatmap, IReadOnlyList<Mod> mods) => new Score
         {
