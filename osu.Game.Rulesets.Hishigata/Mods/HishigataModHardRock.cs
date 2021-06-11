@@ -9,7 +9,6 @@ namespace osu.Game.Rulesets.Hishigata.Mods
     public class HishigataModHardRock : ModHardRock, IApplicableToHitObject
     {
         public override double ScoreMultiplier => 1.06;
-        public override bool Ranked => true;
 
         public void ApplyToHitObject(HitObject hitObject)
         {
