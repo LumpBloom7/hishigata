@@ -6,6 +6,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Input.Bindings;
+using osu.Framework.Input.Events;
 using osu.Framework.Utils;
 using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Graphics.Containers;
@@ -118,14 +119,14 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             registeredActions.BindCollectionChanged((x, y) => rotatePlayer());
         }
 
-        public bool OnPressed(HishigataAction action)
+        public bool OnPressed(KeyBindingPressEvent<HishigataAction> e)
         {
-            registeredActions.Add(action);
+            registeredActions.Add(e.Action);
             return true;
         }
-        public void OnReleased(HishigataAction action)
+        public void OnReleased(KeyBindingReleaseEvent<HishigataAction> e)
         {
-            registeredActions.Remove(action);
+            registeredActions.Remove(e.Action);
         }
 
         private void rotatePlayer()
