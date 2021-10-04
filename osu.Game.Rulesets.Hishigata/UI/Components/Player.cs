@@ -1,5 +1,4 @@
 using System.Linq;
-using osu.Framework.Allocation;
 using osu.Framework.Audio.Track;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
@@ -10,7 +9,6 @@ using osu.Framework.Input.Events;
 using osu.Framework.Utils;
 using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Graphics.Containers;
-using osu.Game.Rulesets.Hishigata.Configuration;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osuTK;
 using osuTK.Graphics;
@@ -26,7 +24,6 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
         private float targetAngle;
 
         private readonly MaskedPlayerArrow maskedArrow;
-        private readonly PathPlayerArrow pathArrow;
 
         public PlayerVisual()
         {
@@ -95,7 +92,6 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
                         },
                     }
                 },
-                pathArrow = new PathPlayerArrow(),
                 maskedArrow = new MaskedPlayerArrow()
             };
         }
@@ -150,27 +146,6 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
 
             targetAngle += difference;
             maskedArrow.ChangeRotation(targetAngle, easing);
-            pathArrow.ChangeRotation(targetAngle, easing);
-        }
-
-        private void setArrowSkin(ArrowStyle style)
-        {
-            maskedArrow.Alpha = 0;
-            pathArrow.Alpha = 0;
-
-            if (style == ArrowStyle.Sharp)
-                maskedArrow.Alpha = 1;
-            else
-                pathArrow.Alpha = 1;
-        }
-
-        private readonly Bindable<ArrowStyle> arrowStyleBindable = new Bindable<ArrowStyle>();
-
-        [BackgroundDependencyLoader(true)]
-        private void load(HishigataRulesetConfigManager config)
-        {
-            config?.BindWith(HishigataRulesetSettings.ArrowStyle, arrowStyleBindable);
-            arrowStyleBindable.BindValueChanged(x => setArrowSkin(x.NewValue), true);
         }
     }
 }
