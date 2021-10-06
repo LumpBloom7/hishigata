@@ -20,11 +20,11 @@ namespace osu.Game.Rulesets.Hishigata.Objects
 
         public override Judgement CreateJudgement() => new Judgement();
 
-        protected override void ApplyDefaultsToSelf(ControlPointInfo controlPointInfo, BeatmapDifficulty difficulty)
+        protected override void ApplyDefaultsToSelf(ControlPointInfo controlPointInfo, IBeatmapDifficultyInfo difficulty)
         {
             base.ApplyDefaultsToSelf(controlPointInfo, difficulty);
 
-            TimePreempt = (float)BeatmapDifficulty.DifficultyRange(difficulty.ApproachRate, 1800, 1200, 450);
+            TimePreempt = (float)IBeatmapDifficultyInfo.DifficultyRange(difficulty.ApproachRate, 1800, 1200, 450);
             TimePreempt /= controlPointInfo.DifficultyPointAt(StartTime).SpeedMultiplier;
             TimePreempt = Math.Max(TimePreempt, 450);
         }
