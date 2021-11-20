@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.Hishigata.Difficulty
 {
     public class HishigataDifficultyCalculator : DifficultyCalculator
     {
-        public HishigataDifficultyCalculator(Ruleset ruleset, WorkingBeatmap beatmap) : base(ruleset, beatmap) { }
+        public HishigataDifficultyCalculator(IRulesetInfo ruleset, IWorkingBeatmap beatmap) : base(ruleset, beatmap) { }
 
         protected override DifficultyAttributes CreateDifficultyAttributes(IBeatmap beatmap, Mod[] mods, Skill[] skills, double clockRate)
         {
