@@ -33,7 +33,7 @@ namespace osu.Game.Rulesets.Hishigata
 
         public override IBeatmapConverter CreateBeatmapConverter(IBeatmap beatmap) => new HishigataBeatmapConverter(beatmap, this);
 
-        public override DifficultyCalculator CreateDifficultyCalculator(WorkingBeatmap beatmap) => new HishigataDifficultyCalculator(this, beatmap);
+        public override DifficultyCalculator CreateDifficultyCalculator(IWorkingBeatmap beatmap) => new HishigataDifficultyCalculator(RulesetInfo, beatmap);
 
         public override IConvertibleReplayFrame CreateConvertibleReplayFrame() => new HishigataReplayFrame();
 
