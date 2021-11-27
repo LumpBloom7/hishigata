@@ -25,7 +25,6 @@ namespace osu.Game.Rulesets.Hishigata.Difficulty
             {
                 StarRating = beatmap.BeatmapInfo.StarRating * 1f, // Inflate SR of converts, to encourage players to try lower diffs, without hurting their fragile ego.
                 Mods = mods,
-                Skills = skills,
                 MaxCombo = maxCombo
             };
         }
