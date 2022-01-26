@@ -26,7 +26,7 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
 
         protected override IEnumerable<HishigataHitObject> ConvertHitObject(HitObject original, IBeatmap beatmap, CancellationToken cancellationToken)
         {
-            var difficulty = beatmap.BeatmapInfo.BaseDifficulty;
+            var difficulty = beatmap.BeatmapInfo.Difficulty;
             int seed = ((int)MathF.Round(difficulty.DrainRate + difficulty.CircleSize) * 20) + (int)(difficulty.OverallDifficulty * 41.2) + (int)MathF.Round(difficulty.ApproachRate);
             Random rng = new Random(seed);
 
