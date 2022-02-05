@@ -15,7 +15,7 @@ namespace osu.Game.Rulesets.Hishigata.Replays
 
         protected override bool IsImportant(HishigataReplayFrame frame) => frame.Actions.Any();
 
-        public override void CollectPendingInputs(List<IInput> inputs)
+        protected override void CollectReplayInputs(List<IInput> inputs)
         {
             inputs.Add(new ReplayState<HishigataAction>
             {
