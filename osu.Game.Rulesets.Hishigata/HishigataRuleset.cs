@@ -27,7 +27,7 @@ namespace osu.Game.Rulesets.Hishigata
     {
         public override string Description => "hishigata";
 
-        public override ScoreProcessor CreateScoreProcessor() => new HishigataScoreProcessor();
+        public override ScoreProcessor CreateScoreProcessor() => new HishigataScoreProcessor(this);
 
         public override DrawableRuleset CreateDrawableRulesetWith(IBeatmap beatmap, IReadOnlyList<Mod> mods = null) => new DrawableHishigataRuleset(this, beatmap, mods);
 
