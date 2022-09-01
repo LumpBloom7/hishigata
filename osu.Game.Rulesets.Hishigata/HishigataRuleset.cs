@@ -6,9 +6,6 @@ using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input.Bindings;
 using osu.Framework.Localisation;
 using osu.Game.Beatmaps;
-using osu.Game.Configuration;
-using osu.Game.Overlays.Settings;
-using osu.Game.Rulesets.Configuration;
 using osu.Game.Rulesets.Difficulty;
 using osu.Game.Rulesets.Hishigata.Beatmaps;
 using osu.Game.Rulesets.Hishigata.Difficulty;
@@ -26,6 +23,8 @@ namespace osu.Game.Rulesets.Hishigata
 {
     public class HishigataRuleset : Ruleset
     {
+        public override string RulesetAPIVersionSupported => CURRENT_RULESET_API_VERSION;
+
         public override string Description => "hishigata";
 
         public override ScoreProcessor CreateScoreProcessor() => new HishigataScoreProcessor(this);
