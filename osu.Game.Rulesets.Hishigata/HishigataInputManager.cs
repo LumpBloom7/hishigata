@@ -1,5 +1,6 @@
-﻿using System.ComponentModel;
-using osu.Framework.Input.Bindings;
+﻿using osu.Framework.Input.Bindings;
+using osu.Framework.Localisation;
+using osu.Game.Rulesets.Hishigata.Localisation;
 using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.Hishigata
@@ -17,16 +18,16 @@ namespace osu.Game.Rulesets.Hishigata
 
     public enum HishigataAction
     {
-        [Description("Up")]
+        [LocalisableDescription(typeof(HishigataActionStrings), nameof(HishigataActionStrings.Up))]
         Up,
 
-        [Description("Right")]
+        [LocalisableDescription(typeof(HishigataActionStrings), nameof(HishigataActionStrings.Right))]
         Right,
 
-        [Description("Down")]
+        [LocalisableDescription(typeof(HishigataActionStrings), nameof(HishigataActionStrings.Down))]
         Down,
 
-        [Description("Left")]
+        [LocalisableDescription(typeof(HishigataActionStrings), nameof(HishigataActionStrings.Left))]
         Left,
     }
 }
