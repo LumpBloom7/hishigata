@@ -14,9 +14,12 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    - name: Install dependencies
-      run: dotnet restore
     - name: Build with .NET
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build
     - name: Unit Tests
-      run: dotnet test --no-build --no-restore --configuration Release
+      run: dotnet test --no-build --no-restore
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Sentakki (Dev build)
+        path: osu.Game.Rulesets.Hishigata/bin/Debug/**/osu.Game.Rulesets.Hishigata.dll

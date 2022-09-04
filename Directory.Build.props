@@ -1,25 +1,21 @@
 <Project>
   <PropertyGroup Label="C#">
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>9.0</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <ItemGroup Label="Resources">
-    <EmbeddedResource Include="Resources\**\*.*" />
-  </ItemGroup>
-  <ItemGroup Label="Code Analysis">
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0" PrivateAssets="All" />
-  </ItemGroup>
-  <PropertyGroup Label="Code Analysis">
-    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)CodeAnalysis\hishigata.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Label="Nuget">
-    <IsPackable>false</IsPackable>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+
     <Authors>Derrick Timmermans</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/LumpBloom7/Hishigata</PackageProjectUrl>
     <RepositoryUrl>https://github.com/LumpBloom7/Hishigata</RepositoryUrl>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <Copyright>Copyright (c) 2020 Derrick Timmermans</Copyright>
-    <PackageTags>osu game</PackageTags>
+    <Copyright>Copyright (c) 2022 Derrick Timmermans</Copyright>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
   </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\**\*"/>
+  </ItemGroup>
+  <ItemGroup>
+    <EditorConfgFiles Include=".editorconfig" />
+    <EditorConfgFiles Include=".globalconfig" />
+  </ItemGroup>
 </Project>

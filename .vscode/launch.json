@@ -11,7 +11,12 @@
             ],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": "Build tests (Debug)",
-            "console": "internalConsole"
+            "console": "internalConsole",
+            "justMyCode": false,
+            "symbolOptions": {
+                "searchMicrosoftSymbolServer": true,
+                "searchNuGetOrgSymbolServer": true
+            },
         },
         {
             "name": "hishigata for osu! (Tests, Release)",
