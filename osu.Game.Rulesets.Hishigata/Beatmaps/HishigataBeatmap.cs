@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using osu.Game.Beatmaps;
+using osu.Game.Rulesets.Hishigata.Localisation;
 using osu.Game.Rulesets.Hishigata.Objects;
 
 namespace osu.Game.Rulesets.Hishigata.Beatmaps
@@ -30,19 +31,19 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
             {
                 new BeatmapStatistic
                 {
-                    Name = "Note Count",
+                    Name = HishigataBeatmapStrings.NoteCount,
                     Content = notes.ToString(),
                     CreateIcon = () => new BeatmapStatisticIcon(BeatmapStatisticsIconType.Circles),
                 },
                 new BeatmapStatistic
                 {
-                    Name = "Feign Count",
+                    Name = HishigataBeatmapStrings.FeignCount,
                     Content = feigns.ToString(),
                     CreateIcon = () => new BeatmapStatisticIcon(BeatmapStatisticsIconType.Circles),
                 },
                 new BeatmapStatistic
                 {
-                    Name = "Bonus Count",
+                    Name = HishigataBeatmapStrings.BonusCount,
                     Content = bonus.ToString(),
                     CreateIcon = () => new BeatmapStatisticIcon(BeatmapStatisticsIconType.Spinners),
                 },

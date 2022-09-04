@@ -9,6 +9,7 @@ using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Difficulty;
 using osu.Game.Rulesets.Hishigata.Beatmaps;
 using osu.Game.Rulesets.Hishigata.Difficulty;
+using osu.Game.Rulesets.Hishigata.Localisation;
 using osu.Game.Rulesets.Hishigata.Mods;
 using osu.Game.Rulesets.Hishigata.Replays;
 using osu.Game.Rulesets.Hishigata.Scoring;
@@ -126,7 +127,7 @@ namespace osu.Game.Rulesets.Hishigata
             switch (result)
             {
                 case HitResult.LargeBonus:
-                    return "Bonus";
+                    return HishigataHitObjectStrings.Bonus;
             }
 
             return base.GetDisplayNameForHitResult(result);
