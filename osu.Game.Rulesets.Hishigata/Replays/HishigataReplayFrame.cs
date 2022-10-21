@@ -20,7 +20,7 @@ namespace osu.Game.Rulesets.Hishigata.Replays
             Actions.AddRange(actions);
         }
 
-        public void FromLegacy(LegacyReplayFrame currentFrame, IBeatmap beatmap, ReplayFrame lastFrame = null)
+        public void FromLegacy(LegacyReplayFrame currentFrame, IBeatmap beatmap, ReplayFrame? lastFrame = null)
         {
             if (currentFrame.MouseLeft1) Actions.Add(HishigataAction.Up);
             if (currentFrame.MouseLeft2) Actions.Add(HishigataAction.Right);

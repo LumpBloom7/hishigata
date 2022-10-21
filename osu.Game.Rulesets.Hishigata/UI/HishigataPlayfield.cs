@@ -6,10 +6,8 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Rulesets.Hishigata.Objects;
-using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osu.Game.Rulesets.Hishigata.UI.Components;
 using osu.Game.Rulesets.Objects;
-using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 using osuTK;
 using osuTK.Graphics;
@@ -19,16 +17,16 @@ namespace osu.Game.Rulesets.Hishigata.UI
     [Cached]
     public class HishigataPlayfield : Playfield
     {
-        private HishigataInputManager hishigataActionInputManager;
-        internal HishigataInputManager HishigataActionInputManager => hishigataActionInputManager ??= GetContainingInputManager() as HishigataInputManager;
+        private HishigataInputManager hishigataActionInputManager = null!;
+        internal HishigataInputManager HishigataActionInputManager => hishigataActionInputManager ??= (HishigataInputManager)GetContainingInputManager();
 
         public override bool ReceivePositionalInputAt(Vector2 screenSpacePos) => true;
 
         private readonly List<Lane> lanes = new List<Lane>();
-        private Container playfieldContainer;
+        private Container playfieldContainer = null!;
 
         [Cached]
-        private PlayerVisual playerObject;
+        private PlayerVisual playerObject = null!;
 
         public HishigataPlayfield()
         {
@@ -75,16 +73,8 @@ namespace osu.Game.Rulesets.Hishigata.UI
 
         public override void Add(HitObject hitObject)
         {
-            var hishiObj = hitObject as HishigataHitObject;
+            var hishiObj = (HishigataHitObject)hitObject;
             lanes[hishiObj.Lane].Add(hitObject);
-        }
-
-        public override void Add(DrawableHitObject hitObject)
-        {
-            var hishigataObject = hitObject as DrawableHishigataHitObject;
-
-            hishigataObject.CanBeHit = playerObject.CanBeHit;
-            lanes[hishigataObject.HitObject.Lane].Add(hitObject);
         }
 
         private int? touchedLane;
@@ -97,8 +87,8 @@ namespace osu.Game.Rulesets.Hishigata.UI
 
             if (touchInput.ActiveSources.Any())
             {
-                var focusedTouch = touchInput.GetTouchPosition(touchInput.ActiveSources.Last());
-                var TouchAngle = ToScreenSpace(OriginPosition).GetDegreesFromPosition(focusedTouch.Value);
+                var focusedTouch = touchInput.GetTouchPosition(touchInput.ActiveSources.Last())!;
+                float TouchAngle = ToScreenSpace(OriginPosition).GetDegreesFromPosition(focusedTouch.Value);
 
                 for (int i = 0; i < 4; ++i)
                 {

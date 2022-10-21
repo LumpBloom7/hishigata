@@ -9,8 +9,8 @@ namespace osu.Game.Rulesets.Hishigata.UI
 {
     public class PoolableHitExplosion : PoolableDrawable
     {
-        private Box left;
-        private Box right;
+        private Box left = null!;
+        private Box right = null!;
 
         private double duration;
 
@@ -41,10 +41,12 @@ namespace osu.Game.Rulesets.Hishigata.UI
             };
         }
 
-        public void Apply(DrawableHishigataHitObject h)
+        public PoolableHitExplosion Apply(DrawableHishigataHitObject h)
         {
             duration = h.HitObject.TimePreempt / 3;
             Colour = h.Colour;
+
+            return this;
         }
 
         protected override void PrepareForUse()

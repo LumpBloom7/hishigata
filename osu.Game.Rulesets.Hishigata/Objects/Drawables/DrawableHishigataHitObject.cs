@@ -1,14 +1,9 @@
 ﻿using System;
 using osu.Framework.Allocation;
-using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
-using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Drawables;
-using osu.Game.Rulesets.Scoring;
 using osuTK;
 using osuTK.Graphics;
 
@@ -17,14 +12,14 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
     public class DrawableHishigataHitObject : DrawableHitObject<HishigataHitObject>
     {
         protected override double InitialLifetimeOffset => HitObject.TimePreempt;
-        protected Sprite Note;
+        protected Sprite Note = null!;
 
-        public DrawableHishigataHitObject() : base(null)
+        public DrawableHishigataHitObject() : this(null)
         {
         }
 
-        public DrawableHishigataHitObject(HishigataHitObject hitObject = null)
-            : base(hitObject)
+        public DrawableHishigataHitObject(HishigataHitObject? hitObject = null)
+            : base(hitObject!)
         {
         }
 
@@ -42,7 +37,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
             });
         }
 
-        public Func<DrawableHishigataHitObject, bool> CanBeHit;
+        public Func<DrawableHishigataHitObject, bool>? CanBeHit;
 
         protected override void CheckForResult(bool userTriggered, double timeOffset)
         {

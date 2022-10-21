@@ -30,7 +30,7 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
             int seed = ((int)MathF.Round(difficulty.DrainRate + difficulty.CircleSize) * 20) + (int)(difficulty.OverallDifficulty * 41.2) + (int)MathF.Round(difficulty.ApproachRate);
             Random rng = new Random(seed);
 
-            Vector2 position = (original as IHasPosition).Position;
+            Vector2 position = ((IHasPosition)original).Position;
             float angle = getHitObjectAngle(position) / 90;
             int lane = (int)Math.Round(angle);
 
@@ -78,7 +78,7 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
             }
         }
 
-        private float getHitObjectAngle(Vector2 target)
+        private static float getHitObjectAngle(Vector2 target)
         {
             Vector2 direction = target - new Vector2(256, 192);
             float angle = MathHelper.RadiansToDegrees(MathF.Atan2(direction.Y, direction.X));
