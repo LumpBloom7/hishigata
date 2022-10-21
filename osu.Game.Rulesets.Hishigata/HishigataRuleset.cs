@@ -55,6 +55,7 @@ namespace osu.Game.Rulesets.Hishigata
                         new HishigataModHardRock(),
                         new HishigataModSuddenDeath(),
                         new MultiMod(new HishigataModDoubleTime(), new HishigataModNightcore()),
+                        new HishigataModHidden(),
                     };
 
                 case ModType.Automation:
