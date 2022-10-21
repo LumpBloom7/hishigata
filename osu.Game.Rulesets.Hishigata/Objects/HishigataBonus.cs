@@ -18,7 +18,6 @@ namespace osu.Game.Rulesets.Hishigata.Objects
 
         public override Judgement CreateJudgement() => new HishigataBonusJudgement();
 
-#nullable enable
         private class BonusHitSampleInfo : HitSampleInfo, IEquatable<BonusHitSampleInfo>
         {
             private const string lookup_name = "Gameplay/catch-banana";
@@ -47,6 +46,5 @@ namespace osu.Game.Rulesets.Hishigata.Objects
 
             public override int GetHashCode() => lookup_name.GetHashCode();
         }
-        //#nullable restore
     }
 }

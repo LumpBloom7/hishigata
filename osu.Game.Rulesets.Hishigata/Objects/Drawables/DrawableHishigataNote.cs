@@ -1,13 +1,5 @@
-using System;
-using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Shapes;
-using osu.Framework.Graphics.Sprites;
-using osu.Game.Rulesets.Objects;
-using osu.Game.Rulesets.Objects.Drawables;
-using osu.Game.Rulesets.Scoring;
 using osuTK;
 using osuTK.Graphics;
 
@@ -18,12 +10,12 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
         public new HishigataNote HitObject => (HishigataNote)base.HitObject;
         protected override double InitialLifetimeOffset => HitObject.TimePreempt + (HitObject.IsFeign ? 200 : 0);
 
-        public DrawableHishigataNote() : base(null)
+        public DrawableHishigataNote() : this(null)
         {
         }
 
-        public DrawableHishigataNote(HishigataHitObject hitObject = null)
-            : base(hitObject)
+        public DrawableHishigataNote(HishigataHitObject? hitObject = null)
+            : base(hitObject!)
         {
         }
 

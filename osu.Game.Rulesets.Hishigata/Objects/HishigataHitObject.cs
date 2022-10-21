@@ -12,6 +12,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects
         public double TimePreempt;
 
         public BindableInt LaneBindable = new BindableInt();
+
         public int Lane
         {
             get => LaneBindable.Value;

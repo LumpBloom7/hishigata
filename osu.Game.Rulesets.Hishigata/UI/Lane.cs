@@ -15,9 +15,9 @@ namespace osu.Game.Rulesets.Hishigata.UI
 {
     public class Lane : Playfield
     {
-        private readonly Container hitExplosionContainer;
+        private readonly Container hitExplosionContainer = null!;
 
-        private readonly DrawablePool<PoolableHitExplosion> hitExplosionPool;
+        private readonly DrawablePool<PoolableHitExplosion> hitExplosionPool = null!;
 
         public Lane()
         {
@@ -31,7 +31,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
             NewResult += onNewResult;
         }
 
-        private Func<DrawableHishigataHitObject, bool> checkHittable;
+        private Func<DrawableHishigataHitObject, bool> checkHittable = null!;
 
         [BackgroundDependencyLoader]
         private void load(PlayerVisual playerobj)
@@ -58,7 +58,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
         private void onNewResult(DrawableHitObject h, JudgementResult judgement)
         {
             if (judgement.IsHit)
-                hitExplosionContainer.Add(hitExplosionPool.Get(e => e.Apply(h as DrawableHishigataHitObject)));
+                hitExplosionContainer.Add(hitExplosionPool.Get().Apply((DrawableHishigataHitObject)h));
         }
 
         protected override HitObjectLifetimeEntry CreateLifetimeEntry(HitObject hitObject) => new HishigataHitObjectLifetimeEntry(hitObject);

@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.Hishigata.Difficulty
             int maxCombo = 0;
             foreach (HishigataHitObject h in beatmap.HitObjects)
             {
-                if (!(h is HishigataBonus)) ++maxCombo;
+                if (h is not HishigataBonus) ++maxCombo;
             }
 
             return new DifficultyAttributes
