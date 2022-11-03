@@ -14,9 +14,7 @@ namespace osu.Game.Rulesets.Hishigata.Mods
         public override LocalisableString Description => HishigataModTrustworthyStrings.ModDescription;
         public override double ScoreMultiplier => 0.8;
         public override ModType Type => ModType.Conversion;
-        //public override bool UserPlayable => true;
         public override IconUsage? Icon => FontAwesome.Solid.Check;
-        //public override bool HasImplementation => true;
 
         public void ApplyToBeatmapConverter(IBeatmapConverter beatmapConverter)
         {
