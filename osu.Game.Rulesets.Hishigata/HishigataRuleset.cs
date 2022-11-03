@@ -64,6 +64,12 @@ namespace osu.Game.Rulesets.Hishigata
                         new HishigataModAutoplay(),
                     };
 
+                case ModType.Conversion:
+                    return new Mod[]
+                    {
+                        new HishigataModTrustworthy(),
+                    };
+
                 case ModType.Fun:
                     return new Mod[]
                     {
