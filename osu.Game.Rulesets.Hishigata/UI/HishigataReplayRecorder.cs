@@ -7,7 +7,7 @@ using osuTK;
 
 namespace osu.Game.Rulesets.Hishigata.UI
 {
-    public class HishigataReplayRecorder : ReplayRecorder<HishigataAction>
+    public partial class HishigataReplayRecorder : ReplayRecorder<HishigataAction>
     {
         public HishigataReplayRecorder(Score score)
             : base(score)

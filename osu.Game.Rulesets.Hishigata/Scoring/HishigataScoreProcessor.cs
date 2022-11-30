@@ -2,7 +2,7 @@ using osu.Game.Rulesets.Scoring;
 
 namespace osu.Game.Rulesets.Hishigata.Scoring
 {
-    public class HishigataScoreProcessor : ScoreProcessor
+    public partial class HishigataScoreProcessor : ScoreProcessor
     {
         public HishigataScoreProcessor(HishigataRuleset ruleset) : base(ruleset) { }
         protected override double DefaultAccuracyPortion => 0.5;

@@ -10,7 +10,7 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
-    public class Rhombus : BeatSyncedContainer
+    public partial class Rhombus : BeatSyncedContainer
     {
         public Rhombus()
         {

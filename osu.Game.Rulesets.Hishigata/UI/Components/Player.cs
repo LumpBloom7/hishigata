@@ -15,7 +15,7 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
-    public class PlayerVisual : BeatSyncedContainer, IKeyBindingHandler<HishigataAction>
+    public partial class PlayerVisual : BeatSyncedContainer, IKeyBindingHandler<HishigataAction>
     {
         private readonly Container rContainer;
         private readonly Container gContainer;

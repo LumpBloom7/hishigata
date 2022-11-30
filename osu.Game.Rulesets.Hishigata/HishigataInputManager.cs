@@ -5,7 +5,7 @@ using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.Hishigata
 {
-    public class HishigataInputManager : RulesetInputManager<HishigataAction>
+    public partial class HishigataInputManager : RulesetInputManager<HishigataAction>
     {
         public HishigataInputManager(RulesetInfo ruleset)
             : base(ruleset, 0, SimultaneousBindingMode.Unique)

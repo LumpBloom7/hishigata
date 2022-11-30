@@ -12,7 +12,7 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
-    public class EffectContainer : BeatSyncedContainer
+    public partial class EffectContainer : BeatSyncedContainer
     {
         private DrawablePool<Effect> effectPool;
         public EffectContainer()
@@ -43,7 +43,7 @@ namespace osu.Game.Rulesets.Hishigata.UI.Components
             }
         }
 
-        public class Effect : PoolableDrawable
+        public partial class Effect : PoolableDrawable
         {
             public Effect()
             {

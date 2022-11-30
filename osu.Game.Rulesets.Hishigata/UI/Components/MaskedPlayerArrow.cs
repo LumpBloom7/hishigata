@@ -7,7 +7,7 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Hishigata.UI.Components
 {
-    public class MaskedPlayerArrow : CompositeDrawable
+    public partial class MaskedPlayerArrow : CompositeDrawable
     {
         private readonly Box chevron;
         private readonly Container rotationContainer;

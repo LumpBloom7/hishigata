@@ -14,7 +14,7 @@ using osu.Game.Scoring;
 namespace osu.Game.Rulesets.Hishigata.UI
 {
     [Cached]
-    public class DrawableHishigataRuleset : DrawableRuleset<HishigataHitObject>
+    public partial class DrawableHishigataRuleset : DrawableRuleset<HishigataHitObject>
     {
         public DrawableHishigataRuleset(HishigataRuleset ruleset, IBeatmap beatmap, IReadOnlyList<Mod>? mods = null)
             : base(ruleset, beatmap, mods)
