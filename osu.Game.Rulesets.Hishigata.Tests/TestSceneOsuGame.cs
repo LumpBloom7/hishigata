@@ -6,7 +6,7 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Hishigata.Tests
 {
-    public class TestSceneOsuGame : OsuTestScene
+    public partial class TestSceneOsuGame : OsuTestScene
     {
         [BackgroundDependencyLoader]
         private void load()

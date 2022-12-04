@@ -7,7 +7,7 @@ using osuTK;
 
 namespace osu.Game.Rulesets.Hishigata.UI
 {
-    public class PoolableHitExplosion : PoolableDrawable
+    public partial class PoolableHitExplosion : PoolableDrawable
     {
         private Box left = null!;
         private Box right = null!;

@@ -13,7 +13,7 @@ using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.Hishigata.UI
 {
-    public class Lane : Playfield
+    public partial class Lane : Playfield
     {
         private readonly Container hitExplosionContainer = null!;
 

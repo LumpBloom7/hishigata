@@ -5,7 +5,7 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
 {
-    public class DrawableHishigataNote : DrawableHishigataHitObject
+    public partial class DrawableHishigataNote : DrawableHishigataHitObject
     {
         public new HishigataNote HitObject => (HishigataNote)base.HitObject;
         protected override double InitialLifetimeOffset => HitObject.TimePreempt + (HitObject.IsFeign ? 200 : 0);

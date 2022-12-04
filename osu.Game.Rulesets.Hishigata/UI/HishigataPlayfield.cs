@@ -15,7 +15,7 @@ using osuTK.Graphics;
 namespace osu.Game.Rulesets.Hishigata.UI
 {
     [Cached]
-    public class HishigataPlayfield : Playfield
+    public partial class HishigataPlayfield : Playfield
     {
         private HishigataInputManager hishigataActionInputManager = null!;
         internal HishigataInputManager HishigataActionInputManager => hishigataActionInputManager ??= (HishigataInputManager)GetContainingInputManager();
