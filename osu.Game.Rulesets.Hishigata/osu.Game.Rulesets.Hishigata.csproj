@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup Label="Project">
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyTitle>osu.Game.Rulesets.Hishigata</AssemblyTitle>
     <OutputType>Library</OutputType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -10,6 +10,6 @@
     <AssemblyName>osu.Game.Rulesets.Hishigata</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ppy.osu.Game" Version="2022.1205.0"/>
+    <PackageReference Include="ppy.osu.Game" Version="2023.419.0" />
   </ItemGroup>
 </Project>
