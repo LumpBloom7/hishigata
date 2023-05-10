@@ -13,6 +13,8 @@ namespace osu.Game.Rulesets.Hishigata.Objects
 
         public BindableInt LaneBindable = new BindableInt();
 
+        public double Velocity { get; set; } = 1;
+
         public int Lane
         {
             get => LaneBindable.Value;
@@ -26,7 +28,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects
             base.ApplyDefaultsToSelf(controlPointInfo, difficulty);
 
             TimePreempt = (float)IBeatmapDifficultyInfo.DifficultyRange(difficulty.ApproachRate, 1800, 1200, 450);
-            TimePreempt /= DifficultyControlPoint.SliderVelocity;
+            TimePreempt /= Velocity;
             TimePreempt = Math.Max(TimePreempt, 450);
         }
     }

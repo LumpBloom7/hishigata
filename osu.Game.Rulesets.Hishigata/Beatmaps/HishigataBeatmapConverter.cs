@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using osu.Game.Audio;
 using osu.Game.Beatmaps;
+using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Rulesets.Hishigata.Objects;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
@@ -79,7 +80,8 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                         Lane = lane,
                         Samples = original.Samples,
                         StartTime = original.StartTime,
-                        IsFeign = isFeign
+                        IsFeign = isFeign,
+                        Velocity = (original is IHasSliderVelocity sliderVelocity) ? sliderVelocity.SliderVelocity : DifficultyControlPoint.DEFAULT.SliderVelocity
                     };
                     break;
             }
