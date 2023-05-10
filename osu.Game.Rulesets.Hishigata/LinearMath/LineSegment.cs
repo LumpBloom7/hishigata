@@ -45,7 +45,7 @@ namespace osu.Game.Rulesets.Hishigata.LinearMath
             return isInBounds(point) && other.isInBounds(point);
         }
 
-        private bool isInBounds(Vector2 point)
+        private readonly bool isInBounds(Vector2 point)
             => point.X > Math.Min(PointA.X, PointB.X)
             && point.X < Math.Max(PointA.X, PointB.X)
             && point.Y > Math.Min(PointA.Y, PointB.Y)
