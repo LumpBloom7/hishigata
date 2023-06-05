@@ -5,7 +5,9 @@ namespace osu.Game.Rulesets.Hishigata.Scoring
     public partial class HishigataScoreProcessor : ScoreProcessor
     {
         public HishigataScoreProcessor(HishigataRuleset ruleset) : base(ruleset) { }
-        protected override double DefaultAccuracyPortion => 0.5;
-        protected override double DefaultComboPortion => 0.5;
+        protected override double ComputeTotalScore(double comboProgress, double accuracyProgress, double bonusPortion)
+        {
+            return (500000 * comboProgress) + (500000 * accuracyProgress) + bonusPortion;
+        }
     }
 }

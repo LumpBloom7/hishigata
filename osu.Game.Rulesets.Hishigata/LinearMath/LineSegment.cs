@@ -3,7 +3,7 @@ using osuTK;
 
 namespace osu.Game.Rulesets.Hishigata.LinearMath
 {
-    public struct LineSegment
+    public readonly struct LineSegment
     {
         public float Dx => PointA.X - PointB.X;
         public float Dy => PointA.Y - PointB.Y;
