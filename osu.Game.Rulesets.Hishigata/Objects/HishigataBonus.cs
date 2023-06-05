@@ -35,7 +35,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects
             {
             }
 
-            public override HitSampleInfo With(Optional<string> newName = default, Optional<string?> newBank = default, Optional<string?> newSuffix = default, Optional<int> newVolume = default)
+            public override HitSampleInfo With(Optional<string> newName = default, Optional<string> newBank = default, Optional<string?> newSuffix = default, Optional<int> newVolume = default)
                 => new BonusHitSampleInfo(newVolume.GetOr(Volume));
 
             public bool Equals(BonusHitSampleInfo? other)
