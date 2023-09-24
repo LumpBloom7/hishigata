@@ -81,7 +81,7 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                         Samples = original.Samples,
                         StartTime = original.StartTime,
                         IsFeign = isFeign,
-                        Velocity = (original is IHasSliderVelocity sliderVelocity) ? sliderVelocity.SliderVelocity : DifficultyControlPoint.DEFAULT.SliderVelocity
+                        Velocity = (original is IHasSliderVelocity sliderVelocity) ? sliderVelocity.SliderVelocityMultiplier : DifficultyControlPoint.DEFAULT.SliderVelocity
                     };
                     break;
             }
