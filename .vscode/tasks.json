@@ -2,29 +2,13 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build tests (Debug)",
+            "label": "Build tests",
             "type": "shell",
             "command": "dotnet",
             "args": [
                 "build",
                 "--no-restore",
                 "osu.Game.Rulesets.Hishigata.Tests",
-                "/p:GenerateFullPaths=true",
-                "/m",
-                "/verbosity:m"
-            ],
-            "group": "build",
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "Build tests (Release)",
-            "type": "shell",
-            "command": "dotnet",
-            "args": [
-                "build",
-                "--no-restore",
-                "osu.Game.Rulesets.Hishigata.Tests",
-                "/p:Configuration=Release",
                 "/p:GenerateFullPaths=true",
                 "/m",
                 "/verbosity:m"
@@ -34,7 +18,7 @@
         },
         // Test Tasks
         {
-            "label": "Run tests (Debug)",
+            "label": "Run tests",
             "type": "shell",
             "command": "dotnet",
             "args": [
@@ -44,16 +28,5 @@
             "group": "test",
             "problemMatcher": "$msCompile"
         },
-        {
-            "label": "Run tests (Release)",
-            "type": "shell",
-            "command": "dotnet",
-            "args": [
-                "test",
-                "/p:Configuration=Release",
-            ],
-            "group": "test",
-            "problemMatcher": "$msCompile"
-        }
     ]
 }

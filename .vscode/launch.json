@@ -7,28 +7,16 @@
             "request": "launch",
             "program": "dotnet",
             "args": [
-                "${workspaceRoot}/osu.Game.Rulesets.Hishigata.Tests/bin/Debug/net6.0/osu.Game.Rulesets.Hishigata.Tests.dll"
+                "${workspaceRoot}/osu.Game.Rulesets.Hishigata.Tests/bin/Debug/net8.0/osu.Game.Rulesets.Hishigata.Tests.dll"
             ],
             "cwd": "${workspaceRoot}",
-            "preLaunchTask": "Build tests (Debug)",
+            "preLaunchTask": "Build tests",
             "console": "internalConsole",
             "justMyCode": false,
             "symbolOptions": {
                 "searchMicrosoftSymbolServer": true,
                 "searchNuGetOrgSymbolServer": true
             },
-        },
-        {
-            "name": "hishigata for osu! (Tests, Release)",
-            "type": "coreclr",
-            "request": "launch",
-            "program": "dotnet",
-            "args": [
-                "${workspaceRoot}/osu.Game.Rulesets.Hishigata.Tests/bin/Release/net6.0/osu.Game.Rulesets.Hishigata.Tests.dll"
-            ],
-            "cwd": "${workspaceRoot}",
-            "preLaunchTask": "Build tests (Release)",
-            "console": "internalConsole"
         },
     ]
 }
