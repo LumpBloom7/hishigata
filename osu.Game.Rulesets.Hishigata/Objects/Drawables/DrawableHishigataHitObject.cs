@@ -44,12 +44,12 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
             if (timeOffset >= 0 && timeOffset <= 32)
             {
                 if (CanBeHit?.Invoke(this) ?? false)
-                    ApplyResult(r => r.Type = r.Judgement.MaxResult);
+                    ApplyResult(Result.Judgement.MaxResult);
 
                 return;
             }
             if (timeOffset > 32)
-                ApplyResult(r => r.Type = r.Judgement.MinResult);
+                ApplyResult(Result.Judgement.MinResult);
         }
 
         protected override void UpdateInitialTransforms()
