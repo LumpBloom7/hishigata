@@ -10,6 +10,6 @@
     <AssemblyName>osu.Game.Rulesets.Hishigata</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ppy.osu.Game" Version="2024.219.0"/>
+    <PackageReference Include="ppy.osu.Game" Version="2024.1115.0"/>
   </ItemGroup>
 </Project>

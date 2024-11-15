@@ -19,7 +19,7 @@ jobs:
     - name: Unit Tests
       run: dotnet test --no-build --no-restore
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: Hishigata (Dev build)
         path: osu.Game.Rulesets.Hishigata/bin/Debug/**/osu.Game.Rulesets.Hishigata.dll
