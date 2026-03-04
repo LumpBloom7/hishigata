@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Hishigata.Localisation;
@@ -27,6 +28,8 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                 }
             }
 
+            float total = Math.Max(1, notes + feigns + bonus);
+
             return new[]
             {
                 new BeatmapStatistic
@@ -34,18 +37,21 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
                     Name = HishigataBeatmapStrings.NoteCount,
                     Content = notes.ToString(),
                     CreateIcon = () => new BeatmapStatisticIcon(BeatmapStatisticsIconType.Circles),
+                    BarDisplayLength = notes / total,
                 },
                 new BeatmapStatistic
                 {
                     Name = HishigataBeatmapStrings.FeignCount,
                     Content = feigns.ToString(),
                     CreateIcon = () => new BeatmapStatisticIcon(BeatmapStatisticsIconType.Circles),
+                    BarDisplayLength = feigns / total,
                 },
                 new BeatmapStatistic
                 {
                     Name = HishigataBeatmapStrings.BonusCount,
                     Content = bonus.ToString(),
                     CreateIcon = () => new BeatmapStatisticIcon(BeatmapStatisticsIconType.Spinners),
+                    BarDisplayLength = bonus / total,
                 },
             };
         }
