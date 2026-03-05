@@ -118,7 +118,7 @@ namespace osu.Game.Rulesets.Hishigata
             }
         };
 
-        protected override IEnumerable<HitResult> GetValidHitResults()
+        public override IEnumerable<HitResult> GetValidHitResults()
         {
             return new[]
             {
