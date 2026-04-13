@@ -74,6 +74,7 @@ namespace osu.Game.Rulesets.Hishigata
                     return new Mod[]
                     {
                         new MultiMod(new ModWindUp(), new ModWindDown()),
+                        new HishigataModInvert(),
                     };
 
                 default:
