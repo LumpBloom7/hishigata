@@ -1,14 +1,14 @@
 using System;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Localisation;
-using osu.Game.Beatmaps;
+using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Hishigata.Localisation.Mods;
-using osu.Game.Rulesets.Hishigata.Beatmaps;
 using osu.Game.Rulesets.Mods;
+using osu.Game.Rulesets.Hishigata.Objects;
 
 namespace osu.Game.Rulesets.Hishigata.Mods
 {
-    public class HishigataModTrustworthy : Mod, IApplicableToBeatmapConverter
+    public class HishigataModTrustworthy : Mod, IApplicableToHitObject
     {
         public override string Name => "Trustworthy";
         public override string Acronym => "TW";
@@ -18,10 +18,10 @@ namespace osu.Game.Rulesets.Hishigata.Mods
         public override Type[] IncompatibleMods => new[] { typeof(HishigataModInvert) };
         public override IconUsage? Icon => FontAwesome.Solid.Check;
 
-        public void ApplyToBeatmapConverter(IBeatmapConverter beatmapConverter)
+        public void ApplyToHitObject(HitObject hitObject)
         {
-            var converter = (HishigataBeatmapConverter)beatmapConverter;
-            converter.FeignsAllowed = false;
+            HishigataHitObject hishigataHitObject = (HishigataHitObject)hitObject;
+            if (hishigataHitObject is HishigataNote hishigataNote) hishigataNote.IsFeign = false;
         }
     }
 }

@@ -25,9 +25,6 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
         // https://github.com/ppy/osu/tree/master/osu.Game/Rulesets/Objects/Types
         public override bool CanConvert() => Beatmap.HitObjects.All(x => x is IHasPosition);
 
-        // trustworthy mod
-        public bool FeignsAllowed { get; set; } = true;
-
         protected override IEnumerable<HishigataHitObject> ConvertHitObject(HitObject original, IBeatmap beatmap, CancellationToken cancellationToken)
         {
             var difficulty = beatmap.BeatmapInfo.Difficulty;
@@ -39,10 +36,7 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
             int lane = (int)Math.Round(angle);
 
             bool isFeign = false;
-            if (FeignsAllowed)
-            {
-                isFeign = original.Samples.Any(x => x.Name == HitSampleInfo.HIT_WHISTLE);
-            }
+            isFeign = original.Samples.Any(x => x.Name == HitSampleInfo.HIT_WHISTLE);
 
             if (lane >= 4) lane -= 4;
             switch (original)
