@@ -1,3 +1,4 @@
+using System;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Localisation;
 using osu.Game.Beatmaps;
@@ -14,6 +15,7 @@ namespace osu.Game.Rulesets.Hishigata.Mods
         public override LocalisableString Description => HishigataModTrustworthyStrings.ModDescription;
         public override double ScoreMultiplier => 0.8;
         public override ModType Type => ModType.Conversion;
+        public override Type[] IncompatibleMods => new[] { typeof(HishigataModInvert) };
         public override IconUsage? Icon => FontAwesome.Solid.Check;
 
         public void ApplyToBeatmapConverter(IBeatmapConverter beatmapConverter)
