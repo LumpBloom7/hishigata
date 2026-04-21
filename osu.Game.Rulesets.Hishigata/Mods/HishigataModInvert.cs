@@ -15,7 +15,7 @@ namespace osu.Game.Rulesets.Hishigata.Mods
         public override string Acronym => "IN";
         public override LocalisableString Description => HishigataModInvertStrings.ModDescription;
         public override double ScoreMultiplier => 1.0;
-        public override ModType Type => ModType.Fun;
+        public override ModType Type => ModType.Conversion;
         public override Type[] IncompatibleMods => new[] { typeof(HishigataModTrustworthy) };
         public override IconUsage? Icon => OsuIcon.ModInvert;
 
