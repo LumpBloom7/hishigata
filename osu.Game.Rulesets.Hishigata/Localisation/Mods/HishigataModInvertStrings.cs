@@ -7,7 +7,7 @@ namespace osu.Game.Rulesets.Hishigata.Localisation.Mods
         private const string prefix = @"osu.Game.Rulesets.Hishigata.Resources.Localisation.Mods.HishigataModInvertStrings";
 
         /// <summary>
-        /// "Notes don't switch sides."
+        /// "Regular notes and feigns are swapped."
         /// </summary>
         public static LocalisableString ModDescription => new TranslatableString(getKey(@"mod_description"), @"Regular notes and feigns are swapped.");
 
