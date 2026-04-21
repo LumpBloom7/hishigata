@@ -68,6 +68,7 @@ namespace osu.Game.Rulesets.Hishigata
                     return new Mod[]
                     {
                         new HishigataModTrustworthy(),
+                        new HishigataModInvert(),
                     };
 
                 case ModType.Fun:
