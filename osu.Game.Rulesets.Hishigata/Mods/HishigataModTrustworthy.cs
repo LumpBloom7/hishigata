@@ -20,8 +20,7 @@ namespace osu.Game.Rulesets.Hishigata.Mods
 
         public void ApplyToHitObject(HitObject hitObject)
         {
-            HishigataHitObject hishigataHitObject = (HishigataHitObject)hitObject;
-            if (hishigataHitObject is HishigataNote hishigataNote) hishigataNote.IsFeign = false;
+            if (hitObject is HishigataNote hishigataNote) hishigataNote.IsFeign = false;
         }
     }
 }
