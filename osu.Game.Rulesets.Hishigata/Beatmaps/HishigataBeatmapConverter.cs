@@ -35,8 +35,7 @@ namespace osu.Game.Rulesets.Hishigata.Beatmaps
             float angle = getHitObjectAngle(position) / 90;
             int lane = (int)Math.Round(angle);
 
-            bool isFeign = false;
-            isFeign = original.Samples.Any(x => x.Name == HitSampleInfo.HIT_WHISTLE);
+            bool isFeign = original.Samples.Any(x => x.Name == HitSampleInfo.HIT_WHISTLE);
 
             if (lane >= 4) lane -= 4;
             switch (original)
