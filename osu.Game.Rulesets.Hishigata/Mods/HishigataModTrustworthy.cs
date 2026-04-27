@@ -16,7 +16,9 @@ namespace osu.Game.Rulesets.Hishigata.Mods
         public override double ScoreMultiplier => 0.8;
         public override ModType Type => ModType.Conversion;
         public override Type[] IncompatibleMods => new[] { typeof(HishigataModInvert) };
-        public override IconUsage? Icon => FontAwesome.Solid.Check;
+        //Current Mod Icon is a check mark, however looks ugly and does not match other Icons,
+        // so needs updating. Perhaps making it smaller somehow would be enough?
+        //public override IconUsage? Icon => FontAwesome.Solid.Check;
 
         public void ApplyToHitObject(HitObject hitObject)
         {
