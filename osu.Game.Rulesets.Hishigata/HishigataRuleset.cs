@@ -67,7 +67,7 @@ namespace osu.Game.Rulesets.Hishigata
                 case ModType.Conversion:
                     return new Mod[]
                     {
-                        new HishigataModTrustworthy(),
+                        new MultiMod(new HishigataModTrustworthy(), new HishigataModUntrustworthy()),
                         new HishigataModInvert(),
                     };
 
