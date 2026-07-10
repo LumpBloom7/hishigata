@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Difficulty;
@@ -9,11 +8,9 @@ using osu.Game.Rulesets.Mods;
 
 namespace osu.Game.Rulesets.Hishigata.Difficulty
 {
-    public class HishigataDifficultyCalculator : DifficultyCalculator
+    public class HishigataDifficultyCalculator(IRulesetInfo ruleset, IWorkingBeatmap beatmap) : DifficultyCalculator(ruleset, beatmap)
     {
-        public HishigataDifficultyCalculator(IRulesetInfo ruleset, IWorkingBeatmap beatmap) : base(ruleset, beatmap) { }
-
-        protected override DifficultyAttributes CreateDifficultyAttributes(IBeatmap beatmap, Mod[] mods, Skill[] skills, double clockRate)
+        protected override DifficultyAttributes CreateDifficultyAttributes(IBeatmap beatmap, Mod[] mods, Skill[] skills)
         {
             int maxCombo = 0;
             foreach (HishigataHitObject h in beatmap.HitObjects)
@@ -29,8 +26,8 @@ namespace osu.Game.Rulesets.Hishigata.Difficulty
             };
         }
 
-        protected override IEnumerable<DifficultyHitObject> CreateDifficultyHitObjects(IBeatmap beatmap, double clockRate) => Array.Empty<DifficultyHitObject>();
+        protected override IEnumerable<DifficultyHitObject> CreateDifficultyHitObjects(IBeatmap beatmap, Mod[] mods) => [];
 
-        protected override Skill[] CreateSkills(IBeatmap beatmap, Mod[] mods, double clockRate) => Array.Empty<Skill>();
+        protected override Skill[] CreateSkills(IBeatmap beatmap, Mod[] mods) => [];
     }
 }
