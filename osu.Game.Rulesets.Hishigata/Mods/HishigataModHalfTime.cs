@@ -2,8 +2,5 @@
 
 namespace osu.Game.Rulesets.Hishigata.Mods
 {
-    public class HishigataModHalfTime : ModHalfTime
-    {
-        public override double ScoreMultiplier => 0.3;
-    }
+    public class HishigataModHalfTime : ModHalfTime;
 }

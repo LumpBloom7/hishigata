@@ -2,10 +2,10 @@ using System;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Localisation;
 using osu.Game.Graphics;
-using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Hishigata.Localisation.Mods;
-using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.Hishigata.Objects;
+using osu.Game.Rulesets.Mods;
+using osu.Game.Rulesets.Objects;
 
 namespace osu.Game.Rulesets.Hishigata.Mods
 {
@@ -14,9 +14,8 @@ namespace osu.Game.Rulesets.Hishigata.Mods
         public override string Name => "Invert";
         public override string Acronym => "IN";
         public override LocalisableString Description => HishigataModInvertStrings.ModDescription;
-        public override double ScoreMultiplier => 1.0;
         public override ModType Type => ModType.Conversion;
-        public override Type[] IncompatibleMods => new[] { typeof(HishigataModTrustworthy), typeof(HishigataModUntrustworthy) };
+        public override Type[] IncompatibleMods => [typeof(HishigataModTrustworthy), typeof(HishigataModUntrustworthy)];
         public override IconUsage? Icon => OsuIcon.ModInvert;
 
         public void ApplyToHitObject(HitObject hitObject)

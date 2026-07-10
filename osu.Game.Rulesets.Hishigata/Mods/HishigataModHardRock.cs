@@ -6,8 +6,6 @@ namespace osu.Game.Rulesets.Hishigata.Mods
 {
     public class HishigataModHardRock : ModHardRock, IApplicableToHitObject
     {
-        public override double ScoreMultiplier => 1.06;
-
         public void ApplyToHitObject(HitObject hitObject)
         {
             var hishiObj = (HishigataHitObject)hitObject;

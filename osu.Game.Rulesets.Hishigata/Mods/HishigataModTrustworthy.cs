@@ -1,5 +1,4 @@
 using System;
-using osu.Framework.Graphics.Sprites;
 using osu.Framework.Localisation;
 using osu.Game.Rulesets.Hishigata.Localisation.Mods;
 using osu.Game.Rulesets.Hishigata.Objects;
@@ -13,7 +12,6 @@ namespace osu.Game.Rulesets.Hishigata.Mods
         public override string Name => "Trustworthy";
         public override string Acronym => "TW";
         public override LocalisableString Description => HishigataModTrustworthyStrings.ModDescription;
-        public override double ScoreMultiplier => 0.8;
         public override ModType Type => ModType.Conversion;
 
         //Current Mod Icon is a check mark, however looks ugly and does not match other Icons,
