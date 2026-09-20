@@ -86,17 +86,22 @@ namespace osu.Game.Rulesets.Hishigata
 
         public override string ShortName => "hishigata";
 
-        public override IEnumerable<KeyBinding> GetDefaultKeyBindings(int variant = 0) => new[]
+        public override IEnumerable<KeyBinding> GetDefaultKeyBindings(int variant = 0)
         {
-            new KeyBinding(InputKey.Up, HishigataAction.Up),
-            new KeyBinding(InputKey.W, HishigataAction.Up),
-            new KeyBinding(InputKey.Right, HishigataAction.Right),
-            new KeyBinding(InputKey.D, HishigataAction.Right),
-            new KeyBinding(InputKey.Down, HishigataAction.Down),
-            new KeyBinding(InputKey.S, HishigataAction.Down),
-            new KeyBinding(InputKey.Left, HishigataAction.Left),
-            new KeyBinding(InputKey.A, HishigataAction.Left),
-        };
+            if (variant == EDITOR_VARIANT)
+                return [];
+
+            return [
+                new KeyBinding(InputKey.Up, HishigataAction.Up),
+                new KeyBinding(InputKey.W, HishigataAction.Up),
+                new KeyBinding(InputKey.Right, HishigataAction.Right),
+                new KeyBinding(InputKey.D, HishigataAction.Right),
+                new KeyBinding(InputKey.Down, HishigataAction.Down),
+                new KeyBinding(InputKey.S, HishigataAction.Down),
+                new KeyBinding(InputKey.Left, HishigataAction.Left),
+                new KeyBinding(InputKey.A, HishigataAction.Left),
+            ];
+        }
 
         public override Drawable CreateIcon() => new Container
         {
