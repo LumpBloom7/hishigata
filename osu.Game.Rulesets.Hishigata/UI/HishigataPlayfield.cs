@@ -17,8 +17,7 @@ namespace osu.Game.Rulesets.Hishigata.UI
     [Cached]
     public partial class HishigataPlayfield : Playfield
     {
-        private HishigataInputManager hishigataActionInputManager = null!;
-        internal HishigataInputManager HishigataActionInputManager => hishigataActionInputManager ??= (HishigataInputManager)GetContainingInputManager();
+        internal HishigataInputManager HishigataActionInputManager { get => field ??= (HishigataInputManager)GetContainingInputManager(); } = null!;
 
         public override bool ReceivePositionalInputAt(Vector2 screenSpacePos) => true;
 
